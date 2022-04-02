@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: OpenSansMd;
+    src: url('../fonts/OpenSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: OpenSansSm;
+    src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: TheBrown;
+    src: url('../fonts/The Brown.otf') format('truetype');
+}
+
+.backdropCircle {
+    background: rgba( 230, 233, 240, 0.35 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border: 2px solid rgba(255, 255, 255, 0.342);
+}
+
+.backdropBg {
+    background: rgba( 255, 255, 255, 0.35 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+}
+
+.backdropCard {
+    background: rgba(208, 211, 216, 0.35);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+}
+
+.menu {
+    animation: menu;
+    animation-duration: .4s;
+}
+
+.menuclose {
+    animation-name: menuclose;
+    animation-duration: .4s;
+}
+
+@keyframes menuclose {
+    from {
+        right: 0;
+    }
+
+    to {
+        right: -40px;
+    }
+}
+
+@keyframes menu {
+    from {
+        right: -40px;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+.three-points {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
