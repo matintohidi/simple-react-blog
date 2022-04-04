@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import media
-import Img3 from '../../assets/media/Img/3.jpg';
-
 export default function ArticleCard(props) {
-    let { title , content , day , month , year , id } = props;
+    let { img , title , content , day , month , year , id } = props;
 
     const monthOfYear = ["January" , "February" , "March" , "April" , "May" , "June" , "July" , "August" , "September" , "October" , "November" , "December"];
 
@@ -52,10 +49,10 @@ export default function ArticleCard(props) {
 
     return (
         <div className="m-3 md:m-12 lg:mx-6 lg:mt-6 lg:mb-0 backdropCard rounded shadow-md col-span-1">
-            <img loading="lazy" src={Img3} className="rounded-t shadow-lg" />
+            <img loading="lazy" src={img} className="rounded-t shadow-lg h-96 w-full" />
             <div className="mx-5 py-3">
-                <div>
-                    <p className="text-sm font-medium font-openSansSm">{day} , {month} , {year}</p>
+                <div className="mb-4">
+                    <p className="text-sm font-medium font-openSansSm mb-4">{day} , {month} , {year}</p>
                     <h2 className="text-2xl font-black">{title}</h2>
                     <p className="text-sm font-medium font-openSansSm mt-3 three-points">{content}</p>
                 </div>

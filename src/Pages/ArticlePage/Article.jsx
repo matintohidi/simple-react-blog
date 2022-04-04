@@ -1,4 +1,6 @@
 import React , { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 // import Media
 import Img1 from '../../assets/media/Img/1.jpg';
@@ -18,8 +20,14 @@ import Comments from './Comments';
 import Footer from '../../Components/Layout/Footer';
 
 export default function ArticleContnet() {
+    const { id } = useParams();
+    
     useEffect(() => {
         window.scrollTo(0 , 0);
+        axios.get(`http://127.0.0.1:8000/api/articles/${id}`)
+            .then((res) => {
+                console.log(res)
+            })
     },[])
 
     return (

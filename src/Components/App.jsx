@@ -20,7 +20,7 @@ export default function App() {
                 <Route path="/contact" element={<p>Contact Page</p>} />
                 <Route path="/LoginSignup" element={<Login />} />
                 <Route path="/CreateArticle" element={<CreateArticle />} />
-                <Route path="/article:id" element={<ArticleContnet />} />
+                <Route path="/article/:id" element={<ArticleContnet />} />
             </Routes>
         </>
     )

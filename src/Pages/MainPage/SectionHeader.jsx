@@ -36,7 +36,7 @@ export default function SectionHeader() {
             <img src={Shape2} className="lg:block hidden h-12 w-12 absolute right-48 top-64"/>
             <img src={Shape5} className="lg:block hidden h-20 w-20 absolute -z-10 right-1/4 top-64 blur-sm"/>
             <div className="flex justify-center mt-32 ">
-                <div className="flex justify-center items-center rounded-full h-12 w-12 bg-customLightColor hover:bg-[#c9ccd3] transition-colors cursor-pointer">
+                <div className="animate-bounce flex justify-center items-center rounded-full h-12 w-12 bg-customLightColor hover:bg-[#c9ccd3] transition-colors">
                     <img src={ArrorDown} className="w-8 h-8"/>
                 </div>
             </div>

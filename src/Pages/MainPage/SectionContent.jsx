@@ -1,6 +1,7 @@
 import React , { useState , useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { v1 as uuid } from 'uuid';
 
 // import Components
 import SectionHeader from './SectionHeader';
@@ -17,23 +18,54 @@ import Shape6 from '../../assets/media/3D object and icons/ColorPurpleGlossy2.pn
 import Img1 from '../../assets/media/Img/1.jpg';
 
 export default function SectionContent() {
-    const [ totalPage , setTotalPage ] = useState(1);
+    const [ totalPage , setTotalPage ] = useState([]);
     const [ articels , setArticles ] = useState([]);
-    const [ next , setNext ] = useState();
-    const [ prev , setPrev ] = useState();
     const [ count , setCount ] = useState(0);
+    const [ next , setNext ] = useState(null);
+    const [ prev , setPrev ] = useState(null);
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8000/api/articles/")
             .then((res) => {
-                setTotalPage(res.data.total_pages);
+                for (let i = 1; i <= res.data.total_pages; i++) {
+                    setTotalPage(prev => [...prev , i]);
+                }
                 setArticles(res.data.results);
                 setNext(res.data.next);
                 setPrev(res.data.previous);
                 setCount(res.data.count);
-            })
-            .catch(err => console.log(err));
+            });
     },[])
+
+    let prevPageHandler = () => {
+        axios.get(prev)
+            .then((res) => {
+                setArticles(res.data.results);
+                setNext(res.data.next);
+                setPrev(res.data.previous);
+                setCount(res.data.count - articels.length);
+            });
+    }
+
+    let nextPageHandler = () => {
+        axios.get(next)
+            .then((res) => {
+                setArticles(res.data.results);
+                setNext(res.data.next);
+                setPrev(res.data.previous);
+                setCount(res.data.count - articels.length);
+            });
+    }
+
+    let paginationHandler = (e) => {
+        axios.get(`http://127.0.0.1:8000/api/articles/?page=${e.target.innerText}`)
+        .then((res) => {
+            setArticles(res.data.results);
+            setNext(res.data.next);
+            setPrev(res.data.previous);
+            setCount(res.data.count - articels.length);
+        });
+    }
 
     return (
         <>
@@ -46,7 +78,7 @@ export default function SectionContent() {
                             <div>
                                 <p className="text-sm font-medium font-openSansSm">12 January, 2021</p>
                                 <h2 className="text-2xl font-black">The Master Of Disaster</h2>
-                                <p className="text-sm font-medium font-openSansSm mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet </p>
+                                <p className="text-sm font-medium font-openSansSm mt-3 break-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet </p>
                             </div>
                             <div className="flex ml-0 mx-auto">
                                 <div className="w-auto h-12 flex justify-start px-6 items-center backdropCard hover:bg-[#d1d3d6] transition-colors mt-3 rounded cursor-pointer">
@@ -60,27 +92,32 @@ export default function SectionContent() {
                             {
                                 articels.map((article) => {
                                     return (
-                                        <ArticleCard key={article.id} title={article.title} content={article.content} day={article.formatted_date.day} month={article.formatted_date.month} year={article.formatted_date.year} id={article.id} />
+                                        <ArticleCard key={uuid()} img={article.image} title={article.title} content={article.content} day={article.formatted_date.day} month={article.formatted_date.month} year={article.formatted_date.year} id={article.id} />
                                     )
                                 })
                             }
                         </div>
                     </div>
                     <div className="flex justify-center items-center mb-16">
-                        <button className="text-gray-600 px-4 py-2 rounded bg-[#E4E7EC] text-sm md:font-black hidden md:block hover:bg-[#e0e2e6] transition-colors">Previews</button>
-                        <div className="flex mx-4">
-                            <div className="text-gray-600 cursor-pointer px-4 py-2 rounded bg-[#E4E7EC] text-sm md:font-black hover:bg-[#e0e2e6] transition-colors">1</div>
-                            <div className="text-white cursor-pointer px-4 py-2 rounded bg-mainColor shadow-md text-sm hover:bg-[#1e7bec] transition-colors shadow-mainColor mx-4 md:font-black">2</div>
+                        <button className={`text-gray-600 px-4 py-2 rounded mr-4 bg-[#E4E7EC] text-sm md:font-black hover:bg-[#e0e2e6] transition-colors ${prev === null ? "hidden" : "md:block"}`} onClick={prevPageHandler}>Previews</button>
+                        <div className="flex">
+                            {
+                                totalPage.map((total) => {
+                                    return (
+                                        <button key={uuid()} className={`cursor-pointer mr-3 px-4 py-2 rounded transition-colors ${1 === 2 ? "shadow-md shadow-mainColor bg-mainColor hover:bg-[#1e7bec] text-white" : "bg-[#E4E7EC] text-sm md:font-black hover:bg-[#e0e2e6] text-gray-600"}`} onClick={paginationHandler} disabled={false}>{total}</button>
+                                    )
+                                })
+                            }
                         </div>
-                        <button className="text-gray-600 px-4 py-2 rounded bg-[#E4E7EC] text-sm md:font-black hidden md:block hover:bg-[#e0e2e6] transition-colors">Next</button>
+                        <button className={`text-gray-600 px-4 py-2 rounded bg-[#E4E7EC] text-sm md:font-black hover:bg-[#e0e2e6] transition-colors ${next === null ? "hidden" : "md:block"}`} onClick={nextPageHandler}>Next</button>
                     </div>
                 </div>
-                {/* <img src={Shape1} className={`absolute w-20 h-20 -z-50 bottom-[42rem] left-8 -rotate-45 hidden lg:block`} />
-                <img src={Shape2} className={`absolute w-20 h-20 -z-50 top-[75rem] right-64 -rotate-45 hidden lg:block`} />
-                <img src={Shape3} className={`absolute w-32 h-32 -z-50 top-[50rem] right-3 hidden lg:block blur-sm`} />
-                <img src={Shape4} className={`absolute w-24 h-24 -z-50 hidden lg:block`} />
-                <img src={Shape5} className={`absolute w-24 h-24 -z-50 top-72 left-3 hidden lg:block`} />
-                <img src={Shape6} className={`absolute w-24 h-24 -z-50 top-[125rem] left-28 hidden lg:block`} /> */}
+                <img src={Shape1} className={`absolute w-20 h-20 -z-50 bottom-[42rem] left-8 -rotate-45 ${count > 6 ? "lg:block" : "hidden"}`} />
+                <img src={Shape2} className={`absolute w-20 h-20 -z-50 top-[95rem] right-64 -rotate-45 ${count > 6 ? "lg:block" : "hidden"}`} />
+                <img src={Shape3} className={`absolute w-32 h-32 -z-50 top-[50rem] right-3 blur-sm ${count > 3 ? "lg:block" : "hidden"}`} />
+                <img src={Shape4} className={`absolute w-24 h-24 -z-50 right-5 blur-sm bottom-[5rem] ${count > 6 ? "lg:block" : "hidden"}`} />
+                <img src={Shape5} className={`absolute w-24 h-24 -z-50 top-72 left-3 ${count > 3 ? "lg:block" : "hidden"}`} />
+                <img src={Shape6} className={`absolute w-24 h-24 -z-50 top-[125rem] left-28 ${count > 6 ? "lg:block" : "hidden"}`} />
             </div>
             <Footer />
         </>
