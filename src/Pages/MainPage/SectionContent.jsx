@@ -23,6 +23,7 @@ export default function SectionContent() {
     const [ count , setCount ] = useState(0);
     const [ next , setNext ] = useState(null);
     const [ prev , setPrev ] = useState(null);
+    const [ activePage , setActivePage ] = useState(null);
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8000/api/articles/")
@@ -34,6 +35,7 @@ export default function SectionContent() {
                 setNext(res.data.next);
                 setPrev(res.data.previous);
                 setCount(res.data.count);
+                setActivePage(res.data.active_page);
             });
     },[])
 
@@ -44,6 +46,7 @@ export default function SectionContent() {
                 setNext(res.data.next);
                 setPrev(res.data.previous);
                 setCount(res.data.count - articels.length);
+                setActivePage(res.data.active_page);
             });
     }
 
@@ -54,6 +57,7 @@ export default function SectionContent() {
                 setNext(res.data.next);
                 setPrev(res.data.previous);
                 setCount(res.data.count - articels.length);
+                setActivePage(res.data.active_page);
             });
     }
 
@@ -64,15 +68,17 @@ export default function SectionContent() {
             setNext(res.data.next);
             setPrev(res.data.previous);
             setCount(res.data.count - articels.length);
+            setActivePage(res.data.active_page);
         });
     }
+
 
     return (
         <>
             <SectionHeader />
             <div className="relative mb-5">
                 <div className="backdropCircle rounded mx-4 md:mx-12 lg:mx-20 mt-16 shadow-md z-10">
-                    <div className="m-3 md:m-12 lg:m-0 lg:mx-6 lg:mt-10 backdropCard rounded lg:flex">
+                    <div className="m-3 md:m-6 lg:m-0 lg:mx-6 lg:mt-10 backdropCard rounded lg:flex">
                         <img loading="lazy" src={Img1} className="rounded-t lg:rounded shadow-lg lg:w-80 lg:h-80" />
                         <div className="mx-5 py-3 lg:flex flex-col items-center justify-around">
                             <div>
@@ -88,11 +94,11 @@ export default function SectionContent() {
                         </div>
                     </div>
                     <div className="mb-12">
-                        <div className="grid grid-cols-1 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                             {
                                 articels.map((article) => {
                                     return (
-                                        <ArticleCard key={uuid()} img={article.image} title={article.title} content={article.content} day={article.formatted_date.day} month={article.formatted_date.month} year={article.formatted_date.year} id={article.id} />
+                                        <ArticleCard key={uuid()} author={article.author.username} img={article.image} title={article.title} content={article.content} day={article.formatted_date.day} month={article.formatted_date.month} year={article.formatted_date.year} id={article.id} />
                                     )
                                 })
                             }
@@ -104,7 +110,7 @@ export default function SectionContent() {
                             {
                                 totalPage.map((total) => {
                                     return (
-                                        <button key={uuid()} className={`cursor-pointer mr-3 px-4 py-2 rounded transition-colors ${1 === 2 ? "shadow-md shadow-mainColor bg-mainColor hover:bg-[#1e7bec] text-white" : "bg-[#E4E7EC] text-sm md:font-black hover:bg-[#e0e2e6] text-gray-600"}`} onClick={paginationHandler} disabled={false}>{total}</button>
+                                        <button key={uuid()} className={`cursor-pointer mr-3 px-4 py-2 rounded transition-colors ${total === activePage ? "shadow-md shadow-mainColor bg-mainColor hover:bg-[#1e7bec] text-white" : "bg-[#E4E7EC] text-sm md:font-black hover:bg-[#e0e2e6] text-gray-600"}`} onClick={paginationHandler} disabled={false}>{total}</button>
                                     )
                                 })
                             }

@@ -1,10 +1,8 @@
-import React , { useState , useEffect } from "react";
+import React , { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { v1 as uuid } from 'uuid';
-
-//import components
-import AlertError from "../../Components/Alert/AlertError";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function CreateArticle() {
     const navigate = useNavigate();
@@ -17,7 +15,6 @@ export default function CreateArticle() {
         status: true,
         image: null
     })
-    const [ error , setError ] = useState({ status: false , text: "" });
 
 	let imageHandler = (e) => {
         let formData = new FormData();
@@ -31,26 +28,16 @@ export default function CreateArticle() {
 
     let tagsHandler = () => {
         if(data.tags.length > 4) {
-            setError({ status: true , text:"The maximum number of allowed tags is 5" });
-            setTimeout(() => {
-                setError({ status: false , text: "" });
-            }, 5000);
+            toast.error("The maximum number of allowed tags is 5");
         } else {
-            setError({ status: false , text: "" });
             if(Tag === "") {
                 setData({...data});
-                setError({ status: true , text:"Please enter a correct tag name" });
-                setTimeout(() => {
-                    setError({ status: false , text: "" })
-                }, 5000);
+                toast.error("Please enter a correct tag name");
+
             } else if(data.tags.includes(Tag)) {
                 setData({...data});
-                setError({ status: true , text:"Please dont enter duplicate tags" });
-                setTimeout(() => {
-                    setError({ status: false , text: "" })
-                }, 5000);
+                toast.error("Please dont enter duplicate tags");
             } else {
-                setError({ status: false , text: "" });
                 setData({ ...data } , data.tags.push(Tag));
                 setTag("");
             }
@@ -59,33 +46,27 @@ export default function CreateArticle() {
 
     let submitArticle = () => {
         if(data.title === "") {
-            setError({ status: true , text:"Please enter a Title" });
-            setTimeout(() => {
-                setError({ status: false , text: "" })
-            }, 5000);
+            toast.error("Please enter a Title");
         } else if(data.content === "") {
-            setError({ status: true , text:"Please enter a Content" });
-            setTimeout(() => {
-                setError({ status: false , text: "" });
-            }, 5000);
+            toast.error("Please enter a Content");
         } else {
-            setError({ status: false , text: "" });
             axios.post("http://127.0.0.1:8000/api/articles/" , data
             ,{
                 headers: {
                     "Authorization": "Token c1e2919bcf61ee34682e6c1013471d77ee37c394"
                 }
-            }).then(() => navigate("/"))
-            .catch(() => setError({ status: true , text: "We cant submit your article" }))
+            }).then(() => {
+                navigate("/");
+                toast.success("Your Article is create");
+            })
+            .catch(() => toast.error("We cant submit your article"))
         }
     }
 
     return (
         <div className="mx-8 sm:mx-14 md:mx-18 lg:mx-22 xl:mx-32 lg:mt-24">
             <div className="flex justify-center items-center">
-                {
-                    error.status ? <AlertError text={error.text} /> : null
-                }
+                <ToastContainer autoClose={5000} />
             </div>
             <h1 className="mt-4 font-TheBrown text-2xl lg:text-3xl text-gray-600 text-center">Create Article</h1>
             <div>

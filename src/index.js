@@ -7,6 +7,7 @@ import App from './Components/App';
 
 // import styles
 import './assets/css/main.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <React.StrictMode>
