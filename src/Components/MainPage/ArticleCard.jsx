@@ -49,7 +49,7 @@ export default function ArticleCard(props) {
 
     return (
         <div className="m-3 md:mx-6 lg:mx-6 lg:mt-6 lg:mb-0 backdropCard rounded shadow-md col-span-1">
-            <img loading="lazy" src={img} className={`rounded-t shadow-lg md:h-72 h-96 w-full image ${img == undefined ? "opacity-0" : ""}`} />
+            <img loading="lazy" src={img} className={`rounded-t shadow-lg md:h-72 xl:h-88 h-96 w-full image ${img == undefined ? "hidden" : ""}`} />
             <div className="mx-5 py-3">
                 <div className="mb-4">
                     <div className="mb-4 flex justify-between">
