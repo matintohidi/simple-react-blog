@@ -2,6 +2,7 @@ import React , { useEffect , useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { v1 as uuid } from 'uuid';
+import Tooltip from "react-simple-tooltip";
 
 // import Media
 import Img2 from '../../assets/media/Img/2.jpg';
@@ -27,6 +28,8 @@ export default function ArticleContnet() {
     const [ author , setAuthor ] = useState({});
     const [ date , setDate ] = useState({});
     const [ tags , setTags ] = useState([]);
+    const [ like , setLike ] = useState(false);
+    const [ comments , setComments ] = useState([]);
     
     useEffect(() => {
         window.scrollTo(0 , 0);
@@ -93,6 +96,15 @@ export default function ArticleContnet() {
             break;
     }
 
+    let CopyShotLink = () => {
+        const textShortLink = document.getElementById("textShortLink");
+        navigator.clipboard.writeText(textShortLink.innerText);
+    }
+
+    let likeHandler = () => {
+        setLike(!like);
+    }
+
     return (
         <>
             {
@@ -106,18 +118,38 @@ export default function ArticleContnet() {
                     <div className="mx-4 backdropCircle rounded mt-16 mb-8 shadow-md sm:mx-12 lg:mx-16 xl:mx-16 z-10">
                         <div className="mx-4 md:mx-20 lg:mx-24">
                             <h1 className="mx-4 text-2xl font-black text-center mt-8 text-gray-700">{dataContent.title}</h1>
-                            <img src={dataContent.image} className="rounded mt-6 h-fit w-full" alt="Article Image" />
+                            <div className="flex justify-center">
+                                <img src={dataContent.image} className="rounded mt-6 image" alt="Article Image" />
+                            </div>
                             <div className="xl:mx-20">
                                 <div>
                                     <p className="text-lg font-black text-gray-600 mt-4">{date.day} , {date.month} , {date.year}</p>
                                     <p className="font-thin text-sm mt-4 font-openSansSm">{dataContent.content}</p>
                                 </div>
-                                <div className="flex justify-start items-center my-8 flex-wrap gap-y-2 gap-x-3">
+                                <div className={`flex justify-start items-center ${tags.length !== 0 ? "my-8" : ""} flex-wrap gap-y-2 gap-x-3`}>
                                     {
                                         tags.map((tag) => {
                                             return <div key={uuid()} className="rounded-md text-center text-gray-600 px-4 py-2 bg backdropCard text-sm cursor-pointer">{tag.name}</div>
                                         })
                                     }
+                                </div>
+                                <div className="flex mt-12 mb-4 justify-between">
+                                    <Tooltip content="Copy short Link" radius={5} padding={13} background="#2084FF" border="transparent" fadeDuration={100}>
+                                        <button className="border border-black rounded-full cursor-pointer px-3 py-1 flex items-center justify-center" onClick={CopyShotLink}>
+                                            <svg width="20" height="20" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                                            </svg>
+                                            <p className="text-sm" id="textShortLink">{dataContent.shortLink}</p>
+                                        </button>
+                                    </Tooltip>
+                                    <div className="flex justify-center items-center">
+                                        <button className="flex justify-center items-center" onClick={likeHandler}>
+                                            <svg viewBox="0 0 18 18" width="27" height="27" className={`fill-transparent stroke-black hover:stroke-red-700 transition-colors ${like ? "fill-red-700 stroke-red-700" : ""}`}>
+                                                <rect fill="#ff13dc" opacity="0"></rect><path d="M12.182,3.2545A4.00649,4.00649,0,0,0,9,5.1635a4.00649,4.00649,0,0,0-3.182-1.909A3.818,3.818,0,0,0,2,7.0725c0,3.646,7,8.273,7,8.273s7-4.578,7-8.273A3.818,3.818,0,0,0,12.182,3.2545Z"></path>
+                                            </svg>
+                                        </button>
+                                        <span className="text-black ml-1">{dataContent.like}</span>
+                                    </div>
                                 </div>
                                 <div className="flex flex-col justify-center items-center backdropCard rounded-md">
                                     <img src={author.profile} className={`rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40 ${author.profile == undefined ? "hidden" : ""}`} alt="Profile Image" />
@@ -128,20 +160,17 @@ export default function ArticleContnet() {
                                 </div>
                                 <h1 className="mt-6 text-3xl font-black text-gray-700">Comments</h1>
                                 <div>
-                                    <Comments />
+                                    <Comments comments={comments} />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <img src={Shape1} className="hidden lg:block absolute top-24 w-14 h-16 -z-10 right-0 -rotate-45 blur-md" />
-                    <img src={Shape2} className="hidden lg:block absolute -z-10 top-60 w-24 h-24 left-0" />
-                    <img src={Shape3} className="hidden lg:block absolute -z-10 -top-7 right-1/2 w-14 h-14 blur-sm" />
-                    <img src={Shape4} className="hidden lg:block absolute -z-10 top-[500px] blur-sm right-0 w-32 h-32" />
-                    <img src={Shape5} className="hidden lg:block absolute -z-10 bottom-[1300px] left-20 -rotate-45 w-16 h-16" />
-                    <img src={Shape6} className="hidden lg:block absolute -z-10 top-[1000px] left-10 w-16 h-16 rotate-45" />
-                    <img src={Shape7} className="hidden lg:block absolute -z-10 w-24 h-24 top-[1700px] xl:top-[1400px] blur-sm right-0" />
-                    <img src={Shape8} className="hidden lg:block absolute -z-10 bottom-[400px] left-0 w-24 h-24" />
-                    <img src={Shape9} className="hidden lg:block absolute -z-10 bottom-[800px] right-0 w-24 h-36" />
+                    <img src={Shape1} className="hidden animate-[bounce_5s_linear_infinite] lg:block absolute top-24 w-14 h-16 -z-10 right-0 -rotate-45 blur-md" />
+                    <img src={Shape2} className="hidden animate-[bounce_7s_linear_infinite] lg:block absolute -z-10 top-60 w-24 h-24 left-0" />
+                    <img src={Shape3} className="hidden animate-[bounce_9s_linear_infinite] lg:block absolute -z-10 -top-7 right-1/2 w-14 h-14 blur-sm" />
+                    <img src={Shape4} className="hidden animate-[bounce_7s_linear_infinite] lg:block absolute -z-10 top-[500px] blur-sm right-0 w-32 h-32" />
+                    <img src={Shape7} className="hidden animate-[bounce_8s_linear_infinite] lg:block absolute -z-10 w-24 h-24 top-[1700px] xl:top-[1400px] blur-sm right-0" />
+                    <img src={Shape8} className="hidden animate-[bounce_3s_linear_infinite] lg:block absolute -z-10 bottom-[400px] left-0 w-24 h-24" />
                 </div>
             </>
             }

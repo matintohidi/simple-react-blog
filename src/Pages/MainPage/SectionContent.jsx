@@ -25,7 +25,6 @@ export default function SectionContent() {
     const [ next , setNext ] = useState(null);
     const [ prev , setPrev ] = useState(null);
     const [ activePage , setActivePage ] = useState(null);
-    let show = 4;
 
     useEffect(() => {
         window.scrollTo(0 , 0);
@@ -40,16 +39,6 @@ export default function SectionContent() {
                 setActivePage(res.data.active_page);
             });
     },[])
-
-    useEffect(() => {
-        if(totalPage >= 3) {
-            show = show;
-        } else if(totalPage == 2) {
-            show = 2;
-        } else {
-            show = 1;
-        }
-    },[totalPage])
 
     let prevPageHandler = () => {
         setLoader(true);
@@ -135,10 +124,10 @@ export default function SectionContent() {
                         <div className="hidden md:flex">
                             {
                                 next !== null ? <>
-                                <button key={uuid()} className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"}`} onClick={paginationHandler}>{activePage}</button>
-                                <button key={uuid()} className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage + 1 === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"} ${activePage + 1 > totalPage ? "hidden" : ""}`} onClick={paginationHandler}>{activePage + 1}</button>
-                                <button key={uuid()} className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage + 2 === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"} ${activePage + 2 > totalPage ? "hidden" : ""}`} onClick={paginationHandler}>{activePage + 2}</button>
-                                </> : <button key={uuid()} className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"}`} onClick={paginationHandler}>{activePage}</button>
+                                <button className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"}`} onClick={paginationHandler}>{activePage}</button>
+                                <button className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage + 1 === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"} ${activePage + 1 > totalPage ? "hidden" : ""}`} onClick={paginationHandler}>{activePage + 1}</button>
+                                <button className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage + 2 === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"} ${activePage + 2 > totalPage ? "hidden" : ""}`} onClick={paginationHandler}>{activePage + 2}</button>
+                                </> : <button className={`cursor-pointer mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ${activePage === activePage ? "bg-mainColor hover:bg-[#1e7bec] text-white" : "ring-1 ring-mainColor text-sm md:font-black hover:bg-[#eaebec] text-gray-600"}`} onClick={paginationHandler}>{activePage}</button>
                             }
                         </div>
                         <button className={`text-gray-600 px-4 py-2 lg:px-5 lg:py-3 rounded ring-1 ring-mainColor text-sm md:font-black hover:bg-mainColor hover:text-white transition-colors ${next === null ? "hidden" : "md:block"}`} onClick={nextPageHandler}>Next</button>
