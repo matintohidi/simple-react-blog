@@ -1,14 +1,18 @@
 import React , { useState } from 'react';
 
+// import components
+import Loader from '../../Components/Layout/Loader';
+
 // import media
 import LoginImage from '../../assets/media/Img/login&signup.jpg';
 import GoogleIco from '../../assets/media/Img/Google.jpg';
 
 export default function Login() {
+    const [ loader , setLoader ] = useState(false);
     const [ SignUp , setSignUp ] = useState(false);
 
     return (
-        <div className={`flex ${SignUp ? "flex-row-reverse" : "flex-row"}`}>
+        loader ? <Loader /> : <div className={`flex ${SignUp ? "flex-row-reverse" : "flex-row"}`}>
             <img src={LoginImage} className="-z-10 w-1/2 h-screen hidden lg:block" />
             { SignUp ? <div className="lg:m-auto flex flex-col mx-auto mt-6">
                 <h1 className="lg:text-2xl text-xl font-extrabold text-gray-700">Create Account</h1>

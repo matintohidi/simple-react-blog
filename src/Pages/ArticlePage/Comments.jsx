@@ -1,9 +1,11 @@
 import React from "react";
+import { v1 as uuid } from 'uuid';
 
 // import Components
 import Comment from "../../Components/ArticlePage/Comment";
 
 export default function Comments(props) {
+    
     return (
         <>
             <div className="flex flex-col justify-center items-end">
@@ -11,7 +13,9 @@ export default function Comments(props) {
                     props.comments.length === 0 ? <div className="mx-auto">
                         <div className="text-gray-700 my-6 px-8 py-4 backdropCard rounded-md text-center">This article don't have comment</div>
                     </div> : props.comments.map((comment) => {
-                        <Comment time={comment.time} text={comment.text} author={comment.author} />
+                        return (
+                            <Comment key={uuid()} time={comment.formatted_date} text={comment.content} author={comment.author} />
+                        )
                     })
                 }
             </div>
