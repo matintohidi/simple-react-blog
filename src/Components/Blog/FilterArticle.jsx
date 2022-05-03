@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import 'flowbite';
+import React, { useState } from "react";
 import { v1 as uuid } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 

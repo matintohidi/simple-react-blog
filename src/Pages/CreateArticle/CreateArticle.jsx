@@ -2,6 +2,7 @@ import React , { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import { createArticle } from '../../services';
 
 // import compoenents
 import Loader from "../../Components/Layout/Loader";
@@ -10,7 +11,7 @@ export default function CreateArticle() {
     const navigate = useNavigate();
 
     const [ loader , setLoader ] = useState(false);
-    const [ Tag , setTag ] = useState("");
+    // const [ Tag , setTag ] = useState("");
     const [ data , setData ] = useState({
         title: "",
         content: "",
@@ -19,45 +20,43 @@ export default function CreateArticle() {
         image: null
     })
 
-    let tagHandler = (e) => {
-        setTag(e.target.value);
-    }
+    // let tagHandler = (e) => {
+    //     setTag(e.target.value);
+    // }
 
-    let tagsHandler = () => {
-        if(data.tags.length > 4) {
-            toast.error("The maximum number of allowed tags is 5");
-        } else {
-            if(Tag === "") {
-                setData({...data});
-                toast.error("Please enter a correct tag name");
+    // let tagsHandler = () => {
+    //     if(data.tags.length > 4) {
+    //         toast.error("The maximum number of allowed tags is 5");
+    //     } else {
+    //         if(Tag === "") {
+    //             setData({...data});
+    //             toast.error("Please enter a correct tag name");
 
-            } else if(data.tags.includes(Tag)) {
-                setData({...data});
-                toast.error("Please dont enter duplicate tags");
-            } else {
-                setData({ ...data } , data.tags.push(Tag));
-                setTag("");
-            }
-        }
-    }
+    //         } else if(data.tags.includes(Tag)) {
+    //             setData({...data});
+    //             toast.error("Please dont enter duplicate tags");
+    //         } else {
+    //             setData({ ...data } , data.tags.push(Tag));
+    //             setTag("");
+    //         }
+    //     }
+    // }
 
     let submitArticle = (e) => {
         setLoader(true);
         e.preventDefault();
-        let form = document.getElementById("form");
-        let data = new FormData(form);
+        // let form = document.getElementById("form");
+        // let data = new FormData(form);
 
         if(data.title === "") {
+            setLoader(false);
             toast.error("Please enter a Title");
         } else if(data.content === "") {
+            setLoader(false);
             toast.error("Please enter a Content");
         } else {
-            axios.post("http://127.0.0.1:8000/api/articles/" , data
-            ,{
-                headers: {
-                    "Authorization": "Token c1e2919bcf61ee34682e6c1013471d77ee37c394"
-                }
-            }).then(() => {
+            createArticle(data , '035157a1f5880b345711b484ccbbaad25209b9de')
+            .then(() => {
                 setLoader(false);
                 navigate("/");
                 toast.success("Your Article is create");
@@ -73,7 +72,7 @@ export default function CreateArticle() {
             </div>
             {
                 loader ? <Loader /> : <form onSubmit={submitArticle} encType="multipart/form-data" id="form">
-                    <div className="mx-8 sm:mx-14 md:mx-18 lg:mx-22 xl:mx-32 lg:mt-24">
+                    <div className="mx-8 sm:mx-14 md:mx-18 lg:mx-22 xl:mx-32 lg:mt-12">
                         <h1 className="mt-4 font-TheBrown text-2xl lg:text-3xl text-gray-600 text-center">Create Article</h1>
                         <div>
                             <div className="mt-4">

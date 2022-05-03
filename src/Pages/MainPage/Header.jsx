@@ -9,7 +9,7 @@ import Shape4 from '../../assets/media/3D object and icons/ColorBlueGlossy.png';
 import Shape5 from '../../assets/media/3D object and icons/ColorOrangeGlossy.png';
 import ArrorDown from '../../assets/media/3D object and icons/Icon.svg';
 
-export default function SectionHeader() {
+export default function Header() {
     return (
         <div className="relative lg:mt-36">
             <div className="flex flex-col justify-center items-center mt-12 w-full">
