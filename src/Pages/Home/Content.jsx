@@ -5,17 +5,12 @@ import { getArticles } from '../../services';
 
 // import Components
 import Header from './Header';
-import ArticleCard from '../../Components/MainPage/ArticleCard';
+import ArticleCard from '../../Components/Home/ArticleCard';
 import Footer from '../../Components/Layout/Footer';
 import Loader from '../../Components/Layout/Loader';
+import Shape from '../../Components/Layout/Shape';
 
 // import Media
-import Shape1 from '../../assets/media/3D object and icons/ColorWhiteMatte2.png';
-import Shape2 from '../../assets/media/3D object and icons/ColorPurpleGlossy1.png';
-import Shape3 from '../../assets/media/3D object and icons/ColorBlueGlossy2.png';
-import Shape4 from '../../assets/media/3D object and icons/ColorGreenGlossy2.png';
-import Shape5 from '../../assets/media/3D object and icons/ColorGreenGlossy1.png';
-import Shape6 from '../../assets/media/3D object and icons/ColorPurpleGlossy2.png';
 import Img1 from '../../assets/media/Img/1.jpg';
 
 export default function SectionContent() {
@@ -66,15 +61,10 @@ export default function SectionContent() {
                         </div>
                     </div>
                     <div className="flex justify-center items-center mb-16">
-                        <Link to="/articles/page" className="mr-3 px-4 py-2 lg:px-5 lg:py-3 rounded-full transition-colors ring-1 ring-mainColor text-sm hover:bg-[#eaebec] text-black">See More</Link>
+                        <Link to="/articles/page" className="px-5 py-3 rounded-full transition-colors ring-1 ring-mainColor text-sm hover:bg-[#eaebec] text-mainColor">See More</Link>
                     </div>
                 </div>
-                <img src={Shape1} className={`hidden absolute animate-[bounce_2s_linear_infinite] w-20 h-20 -z-50 bottom-[42rem] left-8 -rotate-45 ${count > 6 ? "lg:block" : "hidden"}`} />
-                <img src={Shape2} className={`hidden absolute animate-[bounce_3s_linear_infinite] w-20 h-20 -z-50 top-[95rem] right-64 -rotate-45 ${count > 6 ? "lg:block" : "hidden"}`} />
-                <img src={Shape3} className={`hidden absolute animate-[bounce_1.5s_linear_infinite] w-32 h-32 -z-50 top-[50rem] right-3 blur-sm ${count > 3 ? "lg:block" : "hidden"}`} />
-                <img src={Shape4} className={`hidden absolute animate-[bounce_4s_linear_infinite] w-24 h-24 -z-50 right-5 blur-sm bottom-[5rem] ${count > 6 ? "lg:block" : "hidden"}`} />
-                <img src={Shape5} className={`hidden absolute animate-[bounce_2s_linear_infinite] w-24 h-24 -z-50 top-72 left-3 ${count > 3 ? "lg:block" : "hidden"}`} />
-                <img src={Shape6} className={`hidden absolute animate-[bounce_3s_linear_infinite] w-24 h-24 -z-50 top-[125rem] left-28 ${count > 6 ? "lg:block" : "hidden"}`} />
+                <Shape count={count} shapeDisplay={true} />
             </div>
             }
             <Footer />

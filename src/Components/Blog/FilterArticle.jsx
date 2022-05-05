@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v1 as uuid } from 'uuid';
-import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function FilterArticle() {
     const [ data , setData ] = useState({
@@ -12,14 +12,14 @@ export default function FilterArticle() {
 
     let tagsHandler = () => {
         if(data.tags.length > 4) {
-            toast.error("The maximum number of allowed tags is 5");
+            // toast.error("The maximum number of allowed tags is 5");
         } else {
             if(Tag === "") {
                 setData({...data});
-                toast.error("Please enter a correct tag name");
+                // toast.error("Please enter a correct tag name");
             } else if(data.tags.includes(Tag)) {
                 setData({...data});
-                toast.error("Please dont enter duplicate tags");
+                // toast.error("Please dont enter duplicate tags");
             } else {
                 setData({ ...data } , data.tags.push(Tag));
                 setTag("");
@@ -29,9 +29,6 @@ export default function FilterArticle() {
 
     return (
         <>
-            <div className="flex justify-center items-center">
-                <ToastContainer autoClose={5000} />
-            </div>
             <div>
                 <div className="flex justify-between">
                     <div className="flex mt-3 w-1/3">

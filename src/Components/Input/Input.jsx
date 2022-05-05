@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Input({ lableClass , lable , inputClass , type , placeHolder}) {
+function Input({ lableClass , lable , inputClass , type , placeHolder , register }) {
     return (
         <div>
-            <p className={lableClass}>{lable}</p>
-            <input className={inputClass} type={type} placeholder={placeHolder} />
+            <h2 className={lableClass}>{lable}</h2>
+            <input className={inputClass} type={type} placeholder={placeHolder} { ...register } />
         </div>
     )
 }
 
-export default Input
+export default Input;

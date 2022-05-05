@@ -10,7 +10,7 @@ export default function Header() {
     const listItemClassSm = 'text-white transition-colors text-sm mb-5';
 
     return (
-        <header className={`lg:mt-7 mt-2 w-full ${location.pathname === '/Login&Signup' && 'hidden'}`}>
+        <header className={`lg:mt-7 mt-2 w-full ${location.pathname === '/Login' && 'hidden' || location.pathname === '/SignUp' && 'hidden' }`}>
             <nav className="flex justify-between items-center">
                 <h2 className="text-gray-700 text-3xl my-auto font-thin text-left ml-4 font-TheBrown">ReadIt</h2>
                 <div className="space-y-1 bg-mainColor w-11 h-11 rounded flex flex-col justify-center items-center rounded-r-none cursor-pointer right-0 absolute md:hidden z-20" onClick={() => setOpen(!open)}>
@@ -36,7 +36,7 @@ export default function Header() {
                         <li className={listItemClassLg}>
                             <Link to="/team">Team</Link>
                         </li>
-                        <Link to="/Login&Signup">
+                        <Link to="/Login">
                             <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
                         </Link>
                     </ul>
@@ -59,7 +59,7 @@ export default function Header() {
                             <li className={`${listItemClassSm} mb-5`}>
                                 <Link to="/team">Team</Link>
                             </li>
-                            <Link to="/Login&Signup">
+                            <Link to="/Login">
                                 <li className="text-white transition-colors text-sm">Login/Signup</li>
                             </Link>
                         </ul>

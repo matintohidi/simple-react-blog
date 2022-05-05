@@ -2,12 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { numToMonth } from '../../hooks/useMonth';
 
-export default function ArticleCard(props) {
-    let { author , img , title , content , day , month , year , slug } = props;
-
+const ArticleCard = ({ author , img , title , content , day , month , year , slug }) => {
     return (
         <div className="m-3 md:mx-6 lg:mx-6 lg:mt-6 lg:mb-0 backdropCard rounded shadow-md col-span-1">
-            <img loading="lazy" src={img} className={`rounded-t shadow-lg md:h-72 xl:h-88 h-96 w-full image ${img === undefined ? "hidden" : ""}`} />
+            <img loading="lazy" src={img} className={`rounded-t shadow-lg md:h-72 xl:h-88 h-96 w-full image ${img === undefined && "animate-pulse"}`} />
             <div className="mx-5 py-3">
                 <div className="mb-4">
                     <div className="mb-4 flex justify-between">
@@ -26,3 +24,5 @@ export default function ArticleCard(props) {
         </div>
     )
 }
+
+export default ArticleCard;

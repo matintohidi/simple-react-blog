@@ -3,9 +3,9 @@ import React , { createContext , useContext , useState } from "react";
 const BlogContext = createContext();
 
 const BlogProvider = ({ children }) => {
-    const [ SignUp , setSignUp ] = useState(false);
+    const [ signUp , setSignUp ] = useState(false);
     
-    return <BlogContext.Provider value={{ SignUp , setSignUp }}>
+    return <BlogContext.Provider value={{ signUp , setSignUp }}>
         { children }
     </BlogContext.Provider>
 }

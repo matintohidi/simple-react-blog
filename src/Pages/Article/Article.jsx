@@ -15,7 +15,7 @@ import Shape7 from '../../assets/media/3D object and icons/ColorGreenGlossy2.png
 import Shape8 from '../../assets/media/3D object and icons/ColorBlueGlossy.png';
 
 // import Components
-import Comments from '../../Components/ArticlePage/Comments';
+import Comments from '../../Components/Article/Comments';
 import Footer from '../../Components/Layout/Footer';
 import Loader from '../../Components/Layout/Loader';
 

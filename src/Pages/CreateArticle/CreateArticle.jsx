@@ -1,30 +1,25 @@
 import React , { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
 import { createArticle } from '../../services';
+import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 
 // import compoenents
 import Loader from "../../Components/Layout/Loader";
 
 export default function CreateArticle() {
     const navigate = useNavigate();
+    const { register , handleSubmit , formState: { errors } } = useForm();
 
     const [ loader , setLoader ] = useState(false);
+    const [ check , setCheck ] = useState(true);
     // const [ Tag , setTag ] = useState("");
-    const [ data , setData ] = useState({
-        title: "",
-        content: "",
-        tags: [],
-        status: true,
-        image: null
-    })
 
-    // let tagHandler = (e) => {
+    // const tagHandler = (e) => {
     //     setTag(e.target.value);
     // }
 
-    // let tagsHandler = () => {
+    // const tagsHandler = () => {
     //     if(data.tags.length > 4) {
     //         toast.error("The maximum number of allowed tags is 5");
     //     } else {
@@ -42,51 +37,53 @@ export default function CreateArticle() {
     //     }
     // }
 
-    let submitArticle = (e) => {
-        setLoader(true);
-        e.preventDefault();
-        // let form = document.getElementById("form");
-        // let data = new FormData(form);
+    const errorsHandler = () => {
+        if(errors.title) {
+            toast.error(errors.title.message);
+        } else if(errors.content) {
+            toast.error(errors.content.message);
+        } else if(errors.image) {
+            toast.error(errors.image.message);
+        }
+    }
 
-        if(data.title === "") {
-            setLoader(false);
-            toast.error("Please enter a Title");
-        } else if(data.content === "") {
-            setLoader(false);
-            toast.error("Please enter a Content");
-        } else {
-            createArticle(data , '035157a1f5880b345711b484ccbbaad25209b9de')
+    const submitArticle = (data) => {
+        setLoader(true);
+
+        createArticle(data , '035157a1f5880b345711b484ccbbaad25209b9de')
             .then(() => {
                 setLoader(false);
-                navigate("/");
-                toast.success("Your Article is create");
+                navigate('/');
             })
-            .catch(() => toast.error("We cant submit your article"))
-        }
+            .catch((err) => console.log(err))
     }
 
     return (
         <>
-            <div className="flex justify-center items-center">
-                <ToastContainer autoClose={5000} />
-            </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                draggable={false}
+                pauseOnHover={false}
+                closeOnClick
+            />
             {
-                loader ? <Loader /> : <form onSubmit={submitArticle} encType="multipart/form-data" id="form">
+                loader ? <Loader /> : <form onSubmit={handleSubmit(submitArticle)} encType="multipart/form-data">
                     <div className="mx-8 sm:mx-14 md:mx-18 lg:mx-22 xl:mx-32 lg:mt-12">
                         <h1 className="mt-4 font-TheBrown text-2xl lg:text-3xl text-gray-600 text-center">Create Article</h1>
                         <div>
                             <div className="mt-4">
-                                <h1 className="text-sm font-openSansSm font-extrabold mb-1">Title of Post</h1>
-                                <input className="w-full px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all" type="text" placeholder="Title" onChange={(e) => setData({...data , title: e.target.value })}/>
+                                <h2 className="text-sm font-openSansSm font-extrabold mb-1">Title</h2>
+                                <input className="w-full px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all" type="text" placeholder="Title..." { ...register('title' , { required: 'Please enter a Title' }) } />
                             </div>
                             <div className="mt-6">
-                                <h1 className="text-sm font-openSansSm font-extrabold mb-1">Content</h1>
-                                <textarea className="h-40 w-full rounded overflow-hidden leading-tight border border-mainColor shadow ring-2 ring-transparent focus:ring-mainColor focus:outline-none p-2 transition-colors" placeholder="Content..." onChange={(e) => setData({ ...data , content: e.target.value })}></textarea>
+                                <h2 className="text-sm font-openSansSm font-extrabold mb-1">Content</h2>
+                                <textarea className="h-40 w-full rounded overflow-hidden leading-tight border border-mainColor shadow ring-2 ring-transparent focus:ring-mainColor focus:outline-none p-2 transition-colors" placeholder="Content..." { ...register('content' , { required: 'Please enter a Content' }) }></textarea>
                             </div>
                             <div className="md:flex md:items-center md:justify-between mt-6">
                                 {/* <div className="lg:flex">
                                     <div>
-                                        <h1 className="text-sm font-openSansSm font-extrabold mb-1">Tags</h1>
+                                        <h2 className="text-sm font-openSansSm font-extrabold mb-1">Tags</h2>
                                         <div className="flex justify-between md:mr-4">
                                             <input className="w-3/4 px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all" type="text" placeholder="Tag..." onChange={tagHandler} value={Tag}/>
                                             <button className="w-1/5 py-1 bg-mainColor text-center text-white font-thin rounded hover:bg-[#1c7bf0]" onClick={tagsHandler}>Ok</button>
@@ -103,27 +100,25 @@ export default function CreateArticle() {
                                     </div>
                                 </div> */}
                                 <div className="flex items-center justify-between lg:mt-6">
-                                    <h1 className="text-sm font-openSansSm font-extrabold mr-2">Release Status</h1>
-                                    <span className="relative cursor-pointer" onClick={() => setData({...data , status: !data.status })}>
-                                        <span className={`block w-10 h-6 ${data.status ? "bg-mainColor" : "bg-gray-400"} rounded-full shadow-inner`}></span>
-                                        <span className={`absolute block w-4 h-4 mt-1 ml-1 rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline transition-transform duration-300 ease-in-out bg-white transform ${data.status ? "translate-x-full" : ""}`}>
-                                            <input type="checkbox" className="absolute opacity-0 w-0 h-0" />
-                                        </span>
-                                    </span>
+                                    <label className="relative flex justify-between items-center group p-2 text-md">
+                                        Release Status
+                                        <input type="checkbox" className="absolute left-1/2 -translate-x-1/2 w-full peer appearance-none rounded-md" checked={check ? true : false} onClick={() => setCheck(!check)} { ...register('status') } />
+                                        <span className={`ring-1 ring-mainColor w-14 h-8 flex items-center flex-shrink-0 ml-4 p-1 bg-white rounded-full duration-300 ease-in-out peer-checked:bg-mainColor after:w-6 after:h-6 after:bg-${check ? 'white' : 'mainColor' } after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 group-hover:after:translate-x-1`}></span>
+                                    </label>
                                 </div>
                             </div>
                             <div className="flex mt-6 items-center justify-center bg-grey-300">
-                                <label className="w-64 flex flex-col items-center px-4 py-6 bg-white text-mainColor rounded-lg shadow-lg tracking-wide uppercase border border-mainColor cursor-pointer hover:bg-mainColor hover:text-white">
+                                <h2 className="w-64 flex flex-col items-center px-4 py-6 bg-white text-mainColor rounded-lg shadow-lg tracking-wide uppercase border border-mainColor cursor-pointer hover:bg-mainColor hover:text-white">
                                     <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                                     </svg>
-                                    <span className="mt-2 text-base leading-normal">Image Of Article</span>
-                                    <input type='file' name='file' className="hidden" />
-                                </label>
+                                    <span className="mt-2 text-base leading-normal">Image</span>
+                                    <input type='file' name='file' className="absolute w-60 px-4 py-6 opacity-0" { ...register('image' , { required: 'Please choose your Image' }) } />
+                                </h2>
                             </div>
                         </div>
                         <div className="my-6 flex justify-center items-center">
-                            <button className="px-5 py-1 text-center border border-mainColor bg-white text-mainColor rounded-full font-openSansSm text-sm font-bold shadow hover:bg-gray-100 transition-colors">Submit Article</button>
+                            <button className="px-6 py-2 text-center border border-mainColor bg-white text-mainColor rounded-full font-openSansSm text-sm font-bold shadow hover:bg-gray-100 transition-colors" onClick={errorsHandler}>Submit Article</button>
                         </div>
                     </div>
                 </form>
