@@ -73,17 +73,17 @@ export default function CreateArticle() {
                         <h1 className="mt-4 font-TheBrown text-2xl lg:text-3xl text-gray-600 text-center">Create Article</h1>
                         <div>
                             <div className="mt-4">
-                                <h2 className="text-sm font-openSansSm font-extrabold mb-1">Title</h2>
-                                <input className="w-full px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all" type="text" placeholder="Title..." { ...register('title' , { required: 'Please enter a Title' }) } />
+                                <h2 className="text-md font-openSansSm font-extrabold mb-1">Title</h2>
+                                <input className="w-full px-3 py-2 text-sm leading-tight text-gray-800 ring-1 ring-mainColor rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all" type="text" placeholder="Title..." { ...register('title' , { required: 'Please enter a Title' }) } />
                             </div>
                             <div className="mt-6">
-                                <h2 className="text-sm font-openSansSm font-extrabold mb-1">Content</h2>
-                                <textarea className="h-40 w-full rounded overflow-hidden leading-tight border border-mainColor shadow ring-2 ring-transparent focus:ring-mainColor focus:outline-none p-2 transition-colors" placeholder="Content..." { ...register('content' , { required: 'Please enter a Content' }) }></textarea>
+                                <h2 className="text-md font-openSansSm font-extrabold mb-1">Content</h2>
+                                <textarea className="h-40 w-full rounded overflow-hidden leading-tight ring-1 ring-mainColor shadow focus:ring-blue-400 focus:ring-2 focus:outline-none p-2 transition-colors" placeholder="Content..." { ...register('content' , { required: 'Please enter a Content' }) }></textarea>
                             </div>
                             <div className="md:flex md:items-center md:justify-between mt-6">
                                 {/* <div className="lg:flex">
                                     <div>
-                                        <h2 className="text-sm font-openSansSm font-extrabold mb-1">Tags</h2>
+                                        <h2 className="text-md font-openSansSm font-extrabold mb-1">Tags</h2>
                                         <div className="flex justify-between md:mr-4">
                                             <input className="w-3/4 px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all" type="text" placeholder="Tag..." onChange={tagHandler} value={Tag}/>
                                             <button className="w-1/5 py-1 bg-mainColor text-center text-white font-thin rounded hover:bg-[#1c7bf0]" onClick={tagsHandler}>Ok</button>
@@ -103,7 +103,7 @@ export default function CreateArticle() {
                                     <label className="relative flex justify-between items-center group p-2 text-md">
                                         Release Status
                                         <input type="checkbox" className="absolute left-1/2 -translate-x-1/2 w-full peer appearance-none rounded-md" checked={check ? true : false} onClick={() => setCheck(!check)} { ...register('status') } />
-                                        <span className={`ring-1 ring-mainColor w-14 h-8 flex items-center flex-shrink-0 ml-4 p-1 bg-white rounded-full duration-300 ease-in-out peer-checked:bg-mainColor after:w-6 after:h-6 after:bg-${check ? 'white' : 'mainColor' } after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 group-hover:after:translate-x-1`}></span>
+                                        <span className="ring-1 ring-mainColor w-14 h-8 flex items-center flex-shrink-0 ml-4 p-1 bg-white rounded-full duration-300 ease-in-out peer-checked:bg-mainColor after:w-6 after:h-6 after:bg-mainColor peer-checked:after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 group-hover:after:translate-x-1"></span>
                                     </label>
                                 </div>
                             </div>

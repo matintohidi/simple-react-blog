@@ -14,6 +14,7 @@ import GoogleIco from '../../assets/media/Img/Google.jpg';
 
 const SignUp = () => {
   const { register , handleSubmit , formState: { errors } } = useForm();
+  
   const [ loader , setLoader ] = useState(false);
 
   const lableClass = 'lg:mb-2 mb-1 text-gray-500';
@@ -25,12 +26,19 @@ const SignUp = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        draggable={false}
+        pauseOnHover={false}
+        closeOnClick
+      />
       {
         loader ? <Loader /> : <div className="flex flex-row-reverse">
           <img src={LoginImage} className="-z-10 w-1/2 h-screen hidden lg:block" />
           <div className="lg:m-auto flex flex-col mx-auto mt-6">
             <div className="mb-8">
-                <p className="font-thin font-openSansSm">Welcome To Our Blog</p>
+                <p className="font-openSansSm text-md">Welcome To Our Blog</p>
                 <h1 className="lg:text-2xl text-xl font-extrabold text-gray-700">Create Account</h1>
                 <form onSubmit={handleSubmit(SignUpHandler)} className="sm:mt-6 mt-2">
                     <Input lableClass={lableClass} lable='Full Name' inputClass={inputCLass} type='text' placeHolder='Full Name' register={{ ...register('name' , { required: 'Please enter your full name.' }) }} />

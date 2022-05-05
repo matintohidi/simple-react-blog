@@ -25,22 +25,29 @@ const Login = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        draggable={false}
+        pauseOnHover={false}
+        closeOnClick
+      />
       {
         loader ? <Loader /> : <div className="flex">
             <img src={LoginImage} className="-z-10 w-1/2 h-screen hidden lg:block" />
-            <div className="flex lg:m-auto flex-col mx-auto mt-4">
+            <div className="flex flex-col lg:m-auto mx-auto mt-4">
               <div className="mb-8">
-                <p className="font-thin font-openSansSm">Welcome Back</p>
+                <p className="font-openSansSm text-md">Welcome Back</p>
                 <h1 className="lg:text-2xl text-xl font-extrabold text-gray-700">Login To Your Account</h1>
                 <form onSubmit={handleSubmit(LoginHandler)} className="sm:mt-6 mt-2 flex flex-col">
-                    <Input lableClass={lableClass} lable='Email' inputClass={inputCLass} type='email' placeHolder='Email' register={{ ...register('email' , { required: 'Please enter your email.' }) }} />
-                    <Input lableClass={lableClass} lable='Password' inputClass={inputCLass} type='password' placeHolder='Password' register={{ ...register('password' , { required: 'Please enter your password.' }) }} />
-                    <p className="text-mainColor text-sm mb-4">Forgot Password?</p>
-                    <button className="bg-mainColor md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 mb-2 md:text-lg hover:bg-[#1b78eb] transition-colors text-center text-sm">Login</button> 
+                  <Input lableClass={lableClass} lable='Email' inputClass={inputCLass} type='email' placeHolder='Email' register={{ ...register('email' , { required: 'Please enter your email.' }) }} />
+                  <Input lableClass={lableClass} lable='Password' inputClass={inputCLass} type='password' placeHolder='Password' register={{ ...register('password' , { required: 'Please enter your password.' }) }} />
+                  <p className="text-mainColor text-sm mb-4">Forgot Password?</p>
+                  <button className="bg-mainColor md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 mb-2 md:text-lg hover:bg-[#1b78eb] transition-colors text-center text-sm">Login</button> 
                 </form>
                 <button className="bg-gray-800 md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 flex justify-center items-center hover:bg-gray-700 transition-colors">
-                    <img src={GoogleIco} />
-                    <p className="ml-2 text-sm lg:text-base">Or Sign-in With Google</p>
+                  <img src={GoogleIco} />
+                  <p className="ml-2 text-sm lg:text-base">Or Sign-in With Google</p>
                 </button>
                 <div className="flex justify-center items-center xl:mt-16 mt-8">
                     <p className="mr-2 text-sm lg:text-base">Dont Have An Account?</p>
