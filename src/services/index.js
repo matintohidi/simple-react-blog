@@ -11,3 +11,11 @@ export const createArticle = (data , token) => {
         headers: { "Authorization": `Token ${token}` }
     })
 }
+
+export const getUser = (user) => axios.get(`http://127.0.0.1:8000/api/auth/author/${user}`);
+
+export const login = (data) => axios.post('/auth/token/login/' , data);
+
+export const signup = (data) => axios.post('/auth/users/' , data);
+
+export const logout = (token) => axios.post('/auth/token/logout/' , token);

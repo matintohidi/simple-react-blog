@@ -10,6 +10,8 @@ import CreateArticle from './Pages/CreateArticle/CreateArticle';
 import Blog from './Pages/Blog/Blog';
 import Articles from './Pages/Articles/Articles';
 import NotFound from './Pages/NotFound/NotFound';
+import Profile from './Pages/Profile/Profile';
+import Footer from './Components/Layout/Footer';
 
 export default function App() {
     return (
@@ -26,9 +28,11 @@ export default function App() {
                 <Route path="/Login" element={<Login />} />
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/CreateArticle" element={<CreateArticle />} />
+                <Route path="/:user" element={<Profile />} />
                 <Route path="/article/:slug" element={<Article />} />
                 {["/not-found" , "*"].map((path , index) => <Route path={path} element={<NotFound />} key={index} />)}
             </Routes>
+            <Footer />
         </>
     )
 }

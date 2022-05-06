@@ -67,7 +67,6 @@ export default function SectionContent() {
                 <Shape count={count} shapeDisplay={true} />
             </div>
             }
-            <Footer />
         </>
     )
 }

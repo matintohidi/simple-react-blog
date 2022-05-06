@@ -59,7 +59,6 @@ const Articles = () => {
                 <Shape count={count} shapeDisplay={false} />
             </div>
             }
-            <Footer />
         </>
     )
 }
