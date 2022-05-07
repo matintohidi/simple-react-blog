@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState , useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link , useNavigate } from 'react-router-dom';
@@ -19,10 +19,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { register , handleSubmit , formState: { errors } } = useForm();
-  const [ loader , setLoader ] = useState(false);
+  const [ loader , setLoader ] = useState(true);
 
   const lableClass = 'lg:mb-2 mb-1 text-gray-500';
   const inputCLass = 'md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 lg:mb-4 mb-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all';
+
+  useEffect(() => setLoader(false),[]);
 
   const LoginHandler = (data) => {
     setLoader(true);
@@ -34,9 +36,9 @@ const Login = () => {
         createToken(res.data.auth_token);
         navigate('/');
       })
-      .catch(err => {
+      .catch(() => {
         setLoader(false);
-        toast.error(err.response.message);
+        toast.error('There is a Problem');
       })
   }
 

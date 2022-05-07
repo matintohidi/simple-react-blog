@@ -699,6 +699,30 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: 50%;
 }
 
+.left-24 {
+  left: 6rem;
+}
+
+.left-20 {
+  left: 5rem;
+}
+
+.left-\[4rem\] {
+  left: 4rem;
+}
+
+.left-\[4\.5rem\] {
+  left: 4.5rem;
+}
+
+.left-\[5rem\] {
+  left: 5rem;
+}
+
+.left-\[5\.2rem\] {
+  left: 5.2rem;
+}
+
 .z-20 {
   z-index: 20;
 }
@@ -898,6 +922,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -1026,6 +1058,30 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.5rem;
 }
 
+.h-1\/2 {
+  height: 50%;
+}
+
+.h-\[300px\] {
+  height: 300px;
+}
+
+.h-\[q00px\] {
+  height: q00px;
+}
+
+.h-\[150px\] {
+  height: 150px;
+}
+
+.h-\[200px\] {
+  height: 200px;
+}
+
+.h-\[\] {
+  height: ;
+}
+
 .w-fit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -1126,6 +1182,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-2 {
   width: 0.5rem;
+}
+
+.w-\[\] {
+  width: ;
+}
+
+.w-\[250p\] {
+  width: 250p;
+}
+
+.w-\[250\] {
+  width: 250;
+}
+
+.w-\[350px\] {
+  width: 350px;
 }
 
 .max-w-lg {
@@ -1507,6 +1579,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   align-items: center;
 }
 
+.items-baseline {
+  align-items: baseline;
+}
+
 .justify-start {
   justify-content: flex-start;
 }
@@ -1603,6 +1679,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 
 .rounded-t {
@@ -1919,6 +1999,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.5rem;
 }
 
+.pb-8 {
+  padding-bottom: 2rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2040,6 +2124,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .tracking-wide {
   letter-spacing: 0.025em;
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 
 .text-gray-800 {
@@ -2689,12 +2777,20 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 50px;
   }
 
+  .sm\:h-\[300px\] {
+    height: 300px;
+  }
+
   .sm\:w-24 {
     width: 6rem;
   }
 
   .sm\:w-\[300px\] {
     width: 300px;
+  }
+
+  .sm\:w-\[350px\] {
+    width: 350px;
   }
 
   .sm\:flex-row {

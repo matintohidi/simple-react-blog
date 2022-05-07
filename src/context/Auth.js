@@ -4,9 +4,8 @@ import { setLocalStorage , getLocalStorage } from '../hooks/useLocalStorage';
 const AuthContext = createContext(undefined);
 
 const AuthProvider = ({ children }) => {
-  const [ user , setUser ] = useState(() => getLocalStorage('user', { loggedIn: false }))
-
-  const [ token , setToken ] = useState(() => getLocalStorage('token' , null))
+  const [ user , setUser ] = useState(() => getLocalStorage('user', { loggedIn: false }));
+  const [ token , setToken ] = useState(() => getLocalStorage('token' , null));
 
   useEffect(() => {
     setLocalStorage('user', user)
