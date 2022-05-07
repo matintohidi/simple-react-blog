@@ -1,7 +1,9 @@
 import React , { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
+import { login } from '../../services';
+import { useAuth } from '../../context/Auth';
 
 // import components
 import Input from '../../Components/Input/Input';
@@ -13,6 +15,9 @@ import LoginImage from '../../assets/media/Img/login&signup.jpg';
 import GoogleIco from '../../assets/media/Img/Google.jpg';
 
 const Login = () => {
+  let { toggleAuth , createToken } = useAuth();
+  const navigate = useNavigate();
+
   const { register , handleSubmit , formState: { errors } } = useForm();
   const [ loader , setLoader ] = useState(false);
 
@@ -20,7 +25,19 @@ const Login = () => {
   const inputCLass = 'md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 lg:mb-4 mb-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all';
 
   const LoginHandler = (data) => {
-    console.log(data)
+    setLoader(true);
+
+    login(data)
+      .then(res => {
+        setLoader(false);
+        toggleAuth();
+        createToken(res.data.auth_token);
+        navigate('/');
+      })
+      .catch(err => {
+        setLoader(false);
+        toast.error(err.response.message);
+      })
   }
 
   return (
@@ -40,7 +57,7 @@ const Login = () => {
                 <p className="font-openSansSm text-md">Welcome Back</p>
                 <h1 className="lg:text-2xl text-xl font-extrabold text-gray-700">Login To Your Account</h1>
                 <form onSubmit={handleSubmit(LoginHandler)} className="sm:mt-6 mt-2 flex flex-col">
-                  <Input lableClass={lableClass} lable='Email' inputClass={inputCLass} type='email' placeHolder='Email' register={{ ...register('email' , { required: 'Please enter your email.' }) }} />
+                  <Input lableClass={lableClass} lable='Username' inputClass={inputCLass} type='text' placeHolder='Username' register={{ ...register('username' , { required: 'Please enter your username.' }) }} />
                   <Input lableClass={lableClass} lable='Password' inputClass={inputCLass} type='password' placeHolder='Password' register={{ ...register('password' , { required: 'Please enter your password.' }) }} />
                   <p className="text-mainColor text-sm mb-4">Forgot Password?</p>
                   <button className="bg-mainColor md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 mb-2 md:text-lg hover:bg-[#1b78eb] transition-colors text-center text-sm">Login</button> 

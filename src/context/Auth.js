@@ -4,13 +4,17 @@ import { setLocalStorage , getLocalStorage } from '../hooks/useLocalStorage';
 const AuthContext = createContext(undefined);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() =>
-    getLocalStorage('user', { loggedIn: false }),
-  )
+  const [ user , setUser ] = useState(() => getLocalStorage('user', { loggedIn: false }))
+
+  const [ token , setToken ] = useState(() => getLocalStorage('token' , null))
 
   useEffect(() => {
     setLocalStorage('user', user)
   }, [user])
+
+  useEffect(() => {
+    setLocalStorage('token', token)
+  },[token])
 
   const toggleAuth = () => {
     setUser((prev) => ({
@@ -19,7 +23,9 @@ const AuthProvider = ({ children }) => {
     }))
   }
 
-  const value = { toggleAuth , user }
+  const createToken = (token) => setToken(token);
+
+  const value = { toggleAuth , user , createToken , token };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
