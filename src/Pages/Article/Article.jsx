@@ -6,6 +6,7 @@ import Avatar from 'react-nice-avatar';
 import { getAricle , getArticleComments } from '../../services';
 import { numToMonth } from '../../hooks/useMonth';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAuth } from "../../context/Auth";
 
 // import Media
 import Shape1 from '../../assets/media/3D object and icons/ColorGreenGlossy.png';
@@ -17,11 +18,11 @@ import Shape8 from '../../assets/media/3D object and icons/ColorBlueGlossy.png';
 
 // import Components
 import Comments from '../../Components/Article/Comments';
-import Footer from '../../Components/Layout/Footer';
 import Loader from '../../Components/Layout/Loader';
 
 export default function ArticleContnet() {
     const navigate = useNavigate();
+    let { token } = useAuth();
     const { slug } = useParams();
 
     const config = {
@@ -48,6 +49,7 @@ export default function ArticleContnet() {
     const [ comments , setComments ] = useState([]);
     
     useEffect(() => {
+        token === null ? navigate('/') :
         window.scrollTo(0 , 0);
         getAricle(slug)
             .then(res => {
@@ -117,7 +119,7 @@ export default function ArticleContnet() {
                                 <div className="flex flex-col justify-center items-center backdropCard rounded-md">
                                     <Link to={`/${data.author.username}`} className="rounded-full">
                                         {
-                                            data.author.profile === null ? <Avatar className="rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40" { ...config } /> : <img src={data.author.profile} className={'rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40'} alt="Profile Image" />
+                                            data.author.profile === null ? <Avatar className="rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40" { ...config } /> : <img src={data.author.profile} className={'object-cover rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40'} alt="Profile Image" />
                                         }
                                     </Link>
                                     <div className="flex flex-col items-center">

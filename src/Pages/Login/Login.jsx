@@ -15,7 +15,7 @@ import LoginImage from '../../assets/media/Img/login&signup.jpg';
 import GoogleIco from '../../assets/media/Img/Google.jpg';
 
 const Login = () => {
-  let { toggleAuth , createToken } = useAuth();
+  let { setToken } = useAuth();
   const navigate = useNavigate();
 
   const { register , handleSubmit , formState: { errors } } = useForm();
@@ -32,8 +32,7 @@ const Login = () => {
     login(data)
       .then(res => {
         setLoader(false);
-        toggleAuth();
-        createToken(res.data.auth_token);
+        setToken(res.data.auth_token);
         navigate('/');
       })
       .catch(() => {

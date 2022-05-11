@@ -1,18 +1,23 @@
-import React , { useState } from "react";
+import React , { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createArticle } from '../../services';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAuth } from "../../context/Auth";
 
 // import compoenents
 import Loader from "../../Components/Layout/Loader";
 
 export default function CreateArticle() {
     const navigate = useNavigate();
+    let { token } = useAuth();
     const { register , handleSubmit , formState: { errors } } = useForm();
 
     const [ loader , setLoader ] = useState(false);
     const [ check , setCheck ] = useState(true);
+
+    useEffect(() => token === null && navigate('/'),[]);
+
     // const [ Tag , setTag ] = useState("");
 
     // const tagHandler = (e) => {
@@ -50,7 +55,7 @@ export default function CreateArticle() {
     const submitArticle = (data) => {
         setLoader(true);
 
-        createArticle(data , '035157a1f5880b345711b484ccbbaad25209b9de')
+        createArticle(data , token)
             .then(() => {
                 setLoader(false);
                 navigate('/');

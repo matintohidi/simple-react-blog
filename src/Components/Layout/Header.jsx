@@ -1,13 +1,48 @@
-import React , { useState } from 'react';
+import React , { useState , useEffect } from 'react';
 import { Link , useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/Auth';
+import { getMeUser , logout } from '../../services';
+import Avatar from 'react-nice-avatar';
 
 export default function Header() {
+    let { token , setToken } = useAuth();
     const location = useLocation();
 
     const [ open , setOpen ] = useState(false);
+    const [ dataProfile , setDataProfile ] = useState({});
+
+    useEffect(() => {
+        token !== null && getMeUser(token)
+        .then(res => setDataProfile(res.data))
+        .catch(err => console.log(err.response))
+    },[])
+
     const genericHamburgerLine = 'h-0.5 w-5 rounded-full bg-white transition ease transform duration-300';
     const listItemClassLg = 'text-gray-600 hover:text-black transition-colors font-bold text-sm';
     const listItemClassSm = 'text-white transition-colors text-sm mb-5';
+    const config = {
+        "sex": "man",
+        "faceColor": "#F9C9B6",
+        "earSize": "small",
+        "eyeStyle": "oval",
+        "noseStyle": "round",
+        "mouthStyle": "smile",
+        "shirtStyle": "hoody",
+        "glassesStyle": "none",
+        "hairColor": "#000",
+        "hairStyle": "thick",
+        "hatStyle": "none",
+        "hatColor": "#F48150",
+        "eyeBrowStyle": "up",
+        "shirtColor": "#FC909F",
+        "bgColor": "linear-gradient(45deg, #56b5f0 0%, #45ccb5 100%)"
+    }
+
+    const LogOut = () => {
+        logout(token)
+            .then(() => setToken(null))
+            .catch(err => console.log(err.response))
+    }
 
     return (
         <header className={`lg:mt-7 mt-2 w-full ${location.pathname === '/Login' && 'hidden' || location.pathname === '/SignUp' && 'hidden' }`}>
@@ -36,9 +71,23 @@ export default function Header() {
                         <li className={listItemClassLg}>
                             <Link to="/team">Team</Link>
                         </li>
-                        <Link to="/Login">
-                            <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
-                        </Link>
+                        {
+                            token === null ? <Link to="/Login">
+                                <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
+                            </Link> : 
+                            dataProfile.profile === null ? <Avatar id="dropdownDefault" data-dropdown-toggle="dropdown" className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-14 h-14 xl:w-16 xl:h-16" { ...config } />
+                            : <img id="dropdownDefault" data-dropdown-toggle="dropdown" src={dataProfile.profile} className="cursor-pointer object-cover ml-4 rounded-full transition duration-200 transform group-hover:scale-110 w-14 h-14 xl:w-16 xl:h-16" />
+                        }
+                        <div id="dropdown" className="z-10 hidden bg-white divide divide-gray-300 rounded shadow-md w-40">
+                            <ul className="text-sm text-gray-700">
+                                <li>
+                                    <Link to={`${dataProfile.username}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
+                                </li>
+                                <li>
+                                    <button onClick={LogOut} className="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                                </li>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
                 {
@@ -59,9 +108,14 @@ export default function Header() {
                             <li className={`${listItemClassSm} mb-5`}>
                                 <Link to="/team">Team</Link>
                             </li>
-                            <Link to="/Login">
-                                <li className="text-white transition-colors text-sm">Login/Signup</li>
-                            </Link>
+                            {
+                                token === null ? <Link to="/Login">
+                                    <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
+                                </Link>
+                                : <li className={`${listItemClassSm} mb-5`}>
+                                    <Link to={`${dataProfile.username}`}>Profile</Link>
+                                </li>
+                            }
                         </ul>
                     </div>
                 }

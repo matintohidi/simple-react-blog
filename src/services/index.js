@@ -8,14 +8,16 @@ export const getArticleComments = (slug) => axios.get(`/articles/${slug}/comment
 
 export const createArticle = (data , token) => {
     return axios.post('/articles/' , data , {
-        headers: { "Authorization": `Token ${token}` }
+        headers: { 'Authorization': `Token ${token}` , 'Content-Type': 'multipart/form-data' }
     })
 }
 
-export const getUser = (user) => axios.get(`http://127.0.0.1:8000/api/auth/author/${user}`);
+export const getMeUser = (token) => axios.get('/auth/users/me/' , { headers: { 'Authorization': `Token ${token}` } });
+
+export const getUser = (user) => axios.get(`/auth/author/${user}`);
 
 export const login = (data) => axios.post('/auth/token/login/' , data);
 
 export const signup = (data) => axios.post('/auth/users/' , data);
 
-export const logout = (token) => axios.post('/auth/token/logout/' , token);
+export const logout = (token) => axios.post('/auth/token/logout/' , { headers: { 'Authorization': `Token ${token}` } });
