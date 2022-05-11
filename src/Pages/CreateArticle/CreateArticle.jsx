@@ -55,7 +55,13 @@ export default function CreateArticle() {
     const submitArticle = (data) => {
         setLoader(true);
 
-        createArticle(data , token)
+        let newData = new FormData();
+        newData.append('title' , data.title);
+        newData.append('content' , data.content);
+        newData.append('status' , data.status);
+        newData.append('image' , data.image[0]);
+
+        createArticle(newData , token)
             .then(() => {
                 setLoader(false);
                 navigate('/');

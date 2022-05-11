@@ -1,7 +1,6 @@
 import React , { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import 'flowbite';
 
 // import components
 import Modal from '../../Components/Modal/Modal';

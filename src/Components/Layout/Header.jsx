@@ -9,6 +9,7 @@ export default function Header() {
     const location = useLocation();
 
     const [ open , setOpen ] = useState(false);
+    const [ dropDown , setDropDown ] = useState(false);
     const [ dataProfile , setDataProfile ] = useState({});
 
     useEffect(() => {
@@ -16,6 +17,8 @@ export default function Header() {
         .then(res => setDataProfile(res.data))
         .catch(err => console.log(err.response))
     },[])
+
+    useEffect(() => setDropDown(false),[location.pathname]);
 
     const genericHamburgerLine = 'h-0.5 w-5 rounded-full bg-white transition ease transform duration-300';
     const listItemClassLg = 'text-gray-600 hover:text-black transition-colors font-bold text-sm';
@@ -49,9 +52,9 @@ export default function Header() {
             <nav className="flex justify-between items-center">
                 <h2 className="text-gray-700 text-3xl my-auto font-thin text-left ml-4 font-TheBrown">ReadIt</h2>
                 <div className="space-y-1 bg-mainColor w-11 h-11 rounded flex flex-col justify-center items-center rounded-r-none cursor-pointer right-0 absolute md:hidden z-20" onClick={() => setOpen(!open)}>
-                    <span className={`${genericHamburgerLine} ${open ? "rotate-45 translate-y-2 my-1" : ""}`}/>
-                    <span className={`${genericHamburgerLine} ${open ? "opacity-0" : ""}`} />
-                    <span className={`${genericHamburgerLine} ${open ? "-rotate-45 -translate-y-2 my-1" : ""}`}/>
+                    <span className={`${genericHamburgerLine} ${open && "rotate-45 translate-y-2 my-1"}`}/>
+                    <span className={`${genericHamburgerLine} ${open && "opacity-0"}`} />
+                    <span className={`${genericHamburgerLine} ${open && "-rotate-45 -translate-y-2 my-1"}`}/>
                 </div>
                 <div className="hidden md:flex mr-4">
                     <ul className="flex items-center justify-center">
@@ -75,20 +78,20 @@ export default function Header() {
                             token === null ? <Link to="/Login">
                                 <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
                             </Link> : 
-                            dataProfile.profile === null ? <Avatar id="dropdownDefault" data-dropdown-toggle="dropdown" className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-14 h-14 xl:w-16 xl:h-16" { ...config } />
-                            : <img id="dropdownDefault" data-dropdown-toggle="dropdown" src={dataProfile.profile} className="cursor-pointer object-cover ml-4 rounded-full transition duration-200 transform group-hover:scale-110 w-14 h-14 xl:w-16 xl:h-16" />
+                            dataProfile.profile === null ? <Avatar onClick={() => setDropDown(!dropDown)} className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-14 h-14 xl:w-16 xl:h-16" { ...config } />
+                            : <img onClick={() => setDropDown(!dropDown)} src={dataProfile.profile} className="cursor-pointer object-cover ml-4 rounded-full transition duration-200 transform group-hover:scale-110 w-14 h-14 xl:w-16 xl:h-16" />
                         }
-                        <div id="dropdown" className="z-10 hidden bg-white divide divide-gray-300 rounded shadow-md w-40">
-                            <ul className="text-sm text-gray-700">
-                                <li>
-                                    <Link to={`${dataProfile.username}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
-                                </li>
-                                <li>
-                                    <button onClick={LogOut} className="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
-                                </li>
-                            </ul>
-                        </div>
                     </ul>
+                    <div className={`z-10 ${dropDown ? '' : 'hidden'} bg-white divide divide-gray-300 rounded shadow-md w-40 absolute top-24 right-4`}>
+                        <ul className="text-sm text-gray-700">
+                            <li>
+                                <Link to={`${dataProfile.username}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
+                            </li>
+                            <li>
+                                <button onClick={LogOut} className="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 {
                     open && <div className={`absolute right-0 top-0 h-72 w-28 bg-mainColor z-10 rounded-bl-md ${open ? "menu" : "menuclose"}`}>

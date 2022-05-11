@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}" , "./public/index.html" , "./node_modules/flowbite/**/*.js"
+    "./src/**/*.{js,jsx,ts,tsx}" , "./public/index.html"
   ],
   theme: {
     extend: {
@@ -17,9 +17,6 @@ module.exports = {
         customDarkColor: '#222433',
         customLightColor: '#e6e9f0',
       }
-    },
-    plugins: [
-      require('flowbite/plugin')
-    ]
+    }
   }
 }

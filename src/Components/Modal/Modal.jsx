@@ -1,5 +1,4 @@
 import React from 'react';
-import 'flowbite';
 
 const Modal = () => {
     return (
