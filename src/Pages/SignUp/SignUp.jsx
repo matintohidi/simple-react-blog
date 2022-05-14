@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { signup } from '../../services';
+import { useBlog } from '../../context/context';
 
 // import components
 import Input from '../../Components/Input/Input';
@@ -15,6 +16,8 @@ import LoginImage from '../../assets/media/Img/login&signup.jpg';
 import GoogleIco from '../../assets/media/Img/Google.jpg';
 
 const SignUp = () => {
+  let { setHeaderAndFooterDisplay } = useBlog();
+
   const { register , handleSubmit , formState: { errors } } = useForm();
   
   const [ loader , setLoader ] = useState(true);
@@ -23,7 +26,12 @@ const SignUp = () => {
   const lableClass = 'lg:mb-2 mb-1 text-gray-500';
   const inputCLass = 'md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 lg:mb-4 mb-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all';
 
-  useEffect(() => setLoader(false));
+  useEffect(() => {
+    setLoader(false);
+    setHeaderAndFooterDisplay(true);
+
+    return () => setHeaderAndFooterDisplay(false)
+  },[]);
 
   const SignUpHandler = (data) => {
     setLoader(true);

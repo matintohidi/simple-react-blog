@@ -3,9 +3,9 @@ import React , { createContext , useContext , useState } from "react";
 const BlogContext = createContext();
 
 const BlogProvider = ({ children }) => {
-    const [ signUp , setSignUp ] = useState(false);
+    const [ headerAndFooterDisplay , setHeaderAndFooterDisplay ] = useState(false);
     
-    return <BlogContext.Provider value={{ signUp , setSignUp }}>
+    return <BlogContext.Provider value={{ headerAndFooterDisplay , setHeaderAndFooterDisplay }}>
         { children }
     </BlogContext.Provider>
 }

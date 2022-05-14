@@ -995,8 +995,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2.75rem;
 }
 
-.w-14 {
-  width: 3.5rem;
+.w-12 {
+  width: 3rem;
 }
 
 .w-40 {
@@ -1023,6 +1023,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 250px;
 }
 
+.w-14 {
+  width: 3.5rem;
+}
+
 .w-3\/4 {
   width: 75%;
 }
@@ -1041,10 +1045,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-60 {
   width: 15rem;
-}
-
-.w-12 {
-  width: 3rem;
 }
 
 .w-10 {
@@ -2786,20 +2786,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 3.5rem;
   }
 
-  .xl\:h-16 {
-    height: 4rem;
-  }
-
   .xl\:h-40 {
     height: 10rem;
   }
 
   .xl\:w-14 {
     width: 3.5rem;
-  }
-
-  .xl\:w-16 {
-    width: 4rem;
   }
 
   .xl\:w-40 {
