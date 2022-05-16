@@ -59,7 +59,10 @@ const Login = () => {
       />
       {
         loader ? <Loader /> : <div className="flex">
-            <img src={LoginImage} className="-z-10 w-1/2 h-screen hidden lg:block" />
+            <div className="-z-10 w-1/2 hidden lg:block relative">
+              <img src={LoginImage} className="h-screen brightness-50" />
+              <h1 className="font-TheBrown font-bold tracking-widest text-5xl absolute xl:left-[40%] lg:left-[37%] bottom-1/2 text-white">Read It</h1>
+            </div>
             <div className="flex flex-col lg:m-auto mx-auto mt-4">
               <div className="mb-8">
                 <p className="font-openSansSm text-md">Welcome Back</p>

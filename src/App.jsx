@@ -14,9 +14,9 @@ export default function App() {
                 {
                     AppRoutes.map((prop, key) => {
                         if (prop.redirect) {
-                            return <Navigate from={prop.path} to={prop.pathTo} key={key} />
+                            return <Navigate key={key} from={prop.path} to={prop.pathTo} />
                         } else {
-                            return <Route {...prop} key={key} />
+                            return <Route key={key} {...prop} />
                         }
                     })
                 }

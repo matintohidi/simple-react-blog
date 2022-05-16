@@ -59,7 +59,10 @@ const SignUp = () => {
       />
       {
         loader ? <Loader /> : active ? <ActiveEmail /> : <div className="flex flex-row-reverse">
-        <img src={LoginImage} className="-z-10 w-1/2 h-screen hidden lg:block" />
+        <div className="-z-10 w-1/2 hidden lg:block relative">
+          <img src={LoginImage} className="h-screen brightness-50" />
+          <h1 className="font-TheBrown font-bold tracking-widest text-5xl absolute xl:right-[40%] lg:right-[37%] bottom-1/2 text-white">Read It</h1>
+        </div>
         <div className="lg:m-auto flex flex-col mx-auto mt-6">
           <div className="mb-8">
               <p className="font-openSansSm text-md">Welcome To Our Blog</p>

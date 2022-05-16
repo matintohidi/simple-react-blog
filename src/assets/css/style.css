@@ -76,3 +76,35 @@
 .image {
     object-fit: cover;
 }
+
+.showModal {
+    animation: showModal .7s;
+}
+
+@keyframes showModal {
+    from {
+        top: -150px;
+    }
+
+    to {
+        top: 0;
+    }
+}
+
+.tagsScrollBar::-webkit-scrollbar {
+	width: 7px;
+    background-color: transparent;
+}
+
+.tagsScrollBar::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: #2084FF;
+}
+
+.blackScreen {
+    background-color: #1e272ecb;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

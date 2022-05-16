@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBlog } from '../../context/context';
+import { Link } from 'react-router-dom';
 
 //impirt Media
 import Shape1 from '../../assets/media/3D object and icons/Ellipse 20.png';
@@ -10,13 +11,13 @@ const Footer = () => {
     let { headerAndFooterDisplay } = useBlog();
 
     return (
-        <div className={`flex flex-col  justify-center items-center bg-[#222433] py-16 relative ${headerAndFooterDisplay && 'hidden'}`}>
-            <p className="text-sm font-thin font-openSansSm text-gray-300">Copyright &#169; 2022 | <a href="#" className="font-bold text-white">ReadIT</a></p>
+        <footer className={`flex flex-col justify-center items-center bg-[#222433] py-16 relative ${headerAndFooterDisplay && 'hidden'}`}>
+            <p className="text-sm font-thin font-openSansSm text-gray-300">Copyright &#169; 2022 | <Link to='/' className="font-bold text-white">ReadIT</Link></p>
             <p className="text-sm font-thin font-openSansSm text-gray-300">All rights reserved</p>
             <img src={Shape3} className="absolute bottom-0 left-0 w-24 h-14" />
             <img src={Shape2} className="absolute top-0 right-36 hidden md:block xl:w-14 xl:h-14 xl:right-0 xl:left-56 xl:top-4" />
             <img src={Shape1} className="absolute bottom-0 right-12 h-28 hidden xl:block" />
-        </div>
+        </footer>
     )
 }
 
