@@ -20,7 +20,7 @@ export const login = (data) => axios.post('/auth/token/login/' , data);
 
 export const signup = (data) => axios.post('/auth/users/' , data);
 
-export const logout = (token) => axios.post('/auth/token/logout/' , { headers: { 'Authorization': `Token ${token}` } });
+export const logout = (token) => axios.post('/auth/token/logout/' , token , { headers: { 'Authorization': `Token ${token}` } });
 
 export const getTags = () => axios.get('/tags/');
 

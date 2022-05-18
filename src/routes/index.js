@@ -9,7 +9,6 @@ import Articles from '../Pages/Articles/Articles';
 import NotFound from '../Pages/NotFound/NotFound';
 import Profile from '../Pages/Profile/Profile';
 import About from '../Pages/About/About';
-import Contact from '../Pages/Contact/Contact';
 import Team from '../Pages/Team/Team';
 
 // import components
@@ -36,10 +35,6 @@ const AppRoutes = [
   {
     path: '/about',
     element: <About />,
-  },
-  {
-    path: '/contact',
-    element: <Contact />,
   },
   {
     path: '/team',

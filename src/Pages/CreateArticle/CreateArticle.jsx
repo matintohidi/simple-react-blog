@@ -14,7 +14,7 @@ const CreateArticle = () => {
 
     const [ loader , setLoader ] = useState(false);
     const [ check , setCheck ] = useState(true);
-    const [ next , setNext ] = useState(true);
+    const [ next , setNext ] = useState(false);
     const [ data , setData ] = useState(null);
     const [ allTags , setAllTags ] = useState([]);
     const [ tag , setTag ] = useState('');
@@ -38,6 +38,7 @@ const CreateArticle = () => {
             getTag(suggestionTag)
                 .then(res => setTagsId([ ...tagsId , res.data.id ]))
                 .catch(err => console.error(err.response))
+            setTag('');
         } else if(tag.trim() === '') {
             toast.error('Please enter a correct tag');
         } else {
@@ -71,17 +72,19 @@ const CreateArticle = () => {
             setLoader(false);
             window.scrollTo(0 , 0);
         } else {
+            let formData = new FormData(e.target);
             setLoader(false);
             setNext(true);
-            setData(new FormData(e.target));
+            setData(formData);
             window.scrollTo(0 , 0);
         }
     }
 
-    const submitArticle = (e) => {
+    const submitArticle = () => {
         setLoader(true);
 
-        data.apepend('status' , check);
+        setData(data.set('status' , check));
+        setData(data.set('tags' , tagsId));
 
         createArticle(data , token)
             .then((res) => {
@@ -174,7 +177,7 @@ const CreateArticle = () => {
                                 <div className="flex items-center justify-center mt-4">
                                     <label className="relative flex justify-between items-center group p-2 text-md">
                                         Release Status
-                                        <input name="status" type="checkbox" className="absolute left-1/2 -translate-x-1/2 w-full peer appearance-none rounded-md" checked={check} onChange={() => setCheck(!check)} />
+                                        <input type="checkbox" className="absolute left-1/2 -translate-x-1/2 w-full peer appearance-none rounded-md" checked={check} onChange={() => setCheck(!check)} />
                                         <span className="ring-1 ring-mainColor w-14 h-8 flex items-center flex-shrink-0 ml-4 p-1 bg-white rounded-full duration-300 ease-in-out peer-checked:bg-mainColor after:w-6 after:h-6 after:bg-mainColor peer-checked:after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 group-hover:after:translate-x-1"></span>
                                     </label>
                                 </div>

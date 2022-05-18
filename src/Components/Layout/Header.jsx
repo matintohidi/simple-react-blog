@@ -1,5 +1,5 @@
 import React , { useState , useEffect } from 'react';
-import { Link , useLocation } from 'react-router-dom';
+import { Link , useLocation , useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/Auth';
 import { getMeUser , logout } from '../../services';
 import Avatar from 'react-nice-avatar';
@@ -10,6 +10,7 @@ export default function Header() {
     let { token , setToken } = useAuth();
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     const [ open , setOpen ] = useState(false);
     const [ dropDown , setDropDown ] = useState(false);
@@ -46,7 +47,12 @@ export default function Header() {
 
     const LogOut = () => {
         logout(token)
-            .then(() => setToken(null))
+            .then(() => {
+                setToken(null);
+                navigate('/');
+                setDropDown(false);
+                setOpen(false);
+            })
             .catch(err => console.log(err.response))
     }
 
@@ -67,13 +73,9 @@ export default function Header() {
                         <li className={`mx-4 ${listItemClassLg}`}>
                             <Link to="/blog">Blog</Link>
                         </li>
-                        <li className={listItemClassLg}>
+                        <li className={`mr-4 ${listItemClassLg}`}>
                             <Link to="/about">About</Link>
                         </li>
-                        <li className={`mx-4 ${listItemClassLg}`}>
-                            <Link to="/contact">Contact</Link>
-                        </li>
-
                         <li className={listItemClassLg}>
                             <Link to="/team">Team</Link>
                         </li>
@@ -107,9 +109,6 @@ export default function Header() {
                             </li>
                             <li className={`${listItemClassSm} mb-5`}>
                                 <Link to="/about">About</Link>
-                            </li>
-                            <li className={`${listItemClassSm} mb-5`}>
-                                <Link to="/contact">Contact</Link>
                             </li>
                             <li className={`${listItemClassSm} mb-5`}>
                                 <Link to="/team">Team</Link>
