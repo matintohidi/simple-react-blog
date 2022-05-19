@@ -12,6 +12,12 @@ export const createArticle = (data , token) => {
     })
 }
 
+export const putArticle = (data , token) => {
+    return axios.put(`/articles/${data.title.replaceAll(' ', '-').toLowerCase()}/` , data , {
+        headers: { 'Authorization': `Token ${token}` , 'Content-Type': 'application/json' }
+    }) 
+}
+
 export const getMeUser = (token) => axios.get('/auth/users/me/' , { headers: { 'Authorization': `Token ${token}` } });
 
 export const getUser = (user) => axios.get(`/auth/author/${user}`);

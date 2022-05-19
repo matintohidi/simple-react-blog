@@ -2218,6 +2218,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
+.centerModal {
+  position:fixed;
+  top: 0;
+  left: 0;
+  -webkit-transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+          transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+}
+
 .after\:h-6::after {
   content: var(--tw-content);
   height: 1.5rem;

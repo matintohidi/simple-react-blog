@@ -1,6 +1,6 @@
 import React , { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createArticle , getTags , createNewTag , getTag } from '../../services';
+import { createArticle , getTags , createNewTag , getTag , putArticle } from '../../services';
 import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from "../../context/Auth";
 import { v1 as uuid } from 'uuid';
@@ -14,12 +14,12 @@ const CreateArticle = () => {
 
     const [ loader , setLoader ] = useState(false);
     const [ check , setCheck ] = useState(true);
-    const [ next , setNext ] = useState(false);
-    const [ data , setData ] = useState(null);
+    const [ next , setNext ] = useState(true);
     const [ allTags , setAllTags ] = useState([]);
     const [ tag , setTag ] = useState('');
     const [ tags , setTags ] = useState([]);
-    const [ tagsId , setTagsId ] = useState([]);
+    const [ tagsName , setTagsName ] = useState([]);
+    const [ data , setData ] = useState(null);
 
     useEffect(() => {
         token === null && navigate('/');
@@ -36,7 +36,7 @@ const CreateArticle = () => {
         } else if(suggestionTag) {
             setTags([...tags , suggestionTag]);
             getTag(suggestionTag)
-                .then(res => setTagsId([ ...tagsId , res.data.id ]))
+                .then(res => setTagsName([ ...tagsName , res.data.name ]))
                 .catch(err => console.error(err.response))
             setTag('');
         } else if(tag.trim() === '') {
@@ -45,11 +45,11 @@ const CreateArticle = () => {
             setTags([...tags , tag]);
             if(allTags.includes(tag)) {
                 getTag(tag)
-                    .then(res => setTagsId([ ...tagsId , res.data.id ]))
+                    .then(res => setTagsName([ ...tagsName , res.data.name ]))
                     .catch(err => console.error(err.response))  
             } else {
                 createNewTag(tag)
-                    .then(res => setTagsId([ ...tagsId , res.data.id ]))
+                    .then(res => setTagsName([ ...tagsName , res.data.name ]))
                     .catch(err => console.error(err.response))
             }
             setTag('');
@@ -73,9 +73,14 @@ const CreateArticle = () => {
             window.scrollTo(0 , 0);
         } else {
             let formData = new FormData(e.target);
-            setLoader(false);
+            formData.set('status', true);
             setNext(true);
-            setData(formData);
+            createArticle(formData , token)
+                .then((res) => {
+                    setLoader(false);
+                    setData({ title: res.data.title , content: res.data.content });
+                })
+                .catch(err => console.error(err.response))
             window.scrollTo(0 , 0);
         }
     }
@@ -83,22 +88,18 @@ const CreateArticle = () => {
     const submitArticle = () => {
         setLoader(true);
 
-        setData(data.set('status' , check));
-        setData(data.set('tags' , tagsId));
-
-        createArticle(data , token)
+        putArticle({ status: check , tags: tagsName , ...data } , token)
             .then((res) => {
                 setLoader(false);
                 navigate(`/article/${res.data.title.replaceAll(' ', '-').toLowerCase()}`)
             })
             .catch((err) => console.log(err.response));
-
     }
 
     const deleteTag = (tag) => {
         setTags(tags.filter(filterTag => filterTag !== tag));
         getTag(tag)
-            .then(res => setTagsId(tagsId.filter(filterTag => filterTag !== res.data.id)))
+            .then(res => setTagsName(tagsName.filter(filterTag => filterTag !== res.data.name)))
             .catch(err => console.error(err.response))
     }
 
@@ -142,7 +143,7 @@ const CreateArticle = () => {
                         </div>
                     </form>
                     <div className={`${next ? 'block' : 'hidden'}`}>
-                        <div className="bg-white p-6 pt-0 rounded-md top-0 fixed h-fit z-50 w-full sm:w-1/2 showModal">
+                        <div className="bg-white p-6 pt-0 rounded-md centerModal h-fit z-50 w-full sm:w-1/2 showModal">
                             <div className="flex justify-between items-start py-3 rounded-t border-b">
                                 <div onClick={() => setNext(false)} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>  
@@ -154,12 +155,12 @@ const CreateArticle = () => {
                                         <label className="text-md font-openSansSm font-extrabold mb-4">Tags</label>
                                         <div className="flex justify-between">
                                             <input className={`w-3/4 px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded appearance-none outline-none transition-all ${tag.trim() !== '' && 'border-b-0 rounded-b-none'}`} type="text" placeholder="Tag..." onChange={(e) => setTag(e.target.value)} value={tag} />
-                                            <button onClick={() => createTag(   )} className="w-1/5 py-1 bg-mainColor text-center text-white font-thin rounded hover:bg-[#1c7bf0]">Ok</button>
+                                            <button onClick={() => createTag()} className="w-1/5 py-1 bg-mainColor text-center text-white font-thin rounded hover:bg-[#1c7bf0]">Ok</button>
                                         </div>
                                         <ul className={`w-3/4 h-20 overflow-y-scroll bg-white border border-mainColor border-t-0 rounded rounded-t-none tagsScrollBar ${tag.trim() === '' && 'hidden'}`}>
                                             {
                                                 allTags.map(allTag => {
-                                                    return <li className={`text-mainColor text-sm p-1 w-full hover:bg-gray-100 hover:text-black transition ${allTag.toUpperCase().indexOf(tag.toUpperCase()) <= -1 && 'hidden'}`} onClick={() => createTag(allTag)} key={uuid()}>{allTag}</li>
+                                                    return <li className={`text-mainColor text-sm p-1 w-full hover:bg-gray-100 hover:text-black transition cursor-pointer ${allTag.toUpperCase().indexOf(tag.toUpperCase()) === -1 && 'hidden'}`} onClick={() => createTag(allTag)} key={uuid()}>{allTag}</li>
                                                 })
                                             }
                                         </ul>
