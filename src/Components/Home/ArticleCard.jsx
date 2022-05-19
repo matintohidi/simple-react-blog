@@ -5,12 +5,14 @@ import { numToMonth } from '../../hooks/useMonth';
 const ArticleCard = ({ author , img , title , content , day , month , year , slug }) => {
     return (
         <div className="m-3 md:mx-6 lg:mx-6 lg:mt-6 lg:mb-0 backdropCard rounded shadow-md col-span-1">
-            <img loading="lazy" src={img} className={`rounded-t shadow-lg md:h-72 xl:h-88 h-96 w-full image ${img === undefined && "animate-pulse"}`} />
+            <Link to={`/article/${slug}`}>
+                <img loading="lazy" src={img} className="rounded-t shadow-lg md:h-72 xl:h-88 h-96 w-full image" />
+            </Link>
             <div className="mx-5 py-3">
                 <div className="mb-4">
                     <div className="mb-4 flex justify-between">
                         <p className="text-sm font-medium font-openSansSm">{day} , {numToMonth(month)} , {year}</p>
-                        <h1 className="text-sm tracking-widest capitalize">{author}</h1>
+                        <Link to={`/${author.toLowerCase()}`} className="text-sm tracking-widest capitalize">{author}</Link>
                     </div>
                     <h1 className="text-2xl font-black three-points">{title}</h1>
                     <p className="text-sm font-medium font-openSansSm mt-3 break-words three-points">{content}</p>

@@ -14,7 +14,7 @@ const CreateArticle = () => {
 
     const [ loader , setLoader ] = useState(false);
     const [ check , setCheck ] = useState(true);
-    const [ next , setNext ] = useState(true);
+    const [ next , setNext ] = useState(false);
     const [ allTags , setAllTags ] = useState([]);
     const [ tag , setTag ] = useState('');
     const [ tags , setTags ] = useState([]);
