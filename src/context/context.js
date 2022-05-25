@@ -4,8 +4,9 @@ const BlogContext = createContext();
 
 const BlogProvider = ({ children }) => {
     const [ headerAndFooterDisplay , setHeaderAndFooterDisplay ] = useState(false);
+    const [ articlesStat , setArticlesStat ] = useState('published');
     
-    return <BlogContext.Provider value={{ headerAndFooterDisplay , setHeaderAndFooterDisplay }}>
+    return <BlogContext.Provider value={{ headerAndFooterDisplay , setHeaderAndFooterDisplay , articlesStat , setArticlesStat }}>
         { children }
     </BlogContext.Provider>
 }

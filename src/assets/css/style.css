@@ -91,12 +91,12 @@
     }
 }
 
-.tagsScrollBar::-webkit-scrollbar {
+.scrollBar::-webkit-scrollbar {
 	width: 7px;
     background-color: transparent;
 }
 
-.tagsScrollBar::-webkit-scrollbar-thumb {
+.scrollBar::-webkit-scrollbar-thumb {
 	border-radius: 4px;
 	background-color: #2084FF;
 }

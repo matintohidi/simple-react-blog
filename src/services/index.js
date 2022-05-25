@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-export const getArticles = (page) => page !== undefined ? axios.get(`/articles/?ordering=-published&page=${page}`) : axios.get('/articles/?ordering=-published');
-
-export const getArticlesByLike = (page) => page !== undefined ? axios.get(`/articles/?ordering=-likes&page=${page}`) : axios.get('/articles/?ordering=-likes');
+export const getArticles = (page , method) => page !== undefined ? axios.get(`/articles/?ordering=-${method}&page=${page}`) : axios.get(`/articles/?ordering=-${method}`);
 
 export const getAricle = (slug) => axios.get(`/articles/${slug}/`);
 

@@ -20,7 +20,7 @@ export default function SectionContent() {
 
     useEffect(() => {
         window.scrollTo(0 , 0);
-        getArticles()
+        getArticles(undefined , 'published')
             .then((res) => {
                 setLoader(false);
                 setArticles(res.data.results);

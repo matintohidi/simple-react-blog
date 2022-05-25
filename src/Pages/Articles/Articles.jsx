@@ -1,7 +1,8 @@
 import React , { useState , useEffect } from 'react';
 import { Link , useParams , useNavigate } from 'react-router-dom';
 import { v1 as uuid } from 'uuid';
-import { getArticles , getArticlesByLike } from '../../services';
+import { getArticles } from '../../services';
+import { useBlog } from '../../context/context';
 
 // import Components
 import ArticleCard from '../../Components/Home/ArticleCard';
@@ -14,6 +15,8 @@ const Articles = () => {
     const navigate = useNavigate();
     const { page } = useParams();
 
+    const { articlesStat , setArticlesStat } = useBlog();
+
     const [ loader , setLoader ] = useState(true);
     const [ articles , setArticles ] = useState([]);
     const [ count , setCount ] = useState(0);
@@ -24,7 +27,7 @@ const Articles = () => {
 
     useEffect(() => {
         window.scrollTo(0 , 0);
-        getArticles(page)
+        getArticles(page , articlesStat)
             .then((res) => {
                 setLoader(false);
                 setArticles(res.data.results);
@@ -36,10 +39,10 @@ const Articles = () => {
             .catch(err => err.response.status === 404 && navigate('/not-found'));
 
             setOpenSort(false);
-    },[page])
+    },[page]);
 
-    const sortByPublished = () => {
-        getArticles(page)
+    useEffect(() => {
+        getArticles(page , articlesStat)
             .then((res) => {
                 setLoader(false);
                 setArticles(res.data.results);
@@ -49,25 +52,11 @@ const Articles = () => {
                 setActivePage(res.data.active_page);
             })
             .catch(err => err.response.status === 404 && navigate('/not-found'));
-    }
+    },[articlesStat]);
 
-    const sortByLike = () => {
+    const sortHandler = (sort) => {
+        setArticlesStat(sort);
         navigate('/articles/page');
-
-        getArticlesByLike(page)
-            .then((res) => {
-                setLoader(false);
-                setArticles(res.data.results);
-                setNext(res.data.next);
-                setPrev(res.data.previous);
-                setCount(res.data.results.length);
-                setActivePage(res.data.active_page);
-            })
-            .catch(err => err.response.status === 404 && navigate('/not-found'));
-    }
-
-    const sortByView = () => {
-        
     }
 
     return (
@@ -81,9 +70,9 @@ const Articles = () => {
                             <svg fill="currentColor" viewBox="0 0 20 20" className={`w-4 h-4 transition-transform duration-200 transform text-gray-600 ${openSort ? 'rotate-180' : 'rotate-0'}`}><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                         </button>
                         <ul className={`bg-white border rounded px-3 py-2 text-sm absolute top-8 z-50 ${openSort === false && 'hidden'}`}>
-                            <li className={listItemSort} onClick={sortByPublished}>Published Time</li>
-                            <li className={listItemSort} onClick={sortByLike}>Like</li>
-                            <li className={listItemSort} onClick={sortByView}>View</li>
+                            <li className={listItemSort} onClick={() => sortHandler('published')}>Published Time</li>
+                            <li className={listItemSort} onClick={() => sortHandler('like')}>Like</li>
+                            <li className={listItemSort} onClick={() => sortHandler('hits')}>View</li>
                         </ul>
                     </div>
                     <div className="backdropCircle rounded shadow-md">

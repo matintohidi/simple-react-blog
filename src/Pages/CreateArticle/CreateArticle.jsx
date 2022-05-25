@@ -74,11 +74,12 @@ const CreateArticle = () => {
         } else {
             let formData = new FormData(e.target);
             formData.set('status', true);
-            setNext(true);
+            
             createArticle(formData , token)
                 .then((res) => {
                     setLoader(false);
                     setData({ title: res.data.title , content: res.data.content });
+                    setNext(true);
                 })
                 .catch(err => console.error(err.response))
             window.scrollTo(0 , 0);
@@ -157,7 +158,7 @@ const CreateArticle = () => {
                                             <input className={`w-3/4 px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded appearance-none outline-none transition-all ${tag.trim() !== '' && 'border-b-0 rounded-b-none'}`} type="text" placeholder="Tag..." onChange={(e) => setTag(e.target.value)} value={tag} />
                                             <button onClick={() => createTag()} className="w-1/5 py-1 bg-mainColor text-center text-white font-thin rounded hover:bg-[#1c7bf0]">Ok</button>
                                         </div>
-                                        <ul className={`w-3/4 h-20 overflow-y-scroll bg-white border border-mainColor border-t-0 rounded rounded-t-none tagsScrollBar ${tag.trim() === '' && 'hidden'}`}>
+                                        <ul className={`w-3/4 h-20 overflow-y-scroll bg-white border border-mainColor border-t-0 rounded rounded-t-none scrollBar ${tag.trim() === '' && 'hidden'}`}>
                                             {
                                                 allTags.map(allTag => {
                                                     return <li className={`text-mainColor text-sm p-1 w-full hover:bg-gray-100 hover:text-black transition cursor-pointer ${allTag.toUpperCase().indexOf(tag.toUpperCase()) === -1 && 'hidden'}`} onClick={() => createTag(allTag)} key={uuid()}>{allTag}</li>
