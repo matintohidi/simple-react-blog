@@ -91,7 +91,7 @@ const CreateArticle = () => {
         putArticle({ status: check , tags: tagsName , ...data } , token)
             .then((res) => {
                 setLoader(false);
-                navigate(`/article/${res.data.title.replaceAll(' ', '-').toLowerCase()}`)
+                navigate(`/article/${res.data.slug}`)
             })
             .catch((err) => console.log(err.response));
     }

@@ -59,7 +59,7 @@ export default function ArticleContnet() {
             .catch(err => err.response.status === 404 && navigate('/not-found'))
         getArticleComments(slug)
             .then(res => setComments(res.data))
-            .catch(err => toast.error('Articles could not be downloaded'))
+            .catch(() => toast.error('Articles could not be downloaded'))
     },[])
 
     let CopyShotLink = () => {
@@ -129,7 +129,7 @@ export default function ArticleContnet() {
                                 </div>
                                 <h1 className="mt-6 text-2xl font-black text-gray-700">Comments</h1>
                                 <div>
-                                    <Comments comments={comments} />
+                                    <Comments comments={comments} slug={data.slug} />
                                 </div>
                             </div>
                         </div>

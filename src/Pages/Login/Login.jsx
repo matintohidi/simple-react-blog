@@ -24,7 +24,7 @@ const Login = () => {
   const [ loader , setLoader ] = useState(true);
 
   const lableClass = 'lg:mb-2 mb-1 text-gray-500';
-  const inputCLass = `md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 ${errors.username || errors.password ? '' : 'lg:mb-4 mb-2' } text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all`;
+  const inputCLass = `md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 ${errors.username || errors.password ? 'focus:ring-blue-400' : 'lg:mb-4 mb-2 focus:ring-red-600' } text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 transition-all`;
 
   useEffect(() => {
     setLoader(false);

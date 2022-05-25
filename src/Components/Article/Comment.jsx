@@ -14,7 +14,7 @@ export default function Comment({ time , text , author }) {
                     </div>
                 </div>
                 <div className="flex flex-col items-start sm:flex-row-reverse">
-                    <div className="text-gray-600 px-4 py-2 font-bold text-sm backdropCard rounded-md mt-8 sm:mt-0 cursor-pointer hover:bg-gray-300">Reply</div>
+                    <button className="text-gray-600 px-4 py-2 font-bold text-sm backdropCard rounded-md mt-8 sm:mt-0 cursor-pointer hover:bg-gray-300">Reply</button>
                     <p className="text-sm font-thin font-openSansSm mt-3 sm:mt-2 ml-1 sm:mr-3 truncate">{year}/{month}/{day},{hour}:{minute}</p>
                 </div>
             </div>

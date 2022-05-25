@@ -6,6 +6,8 @@ export const getAricle = (slug) => axios.get(`/articles/${slug}/`);
 
 export const getArticleComments = (slug) => axios.get(`/articles/${slug}/comments/`);
 
+export const leaveComment = (slug , content , token) => axios.post(`/articles/${slug}/comments/` , { content } , { headers: { 'Authorization': `Token ${token}` } });
+
 export const createArticle = (data , token) => {
     return axios.post('/articles/' , data , {
         headers: { 'Authorization': `Token ${token}` , 'Content-Type': 'multipart/form-data' }
