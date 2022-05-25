@@ -4,7 +4,6 @@ import AppRoutes from './routes';
 // import Components
 import Header from './Components/Layout/Header';
 import Footer from './Components/Layout/Footer';
-import ProtectedRoute from './Components/ProtectedRoute';
 
 export default function App() {
     return (

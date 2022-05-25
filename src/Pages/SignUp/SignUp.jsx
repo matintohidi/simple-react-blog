@@ -24,7 +24,7 @@ const SignUp = () => {
   const [ active , setActive ] = useState(false);
 
   const lableClass = 'lg:mb-2 mb-1 text-gray-500';
-  const inputCLass = 'md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 lg:mb-4 mb-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all';
+  const inputCLass = `md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 ${errors.username || errors.password ? '' : 'lg:mb-4 mb-2' } text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all`;
 
   useEffect(() => {
     setLoader(false);
@@ -67,11 +67,14 @@ const SignUp = () => {
           <div className="mb-8">
               <p className="font-openSansSm text-md">Welcome To Our Blog</p>
               <h1 className="lg:text-2xl text-xl font-extrabold text-gray-700">Create Account</h1>
-              <form onSubmit={handleSubmit(SignUpHandler)} className="sm:mt-6 mt-2">
-                  <Input lableClass={lableClass} lable='Username' inputClass={inputCLass} type='text' placeHolder='Username' register={{ ...register('username' , { required: 'Please enter your username.' }) }} />
+              <form onSubmit={handleSubmit(SignUpHandler)} className="mt-6">
+                  <Input lableClass={lableClass} lable='Username' inputClass={inputCLass} type='text' placeHolder='Username' register={{ ...register('username' , { required: 'Please enter your username.' , minLength: { value: 4 , message: 'The username must be at least 4 characters long.' } }) }} />
+                  { errors.username && <label className="text-xs text-red-600 my-2">{errors.username.message}</label> }
                   <Input lableClass={lableClass} lable='Email' inputClass={inputCLass} type='email' placeHolder='Email' register={{ ...register('email' , { required: 'Please enter your email.' }) }} />
+                  { errors.email && <label className="text-xs text-red-600 my-2">{errors.email.message}</label> }
                   <Input lableClass={lableClass} lable='Password' inputClass={inputCLass} type='password' placeHolder='Password' register={{ ...register('password' , { required: 'Please enter your password.' }) }} />
-                  <button className="bg-mainColor md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 mb-2 md:text-lg hover:bg-[#1b78eb] transition-colors text-center text-sm">Create Account</button>
+                  { errors.passwords && <label className="text-xs text-red-600 my-2">{errors.passwords.message}</label> }
+                  <button className="bg-mainColor md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 mb-2 md:text-lg hover:bg-[#1b78eb] transition-colors text-center text-sm mt-6">Create Account</button>
               </form>
               <button className="bg-gray-800 md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 flex justify-center items-center hover:bg-gray-700 transition-colors">
                 <img src={GoogleIco} />

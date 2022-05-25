@@ -2,7 +2,6 @@ import React , { useEffect , useState } from 'react';
 import { useParams , useNavigate } from 'react-router-dom';
 import { getUser } from '../../services';
 import Avatar from 'react-nice-avatar';
-import { useAuth } from "../../context/Auth";
 
 //import Components
 import Loader from '../../Components/Layout/Loader';
@@ -13,7 +12,6 @@ import DefaultBanner from '../../assets/media/Img/profile_header_default.webp';
 
 const Profile = () => {
   const navigate = useNavigate();
-  let { token } = useAuth();
   const { user } = useParams();
 
   const config = {
@@ -38,12 +36,12 @@ const Profile = () => {
   const [ data  , setData ] = useState({ socials: {} , followers: [] , followings: [] });
   
   useEffect(() => {
-    token === null ? navigate('/') : getUser(user)
-    .then(res => {
-      setData(res.data);
-      setLoader(false);
-    })
-    .catch(err => err.response.status === 404 && navigate('/not-found'))
+    getUser(user)
+      .then(res => {
+        setData(res.data);
+        setLoader(false);
+      })
+      .catch(err => err.response.status === 404 && navigate('/not-found'))
   },[])
 
   return (

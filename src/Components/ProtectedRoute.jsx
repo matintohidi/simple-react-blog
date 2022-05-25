@@ -3,9 +3,9 @@ import { useAuth } from '../context/Auth';
 import { Navigate, Route } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }) => {
-  let { token } = useAuth();
+  let { user } = useAuth();
 
-  return token !== null ? children : <Navigate to={{pathname: '/login'}}/>
+  return user.isAuthenticated === true || user.token !== null ? children : <Navigate to={{ pathname: '/login' }}/>
 }
 
 export default ProtectedRoute;

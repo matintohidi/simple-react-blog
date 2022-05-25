@@ -7,19 +7,18 @@ import { useBlog } from '../../context/context';
 
 export default function Header() {
     let { headerAndFooterDisplay } = useBlog();
-    let { token , setToken } = useAuth();
+    let { user , setUser } = useAuth();
 
     const location = useLocation();
-    const navigate = useNavigate();
 
     const [ open , setOpen ] = useState(false);
     const [ dropDown , setDropDown ] = useState(false);
     const [ dataProfile , setDataProfile ] = useState({});
 
     useEffect(() => {
-        token !== null && getMeUser(token)
-        .then(res => setDataProfile(res.data))
-        .catch(err => console.log(err.response))
+        user.isAuthenticated && getMeUser(user.token)
+            .then(res => setDataProfile(res.data))
+            .catch(err => console.log(err.response))
     },[])
 
     useEffect(() => setDropDown(false),[location.pathname]);
@@ -46,10 +45,9 @@ export default function Header() {
     }
 
     const LogOut = () => {
-        logout(token)
+        logout(user.token)
             .then(() => {
-                setToken(null);
-                navigate('/');
+                setUser({ isAuthenticated: false , token: null });
                 setDropDown(false);
                 setOpen(false);
             })
@@ -80,7 +78,7 @@ export default function Header() {
                             <Link to="/team">Team</Link>
                         </li>
                         {
-                            token === null ? <Link to="/login">
+                            user.isAuthenticated === false ? <Link to="/login">
                                 <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
                             </Link> : 
                             dataProfile.profile === null ? <Avatar onClick={() => setDropDown(!dropDown)} className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" { ...config } />
@@ -114,7 +112,7 @@ export default function Header() {
                                 <Link to="/team">Team</Link>
                             </li>
                             {
-                                token === null ? <Link to="/login">
+                                user.isAuthenticated === false ? <Link to="/login">
                                     <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
                                 </Link>
                                 : <li className={`${listItemClassSm} mb-5`}>

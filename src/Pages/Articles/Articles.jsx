@@ -79,9 +79,9 @@ const Articles = () => {
                         <div className="mb-12">
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                                 {
-                                    articles.map((article) => {
+                                    articles.map((data) => {
                                         return (
-                                            <ArticleCard key={uuid()} author={article.author.username} img={article.image} title={article.title} content={article.content} day={article.formatted_date.day} month={article.formatted_date.month} year={article.formatted_date.year} slug={article.slug} />
+                                            <ArticleCard key={uuid()} data={data} />
                                         )
                                     })
                                 }

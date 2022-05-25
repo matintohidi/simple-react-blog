@@ -13,7 +13,7 @@ export const createArticle = (data , token) => {
 }
 
 export const putArticle = (data , token) => {
-    return axios.put(`/articles/${data.title.replaceAll(' ', '-').toLowerCase()}/` , data , {
+    return axios.put(`/articles/${data.slug}/` , data , {
         headers: { 'Authorization': `Token ${token}` , 'Content-Type': 'application/json' }
     }) 
 }

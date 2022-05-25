@@ -22,7 +22,6 @@ const CreateArticle = () => {
     const [ data , setData ] = useState(null);
 
     useEffect(() => {
-        token === null && navigate('/');
         getTags()
             .then(res => setAllTags(res.data.map(tag => tag.name)))
             .catch(err => console.log(err.response))

@@ -25,7 +25,7 @@ const AppRoutes = [
   },
   {
     path: '/article/:slug',
-    element: <ProtectedRoute><Article /></ProtectedRoute>,
+    element: <Article />,
     private: true
   },
   {
