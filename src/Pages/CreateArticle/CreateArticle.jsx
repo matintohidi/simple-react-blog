@@ -10,7 +10,7 @@ import Loader from "../../Components/Layout/Loader";
 
 const CreateArticle = () => {
     const navigate = useNavigate();
-    let { token } = useAuth();
+    let { user } = useAuth();
 
     const [ loader , setLoader ] = useState(false);
     const [ check , setCheck ] = useState(true);
@@ -20,6 +20,7 @@ const CreateArticle = () => {
     const [ tags , setTags ] = useState([]);
     const [ tagsName , setTagsName ] = useState([]);
     const [ data , setData ] = useState(null);
+    const [ slug , setSlug ] = useState('');
 
     useEffect(() => {
         getTags()
@@ -57,27 +58,28 @@ const CreateArticle = () => {
 
     const nextHandler = (e) => {
         e.preventDefault();
+        let formData = new FormData(e.target);
 
-        if(e.target[0].value.trim() === '') {
+        if(formData.get('title').trim() === '') {
             toast.error('Please enter your title');
             setLoader(false);
             window.scrollTo(0 , 0);
-        } else if(e.target[1].value.trim() === '') {
+        } else if(formData.get('content').trim() === '') {
             toast.error('Please enter your content');
             setLoader(false);
             window.scrollTo(0 , 0);
-        } else if(e.target[2].value === '') {
+        } else if(formData.get('image') === '') {
             toast.error('Please choose your image');
             setLoader(false);
             window.scrollTo(0 , 0);
         } else {
-            let formData = new FormData(e.target);
             formData.set('status', true);
             
-            createArticle(formData , token)
+            createArticle(formData , user.token)
                 .then((res) => {
                     setLoader(false);
                     setData({ title: res.data.title , content: res.data.content });
+                    setSlug(res.data.slug);
                     setNext(true);
                 })
                 .catch(err => console.error(err.response))
@@ -88,10 +90,10 @@ const CreateArticle = () => {
     const submitArticle = () => {
         setLoader(true);
 
-        putArticle({ status: check , tags: tagsName , ...data } , token)
-            .then((res) => {
+        putArticle(slug , { status: check , tags: tagsName , ...data } , user.token)
+            .then(() => {
                 setLoader(false);
-                navigate(`/article/${res.data.slug}`)
+                navigate(`/article/${slug}`)
             })
             .catch((err) => console.log(err.response));
     }
@@ -102,6 +104,8 @@ const CreateArticle = () => {
             .then(res => setTagsName(tagsName.filter(filterTag => filterTag !== res.data.name)))
             .catch(err => console.error(err.response))
     }
+
+    let filterTagShow = allTags.map(allTag => allTag.toUpperCase().indexOf(tag.toUpperCase()) !== -1 ? 1 : -1).includes(1);
 
     return (
         <>
@@ -117,18 +121,18 @@ const CreateArticle = () => {
                     <div className={`${next ? 'blackScreen' : 'hidden'} z-40`}></div>
                     <form onSubmit={nextHandler} encType="multipart/form-data">
                         <div className="mx-8 sm:mx-14 md:mx-18 lg:mx-22 xl:mx-32 lg:mt-12">
-                            <h1 className="mt-4 font-TheBrown text-2xl lg:text-3xl text-gray-600 text-center">Create Article</h1>
-                            <div>
-                                <div className="mt-4">
-                                    <label className="text-md font-openSansSm font-extrabold mb-1">Title</label>
-                                    <input name="title" className="w-full px-3 py-2 text-sm leading-tight text-gray-800 ring-1 ring-mainColor rounded shadow appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all" type="text" placeholder="Title..." />
+                            <h1 className="font-TheBrown text-2xl lg:text-3xl text-gray-600 text-center">Create Article</h1>
+                            <div className="mt-12 flex flex-col items-center">
+                                <div className="w-full sm:w-3/4 relative h-12">
+                                    <input name="title" type="text" className="inputText" placeholder=" " />
+                                    <label className="inputLable">Title</label>
                                 </div>
-                                <div className="mt-6">
-                                    <label className="text-md font-openSansSm font-extrabold mb-1">Content</label>
-                                    <textarea name="content" className="h-40 w-full rounded overflow-hidden leading-tight ring-1 ring-mainColor shadow focus:ring-blue-400 focus:ring-2 focus:outline-none p-2 transition-colors" placeholder="Content..."></textarea>
+                                <div className="w-full sm:w-3/4 h-40 mt-6 flex flex-col items-center group relative">
+                                    <textarea name="content" className="inputText" placeholder=" "></textarea>
+                                    <label className="inputLable">Content</label>
                                 </div>
                                 <div className="flex mt-6 items-center justify-center bg-grey-300">
-                                    <h2 className="w-64 flex flex-col items-center px-4 py-6 bg-white text-mainColor rounded-lg shadow-lg tracking-wide uppercase border border-mainColor cursor-pointer hover:bg-mainColor hover:text-white">
+                                    <h2 className="w-64 flex flex-col items-center px-4 py-6 bg-white text-mainColor rounded-lg tracking-wide uppercase border border-mainColor cursor-pointer hover:bg-mainColor hover:border-white hover:text-white transition-all">
                                         <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                             <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                                         </svg>
@@ -138,7 +142,7 @@ const CreateArticle = () => {
                                 </div>
                             </div>
                             <div className="my-6 flex justify-center items-center">
-                                <button className="px-6 py-2 text-center border border-mainColor bg-white text-mainColor rounded-full font-openSansSm text-sm font-bold shadow hover:bg-gray-100 transition-colors">Next</button>
+                                <button className="px-6 py-2 text-center border border-mainColor text-mainColor rounded-full font-openSansSm font-bold transition hover:bg-mainColor hover:text-white">Next</button>
                             </div>
                         </div>
                     </form>
@@ -152,15 +156,17 @@ const CreateArticle = () => {
                             <div className="my-6">
                                 <div>
                                     <div className="flex flex-col">
-                                        <label className="text-md font-openSansSm font-extrabold mb-4">Tags</label>
                                         <div className="flex justify-between">
-                                            <input className={`w-3/4 px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded appearance-none outline-none transition-all ${tag.trim() !== '' && 'border-b-0 rounded-b-none'}`} type="text" placeholder="Tag..." onChange={(e) => setTag(e.target.value)} value={tag} />
+                                            <div className="flex justify-between relative h-12 w-3/4">
+                                                <input className={`px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded appearance-none outline-none transition-all inputText ${tag.trim() !== '' ? 'border-b-0 rounded-b-none' : ''}`} type="text" placeholder=" " onChange={(e) => setTag(e.target.value)} value={tag} />
+                                                <label className="text-md font-openSansSm font-extrabold mb-4 inputLable">Tags</label>
+                                            </div>
                                             <button onClick={() => createTag()} className="w-1/5 py-1 bg-mainColor text-center text-white font-thin rounded hover:bg-[#1c7bf0]">Ok</button>
                                         </div>
-                                        <ul className={`w-3/4 h-20 overflow-y-scroll bg-white border border-mainColor border-t-0 rounded rounded-t-none scrollBar ${tag.trim() === '' && 'hidden'}`}>
+                                        <ul className={`w-3/4 h-24 overflow-y-scroll bg-white border mt-2 rounded scrollBar ${tag.trim() === '' || filterTagShow === false ? 'hidden' : ''}`}>
                                             {
                                                 allTags.map(allTag => {
-                                                    return <li className={`text-mainColor text-sm p-1 w-full hover:bg-gray-100 hover:text-black transition cursor-pointer ${allTag.toUpperCase().indexOf(tag.toUpperCase()) === -1 && 'hidden'}`} onClick={() => createTag(allTag)} key={uuid()}>{allTag}</li>
+                                                    return <li className={`text-mainColor text-sm p-1 w-full hover:bg-gray-100 hover:text-black transition cursor-pointer ${allTag.toUpperCase().indexOf(tag.toUpperCase()) === -1 ? 'hidden' : ''}`} onClick={() => createTag(allTag)} key={uuid()}>{allTag}</li>
                                                 })
                                             }
                                         </ul>

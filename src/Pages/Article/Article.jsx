@@ -44,9 +44,11 @@ export default function ArticleContnet() {
     }
 
     const [ lodaer , setLoader ] = useState(true);
-    const [ data , setData ] = useState({formatted_date: {} , tags:[] , author: {}});
+    const [ data , setData ] = useState({tags:[] , author: {}});
     const [ like , setLike ] = useState(false);
     const [ comments , setComments ] = useState([]);
+
+    let dateFormat = new Date(data.published);
     
     useEffect(() => {
         token === null ? navigate('/') :
@@ -91,7 +93,7 @@ export default function ArticleContnet() {
                             </div>
                             <div className="xl:mx-20">
                                 <div>
-                                    <p className="text-lg font-black text-gray-600 mt-4">{data.formatted_date.day} , {numToMonth(data.formatted_date.month)} , {data.formatted_date.year}</p>
+                                    <p className="text-lg font-black text-gray-600 mt-4">{dateFormat.getDate()} , {numToMonth(dateFormat.getMonth())} , {dateFormat.getFullYear()}</p>
                                     <p className="font-thin text-sm mt-4 font-openSansSm">{data.content}</p>
                                 </div>
                                 <div className={`flex justify-start items-center ${data.tags.length !== 0 && "my-8"} flex-wrap gap-y-2 gap-x-3`}>

@@ -1,7 +1,7 @@
 import React , { useState , useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link , useNavigate , useLocation } from 'react-router-dom';
 import { login } from '../../services';
 import { useAuth } from '../../context/Auth';
 import { useBlog } from '../../context/context';
@@ -19,16 +19,17 @@ const Login = () => {
   let { setUser } = useAuth();
   let { setHeaderAndFooterDisplay } = useBlog();
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const { register , handleSubmit , formState: { errors } } = useForm();
   const [ loader , setLoader ] = useState(true);
 
   const lableClass = 'lg:mb-2 mb-1 text-gray-500';
-  const inputCLass = `md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 ${errors.username || errors.password ? 'focus:ring-blue-400' : 'lg:mb-4 mb-2 focus:ring-red-600' } text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 transition-all`;
 
   useEffect(() => {
     setLoader(false);
     setHeaderAndFooterDisplay(true);
+    state && toast.error(state.error);
 
     return () => setHeaderAndFooterDisplay(false)
   },[]);
@@ -68,9 +69,9 @@ const Login = () => {
                 <p className="font-openSansSm text-md">Welcome Back</p>
                 <h1 className="lg:text-2xl text-xl font-extrabold text-gray-700">Login To Your Account</h1>
                 <form onSubmit={handleSubmit(LoginHandler)} className="mt-8 flex flex-col">
-                  <Input lableClass={lableClass} lable='Username' inputClass={inputCLass} type='text' placeHolder='Username' register={{ ...register('username' , { required: 'Please enter your username.' , minLength: { value: 4 , message: 'The username must be at least 4 characters long.' } }) }} />
+                  <Input lableClass={lableClass} lable='Username' inputClass={`md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 ${errors.username ? 'ring-red-500' : 'lg:mb-4 mb-2 focus:ring-blue-400'} text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 transition-all`} type='text' placeHolder='Username' register={{ ...register('username' , { required: 'Please enter your username.' , minLength: { value: 4 , message: 'The username must be at least 4 characters long.' } }) }} />
                   { errors.username && <label className="text-xs text-red-600 my-2">{errors.username.message}</label> }
-                  <Input lableClass={lableClass} lable='Password' inputClass={inputCLass} type='password' placeHolder='Password' register={{ ...register('password' , { required: 'Please enter your password.' }) }} />
+                  <Input lableClass={lableClass} lable='Password' inputClass={`md:w-[350px] w-[250px] sm:w-[300px] xl:w-[400px] md:h-[50px] h-[35px] px-3 py-2 ${errors.password ? 'ring-red-500' : 'lg:mb-4 mb-2 focus:ring-blue-400'} text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring-2 transition-all`} type='password' placeHolder='Password' register={{ ...register('password' , { required: 'Please enter your password.' }) }} />
                   { errors.password && <label className="text-xs text-red-600 my-2">{errors.password.message}</label> }
                   <p className="text-mainColor text-sm mb-8">Forgot Password?</p>
                   <button className="bg-mainColor md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 mb-2 md:text-lg hover:bg-[#1b78eb] transition-colors text-center text-sm">Login</button> 

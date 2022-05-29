@@ -114,3 +114,50 @@
     top: 0; left: 0;
     transform: translate(calc(50vw - 50%), calc(50vh - 50%));
 }
+
+.inputText{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  border: 1px solid #DADCE0;
+  border-radius: .5rem;
+  outline: none;
+  padding: 1rem;
+  background: none;
+  z-index: 1;
+  transition: all .2s;
+}
+
+.inputLable{
+  position: absolute;
+  left: 1rem;
+  top: .8rem;
+  padding: 0 .25rem;
+  background-color: #fff;
+  color: #80868B;
+  font-size: 1rem;
+  transition: all .3s;
+}
+
+.inputText:focus + .inputLable{
+  top: -.5rem;
+  left: .8rem;
+  color: #2084FF;
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.inputText:not(:placeholder-shown).inputText:not(:focus)+ .inputLable{
+  top: -.5rem;
+  left: .8rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.inputText:focus{
+  border: 1.5px solid #2084FF;
+}
