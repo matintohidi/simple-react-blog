@@ -735,29 +735,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2rem;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
-}
-
-.mx-1 {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-}
-
-.mx-16 {
-  margin-left: 4rem;
-  margin-right: 4rem;
-}
-
-.mx-6 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
 }
 
 .mr-12 {
@@ -786,6 +766,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.ml-0 {
+  margin-left: 0px;
 }
 
 .mb-5 {
@@ -854,10 +838,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-1 {
   margin-bottom: 0.25rem;
-}
-
-.ml-0 {
-  margin-left: 0px;
 }
 
 .mt-32 {
@@ -964,12 +944,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 200px;
 }
 
-.h-fit {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
 .h-16 {
   height: 4rem;
 }
@@ -980,6 +954,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-8 {
   height: 2rem;
+}
+
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .h-10 {
@@ -1010,6 +990,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-full {
   width: 100%;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-24 {
@@ -1074,10 +1058,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-1\/5 {
   width: 20%;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .w-10 {
@@ -1502,11 +1482,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   white-space: nowrap;
 }
 
-.break-normal {
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
 .break-words {
   overflow-wrap: break-word;
 }
@@ -1644,11 +1619,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-mainColor {
   --tw-bg-opacity: 1;
   background-color: rgb(32 132 255 / var(--tw-bg-opacity));
-}
-
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
@@ -2203,7 +2173,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .three-points {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.three-points-topic {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -2674,11 +2651,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-right: 12rem;
   }
 
-  .md\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-  }
-
   .md\:mt-0 {
     margin-top: 0px;
   }
@@ -2830,6 +2802,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-bottom: 1rem;
   }
 
+  .lg\:mx-12 {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
   .lg\:mx-20 {
     margin-left: 5rem;
     margin-right: 5rem;
@@ -2845,22 +2822,16 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-bottom: 0.5rem;
   }
 
-  .lg\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-  }
-
-  .lg\:mx-12 {
-    margin-left: 3rem;
-    margin-right: 3rem;
-  }
-
   .lg\:mt-6 {
     margin-top: 1.5rem;
   }
 
   .lg\:mb-0 {
     margin-bottom: 0px;
+  }
+
+  .lg\:mt-10 {
+    margin-top: 2.5rem;
   }
 
   .lg\:mt-7 {
@@ -2873,10 +2844,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:mt-12 {
     margin-top: 3rem;
-  }
-
-  .lg\:mt-10 {
-    margin-top: 2.5rem;
   }
 
   .lg\:mb-2 {
@@ -2899,36 +2866,36 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: none;
   }
 
-  .lg\:h-32 {
-    height: 8rem;
-  }
-
   .lg\:h-80 {
     height: 20rem;
+  }
+
+  .lg\:h-32 {
+    height: 8rem;
   }
 
   .lg\:h-96 {
     height: 24rem;
   }
 
-  .lg\:w-32 {
-    width: 8rem;
-  }
-
   .lg\:w-80 {
     width: 20rem;
+  }
+
+  .lg\:w-32 {
+    width: 8rem;
   }
 
   .lg\:items-center {
     align-items: center;
   }
 
-  .lg\:rounded-lg {
-    border-radius: 0.5rem;
-  }
-
   .lg\:rounded {
     border-radius: 0.25rem;
+  }
+
+  .lg\:rounded-lg {
+    border-radius: 0.5rem;
   }
 
   .lg\:py-10 {

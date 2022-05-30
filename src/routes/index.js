@@ -8,7 +8,6 @@ import Blog from '../Pages/Blog/Blog';
 import Articles from '../Pages/Articles/Articles';
 import NotFound from '../Pages/NotFound/NotFound';
 import Profile from '../Pages/Profile/Profile';
-import About from '../Pages/About/About';
 import Team from '../Pages/Team/Team';
 
 // import components
@@ -31,10 +30,6 @@ const AppRoutes = [
   {
     path: '/blog',
     element: <Blog />,
-  },
-  {
-    path: '/about',
-    element: <About />,
   },
   {
     path: '/team',
