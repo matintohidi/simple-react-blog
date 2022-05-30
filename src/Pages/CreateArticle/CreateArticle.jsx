@@ -131,7 +131,7 @@ const CreateArticle = () => {
                                     <label className="inputLable">Title</label>
                                 </div>
                                 <div className="w-full sm:w-3/4 h-40 mt-6 flex flex-col items-center group relative">
-                                    <textarea name="content" className="inputText" placeholder=" "></textarea>
+                                    <textarea name="content" className="inputText overflow-y-scroll scrollBar" placeholder=" "></textarea>
                                     <label className="inputLable">Content</label>
                                 </div>
                                 <div className="flex mt-6 items-center justify-center bg-grey-300">
@@ -151,11 +151,6 @@ const CreateArticle = () => {
                     </form>
                     <div className={`${next ? 'block' : 'hidden'}`}>
                         <div className="bg-white p-6 pt-0 rounded-md centerModal h-fit z-50 w-full sm:w-1/2 showModal">
-                            <div className="flex justify-between items-start py-3 rounded-t border-b">
-                                <div onClick={() => setNext(false)} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>  
-                                </div>
-                            </div>
                             <div className="my-6">
                                 <div>
                                     <div className="flex flex-col">

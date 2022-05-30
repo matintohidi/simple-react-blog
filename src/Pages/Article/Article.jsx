@@ -19,6 +19,7 @@ import Shape8 from '../../assets/media/3D object and icons/ColorBlueGlossy.png';
 // import Components
 import Comments from '../../Components/Article/Comments';
 import Loader from '../../Components/Layout/Loader';
+import Socials from '../../Components/Layout/Socials';
 
 const Article = () => {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Article = () => {
     }
 
     const [ lodaer , setLoader ] = useState(true);
-    const [ data , setData ] = useState({tags:[] , author: {}});
+    const [ data , setData ] = useState({ tags:[] , author: { socials:[] } });
     const [ like , setLike ] = useState(false);
     const [ comments , setComments ] = useState([]);
 
@@ -87,7 +88,7 @@ const Article = () => {
                             <div className="xl:mx-20">
                                 <div>
                                     <p className="text-lg font-black text-gray-600 mt-4">{dateFormat.getDate()} , {numToMonth(dateFormat.getMonth())} , {dateFormat.getFullYear()}</p>
-                                    <p className="font-thin text-sm mt-4 font-openSansSm">{data.content}</p>
+                                    <p className="font-thin text-sm mt-4 font-openSansSm break-all">{data.content}</p>
                                 </div>
                                 <div className={`flex justify-start items-center ${data.tags.length !== 0 && "my-8"} flex-wrap gap-y-2 gap-x-3`}>
                                     {
@@ -119,8 +120,11 @@ const Article = () => {
                                     </Link>
                                     <div className="flex flex-col items-center">
                                         <Link to={`/${data.author.username}`} className="text-xl font-black text-gray-800 xl:text-2xl">{data.author.username}</Link>
-                                        <p className="text-sm font-light font-openSansSm mx-2 mb-5 xl:text-base text-center">{data.author.about}</p>
+                                        <p className="text-sm font-light font-openSansSm mx-5 sm:mx-8 lg:mx-12 my-6 xl:text-base text-center break-all">{data.author.about}</p>
                                     </div>
+                                    <ul className="flex items-center mb-4">
+                                        <Socials socials={data.author.socials} />
+                                    </ul>
                                 </div>
                                 <h1 className="mt-6 text-2xl font-black text-gray-700">Comments</h1>
                                 <div>

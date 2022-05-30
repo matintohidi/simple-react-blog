@@ -5,7 +5,7 @@ import Avatar from 'react-nice-avatar';
 
 //import Components
 import Loader from '../../Components/Layout/Loader';
-import Socials from '../../Components/Profile/Socials';
+import Socials from '../../Components/Layout/Socials';
 
 //import Media
 import DefaultBanner from '../../assets/media/Img/profile_header_default.webp';
