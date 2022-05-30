@@ -5,7 +5,7 @@ import Tooltip from "react-simple-tooltip";
 import Avatar from 'react-nice-avatar';
 import { getAricle , getArticleComments } from '../../services';
 import { numToMonth } from '../../hooks/useMonth';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useAuth } from "../../context/Auth";
 
 // import Media
@@ -20,7 +20,7 @@ import Shape8 from '../../assets/media/3D object and icons/ColorBlueGlossy.png';
 import Comments from '../../Components/Article/Comments';
 import Loader from '../../Components/Layout/Loader';
 
-export default function ArticleContnet() {
+const Article = () => {
     const navigate = useNavigate();
     let { token } = useAuth();
     const { slug } = useParams();
@@ -75,13 +75,6 @@ export default function ArticleContnet() {
 
     return (
         <>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                draggable={false}
-                pauseOnHover={false}
-                closeOnClick
-            />
             {
                 lodaer ? <Loader /> : <>
                 <div className="relative mx-5 lg:mt-36">
@@ -148,3 +141,5 @@ export default function ArticleContnet() {
         </>
     )
 }
+
+export default Article;

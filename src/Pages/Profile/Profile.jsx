@@ -36,6 +36,8 @@ const Profile = () => {
   const [ data  , setData ] = useState({ socials: {} , followers: [] , followings: [] });
   
   useEffect(() => {
+    window.scrollTo(0 , 0);
+    
     getUser(user)
       .then(res => {
         setData(res.data);

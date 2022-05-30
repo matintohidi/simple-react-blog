@@ -27,6 +27,7 @@ const Articles = () => {
 
     useEffect(() => {
         window.scrollTo(0 , 0);
+
         getArticles(page , articlesStat)
             .then((res) => {
                 setLoader(false);
@@ -38,7 +39,7 @@ const Articles = () => {
             })
             .catch(err => err.response.status === 404 && navigate('/not-found'));
 
-            setOpenSort(false);
+        setOpenSort(false);
     },[page]);
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React , { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createArticle , getTags , createNewTag , getTag , putArticle } from '../../services';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useAuth } from "../../context/Auth";
 import { v1 as uuid } from 'uuid';
 
@@ -12,7 +12,7 @@ const CreateArticle = () => {
     const navigate = useNavigate();
     let { user } = useAuth();
 
-    const [ loader , setLoader ] = useState(false);
+    const [ loader , setLoader ] = useState(true);
     const [ check , setCheck ] = useState(true);
     const [ next , setNext ] = useState(false);
     const [ allTags , setAllTags ] = useState([]);
@@ -24,23 +24,30 @@ const CreateArticle = () => {
 
     useEffect(() => {
         getTags()
-            .then(res => setAllTags(res.data.map(tag => tag.name)))
+            .then(res => {
+                setLoader(false);
+                setAllTags(res.data.map(tag => tag.name));
+            })
             .catch(err => console.log(err.response))
     },[]);
 
     const createTag = (suggestionTag) => {
         if(tags.includes(tag || suggestionTag)) {
             toast.error('This tag already exists');
+            setLoader(false);
         } else if(tags.length > 4) {
             toast.error(`You can't enter more than 5 tags`);
+            setLoader(false);
         } else if(suggestionTag) {
             setTags([...tags , suggestionTag]);
             getTag(suggestionTag)
                 .then(res => setTagsName([ ...tagsName , res.data.name ]))
                 .catch(err => console.error(err.response))
             setTag('');
+            setLoader(false);
         } else if(tag.trim() === '') {
             toast.error('Please enter a correct tag');
+            setLoader(false);
         } else {
             setTags([...tags , tag]);
             if(allTags.includes(tag)) {
@@ -53,6 +60,7 @@ const CreateArticle = () => {
                     .catch(err => console.error(err.response))
             }
             setTag('');
+            setLoader(false);
         }
     }
 
@@ -84,22 +92,24 @@ const CreateArticle = () => {
                 })
                 .catch(err => console.error(err.response))
             window.scrollTo(0 , 0);
+            setLoader(false);
         }
     }
 
     const submitArticle = () => {
-        setLoader(true);
-
         putArticle(slug , { status: check , tags: tagsName , ...data } , user.token)
             .then(() => {
                 setLoader(false);
                 navigate(`/article/${slug}`)
             })
             .catch((err) => console.log(err.response));
+
+        setLoader(false);
     }
 
     const deleteTag = (tag) => {
         setTags(tags.filter(filterTag => filterTag !== tag));
+
         getTag(tag)
             .then(res => setTagsName(tagsName.filter(filterTag => filterTag !== res.data.name)))
             .catch(err => console.error(err.response))
@@ -109,13 +119,6 @@ const CreateArticle = () => {
 
     return (
         <>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                draggable={false}
-                pauseOnHover={false}
-                closeOnClick
-            />
             {
                 loader ? <Loader /> : <>
                     <div className={`${next ? 'blackScreen' : 'hidden'} z-40`}></div>

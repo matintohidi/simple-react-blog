@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter , Route } from 'react-router-dom';
 import { BlogProvider } from './context/context';
 import { AuthProvider } from './context/Auth';
+import { ToastContainer } from 'react-toastify';
 import axios from 'axios';
 
 // import components
@@ -19,6 +20,13 @@ ReactDOM.render(
     <BrowserRouter>
       <BlogProvider>
         <AuthProvider>
+          <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                draggable={false}
+                pauseOnHover={false}
+                closeOnClick
+            />
           <App />
         </AuthProvider>
       </BlogProvider>

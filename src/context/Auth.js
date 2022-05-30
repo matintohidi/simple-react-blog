@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     getMeUser(user.token)
-      .then(() => setLocalStorage('user' , user))
+      .then(() => setLocalStorage('user' , { isAuthenticated: true , token: user.token }))
       .catch(() => setLocalStorage('user' , { isAuthenticated: false , token: null }))
   },[location.pathname])
 

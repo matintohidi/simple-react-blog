@@ -51,13 +51,6 @@ const Login = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        draggable={false}
-        pauseOnHover={false}
-        closeOnClick
-      />
       {
         loader ? <Loader /> : <div className="flex">
             <div className="-z-10 w-1/2 hidden lg:block relative">

@@ -8,7 +8,7 @@ export const getArticleComments = (slug) => axios.get(`/articles/${slug}/comment
 
 export const leaveComment = (slug , content , token) => axios.post(`/articles/${slug}/comments/` , { content } , { headers: { 'Authorization': `Token ${token}` } });
 
-export const replyComment = (slug , parentId , content , token) => axios.post(`/articles/${slug}/comments/` , { content } , parentId , { headers: { 'Authorization': `Token ${token}` } });
+export const replyComment = (slug , parent , content , token) => axios.post(`/articles/${slug}/comments/` , { content , parent } , { headers: { 'Authorization': `Token ${token}` } });
 
 export const createArticle = (data , token) => {
     return axios.post('/articles/' , data , {

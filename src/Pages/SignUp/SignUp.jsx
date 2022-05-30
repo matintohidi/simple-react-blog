@@ -1,6 +1,6 @@
 import React , { useState , useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { signup } from '../../services';
 import { useBlog } from '../../context/context';
@@ -48,13 +48,6 @@ const SignUp = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-left"
-        autoClose={3000}
-        draggable={false}
-        pauseOnHover={false}
-        closeOnClick
-      />
       {
         loader ? <Loader /> : active ? <ActiveEmail /> : <div className="flex flex-row-reverse">
         <div className="-z-10 w-1/2 hidden lg:block relative">
