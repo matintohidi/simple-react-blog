@@ -71,9 +71,6 @@ export default function Header() {
                         <li className={`mx-4 ${listItemClassLg}`}>
                             <Link to="/blog">Blog</Link>
                         </li>
-                        <li className={`mr-4 ${listItemClassLg}`}>
-                            <Link to="/about">About</Link>
-                        </li>
                         <li className={listItemClassLg}>
                             <Link to="/team">Team</Link>
                         </li>
@@ -104,9 +101,6 @@ export default function Header() {
                             </li>
                             <li className={listItemClassSm}>
                                 <Link to="/blog">Blog</Link>
-                            </li>
-                            <li className={`${listItemClassSm} mb-5`}>
-                                <Link to="/about">About</Link>
                             </li>
                             <li className={`${listItemClassSm} mb-5`}>
                                 <Link to="/team">Team</Link>

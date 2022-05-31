@@ -5,7 +5,7 @@ import { getArticles } from '../../services';
 
 // import Components
 import Header from './Header';
-import ArticleCard from '../../Components/Home/ArticleCard';
+import ArticleCard from '../../Components/ArticleCard/ArticleCard';
 import Loader from '../../Components/Layout/Loader';
 import Shape from '../../Components/Layout/Shape';
 import TopicArticle from '../../Components/Home/TopicArticle';

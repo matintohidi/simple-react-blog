@@ -5,7 +5,7 @@ import Avatar from 'react-nice-avatar';
 
 //import Components
 import Loader from '../../Components/Layout/Loader';
-import Socials from '../../Components/Layout/Socials';
+import Socials from '../../Components/Socials/Socials';
 
 //import Media
 import DefaultBanner from '../../assets/media/Img/profile_header_default.webp';
@@ -81,7 +81,7 @@ const Profile = () => {
                 About me
               </h2>
               <div className="flex justify-center sm:justify-start">
-                <p>{data.about}</p>
+                <p className="text-gray-500">{data.about}</p>
               </div>
             </div>
             <i className="flex w-1 h-11 bg-mainColor absolute left-0 rounded-tr-full rounded-br-full top-1/2 transform -translate-y-1/2"></i>

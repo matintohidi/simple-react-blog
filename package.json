@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^13.5.0",
     "@uiw/react-md-editor": "^3.12.1",
     "axios": "^0.26.0",
-    "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",
@@ -17,7 +16,6 @@
     "react-scripts": "5.0.0",
     "react-simple-tooltip": "^2.6.3",
     "react-toastify": "^9.0.2",
-    "use-query-params": "^1.2.3",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },

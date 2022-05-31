@@ -113,6 +113,8 @@ const CreateArticle = () => {
         getTag(tag)
             .then(res => setTagsName(tagsName.filter(filterTag => filterTag !== res.data.name)))
             .catch(err => console.error(err.response))
+
+        toast.success('Tag removed successfully');
     }
 
     let filterTagShow = allTags.map(allTag => allTag.toUpperCase().indexOf(tag.toUpperCase()) !== -1 ? 1 : -1).includes(1);
@@ -157,7 +159,7 @@ const CreateArticle = () => {
                                         <div className="flex justify-between">
                                             <div className="flex justify-between relative h-12 w-3/4">
                                                 <input className={`px-3 py-2 text-sm leading-tight text-gray-800 border border-mainColor rounded appearance-none outline-none transition-all inputText ${tag.trim() !== '' ? 'border-b-0 rounded-b-none' : ''}`} type="text" placeholder=" " onChange={(e) => setTag(e.target.value)} value={tag} />
-                                                <label className="text-md font-openSansSm font-extrabold mb-4 inputLable">Tags</label>
+                                                <label className="text-sm sm:text-md font-openSansSm mb-4 inputLable">Tags</label>
                                             </div>
                                             <button onClick={() => createTag()} className="w-1/5 py-1 bg-mainColor text-center text-white font-thin rounded hover:bg-[#1c7bf0]">Ok</button>
                                         </div>

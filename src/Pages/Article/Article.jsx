@@ -19,7 +19,7 @@ import Shape8 from '../../assets/media/3D object and icons/ColorBlueGlossy.png';
 // import Components
 import Comments from '../../Components/Article/Comments';
 import Loader from '../../Components/Layout/Loader';
-import Socials from '../../Components/Layout/Socials';
+import Socials from '../../Components/Socials/Socials';
 
 const Article = () => {
     const navigate = useNavigate();

@@ -5,9 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        openSansMd : ['OpenSansMd'],
-        openSansSm : ['OpenSansSm'],
         TheBrown : ['TheBrown'],
+        PlusJakarta : ['PlusJakarta']
       },
       colors: {
         mainColor: '#2084FF',

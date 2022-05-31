@@ -39,3 +39,5 @@ export const createNewTag = (tag) => axios.post('/tags/' , { 'name': tag });
 export const getTag = (tag) => axios.get(`/tags/${tag}/`);
 
 export const weekTrans = () => axios.get('http://127.0.0.1:8000/api/articles/week_trand/');
+
+export const filterArticles = (filter , allUrl) => allUrl ? axios.get(filter) : axios.get(`http://127.0.0.1:8000/api/articles/${filter}`);
