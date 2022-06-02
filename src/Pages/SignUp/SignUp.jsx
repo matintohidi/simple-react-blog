@@ -12,7 +12,7 @@ import Footer from '../../Components/Login&SignUp/Footer';
 import ActiveEmail from '../../Components/SignUp/ActiveEmail';
 
 // import media
-import LoginImage from '../../assets/media/Img/login&signup.jpg';
+import LoginImage from '../../assets/media/Img/login&signup.png';
 import GoogleIco from '../../assets/media/Img/Google.jpg';
 
 const SignUp = () => {
@@ -51,7 +51,7 @@ const SignUp = () => {
       {
         loader ? <Loader /> : active ? <ActiveEmail /> : <div className="flex flex-row-reverse">
         <div className="-z-10 w-1/2 hidden lg:block relative">
-          <img src={LoginImage} className="h-screen brightness-50" />
+          <img src={LoginImage} className="h-screen w-full brightness-50" />
           <h1 className="font-TheBrown font-bold tracking-widest text-5xl absolute xl:right-[40%] lg:right-[37%] bottom-1/2 text-white">Read It</h1>
         </div>
         <div className="lg:m-auto flex flex-col mx-auto mt-6">

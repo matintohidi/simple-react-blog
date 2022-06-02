@@ -16,7 +16,7 @@ const Blog = () => {
 
     return (
         <>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center py-6">
                 <h1 className="font-TheBrown text-gray-600 mt-4 text-xl sm:text-2xl lg:text-3xl text-center">Search your Article</h1>
                 <FilterBox />
                 <Articles />

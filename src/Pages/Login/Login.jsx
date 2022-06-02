@@ -12,7 +12,7 @@ import Loader from '../../Components/Layout/Loader';
 import Footer from '../../Components/Login&SignUp/Footer';
 
 // import media
-import LoginImage from '../../assets/media/Img/login&signup.jpg';
+import LoginImage from '../../assets/media/Img/login&signup.png';
 import GoogleIco from '../../assets/media/Img/Google.jpg';
 
 const Login = () => {
@@ -54,7 +54,7 @@ const Login = () => {
       {
         loader ? <Loader /> : <div className="flex">
             <div className="-z-10 w-1/2 hidden lg:block relative">
-              <img src={LoginImage} className="h-screen brightness-50" />
+              <img src={LoginImage} className="h-screen w-full brightness-50" />
               <h1 className="font-TheBrown font-bold tracking-widest text-5xl absolute xl:left-[40%] lg:left-[37%] bottom-1/2 text-white">Read It</h1>
             </div>
             <div className="flex flex-col lg:m-auto mx-auto mt-4">

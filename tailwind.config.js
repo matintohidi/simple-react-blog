@@ -6,7 +6,9 @@ module.exports = {
     extend: {
       fontFamily: {
         TheBrown : ['TheBrown'],
-        PlusJakarta : ['PlusJakarta']
+        PlusJakarta : ['PlusJakarta'],
+        Mont : ['Mont'],
+        MontBold : ['MontBold'],
       },
       colors: {
         mainColor: '#2084FF',

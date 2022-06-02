@@ -3,99 +3,109 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: TheBrown;
-    src: url('../fonts/The Brown.otf') format('truetype');
+  font-family: TheBrown;
+  src: url('../fonts/The Brown.otf') format('truetype');
 }
 
 @font-face {
-    font-family: PlusJakarta;
-    src: url('../fonts/PlusJakartaSans-Regular.ttf') format('truetype');
+  font-family: PlusJakarta;
+  src: url('../fonts/PlusJakartaSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: MontBold;
+  src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: Mont;
+  src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
 }
 
 .backdropCircle {
-    background: rgba( 230, 233, 240, 0.35 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    border: 2px solid rgba(255, 255, 255, 0.342);
+  background: rgba( 230, 233, 240, 0.35 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border: 2px solid rgba(255, 255, 255, 0.342);
 }
 
 .backdropBg {
-    background: rgba( 255, 255, 255, 0.35 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
+  background: rgba( 255, 255, 255, 0.35 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
 }
 
 .backdropCard {
-    background: rgba(208, 211, 216, 0.35);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
+  background: rgba(208, 211, 216, 0.35);
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
 }
 
 .menu {
-    animation: menu;
-    animation-duration: .4s;
+  animation: menu;
+  animation-duration: .4s;
 }
 
 .menuclose {
-    animation-name: menuClose;
-    animation-duration: .4s;
+  animation-name: menuClose;
+  animation-duration: .4s;
 }
 
 @keyframes menuClose {
-    from {
-        right: 0;
-    }
+  from {
+      right: 0;
+  }
 
-    to {
-        right: -40px;
-    }
+  to {
+      right: -40px;
+  }
 }
 
 @keyframes menu {
-    from {
-        right: -40px;
-    }
+  from {
+      right: -40px;
+  }
 
-    to {
-        right: 0;
-    }
+  to {
+      right: 0;
+  }
 }
 
 .three-points {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .three-points-topic {
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .image {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .showModal {
-    animation: showModal .7s;
+  animation: showModal .7s;
 }
 
 @keyframes showModal {
-    from {
-        top: -150px;
-    }
+  from {
+      top: -150px;
+  }
 
-    to {
-        top: 0;
-    }
+  to {
+      top: 0;
+  }
 }
 
 .scrollBar::-webkit-scrollbar {
 	width: 7px;
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .scrollBar::-webkit-scrollbar-thumb {
@@ -103,18 +113,27 @@
 	background-color: #2084FF;
 }
 
+.bodyScrollBar::-webkit-scrollbar {
+  width: 9px;
+  background-color: transparent;
+}
+
+.bodyScrollBar::-webkit-scrollbar-thumb {
+	background-color: #2084FF;
+}
+
 .blackScreen {
-    background-color: #1e272ecb;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  background-color: #1e272ecb;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .centerModal {
-    position:fixed;
-    top: 0; left: 0;
-    transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  position:fixed;
+  top: 0; left: 0;
+  transform: translate(calc(50vw - 50%), calc(50vh - 50%));
 }
 
 .inputText{
@@ -161,4 +180,33 @@
 
 .inputText:focus{
   border: 1.5px solid #2084FF;
+}
+
+.responsive-calendar {
+  font-size: 9px !important;
+}
+
+@media (max-width: 1500px) {
+  .responsive-calendar {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .responsive-calendar {
+    font-size: 9px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-calendar {
+    font-size: 8px !important;
+  }
+}
+
+/* Large screens */
+@media (min-width: 2500px) {
+  .responsive-calendar {
+    font-size: 12px !important;
+  }
 }
