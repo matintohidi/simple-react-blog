@@ -41,6 +41,12 @@
   -webkit-backdrop-filter: blur( 4px );
 }
 
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  backdrop-filter: (10px);
+}
+
 .menu {
   animation: menu;
   animation-duration: .4s;

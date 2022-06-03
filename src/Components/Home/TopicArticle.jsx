@@ -17,8 +17,8 @@ const TopicArticle = () => {
     return (
         <div className="m-3 md:m-6 lg:m-0 lg:mx-6 lg:mt-10 backdropCard rounded lg:flex">
             <img loading="lazy" src={"http://127.0.0.1:8000" + data.image} className="rounded-t lg:rounded shadow-lg lg:w-[400px] lg:h-[320px]" />
-            <div className="mx-5 py-3 lg:flex flex-col items-center justify-around">
-                <div>
+            <div className="mx-5 py-3 lg:flex flex-col items-center justify-around w-full">
+                <div className="ml-0 mx-auto w-full">
                     <div className="flex justify-between">
                         <p className="text-sm font-medium font-openSansSm">{dateFormat.getDate()} , {numToMonth(dateFormat.getMonth())} , {dateFormat.getFullYear()}</p>
                         <Link to={`/${data.author.username}`} className="text-sm tracking-widest capitalize">{data.author.username}</Link>

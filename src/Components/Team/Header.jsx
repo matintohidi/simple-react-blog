@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     
-    const listItemClassLg = 'text-gray-600 hover:text-black transition-colors text-sm';
+    const listItemClassLg = 'text-white hover:font-bold transition text-sm';
 
     return (
-        <ul className="flex items-center justify-center">
+        <ul className="flex items-center justify-center pt-4">
             <li className={listItemClassLg}>
                 <Link to="/">Home</Link>
             </li>
@@ -14,7 +14,7 @@ const Footer = () => {
                 <Link to="/contact">Contact</Link>
             </li>
             <li className={listItemClassLg}>
-                <Link to="/team">Team</Link>
+                <Link to="/blog">Blog</Link>
             </li>
         </ul>
     )
