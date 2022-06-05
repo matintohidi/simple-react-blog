@@ -38,6 +38,10 @@ export const createNewTag = (tag) => axios.post('/tags/' , { 'name': tag });
 
 export const getTag = (tag) => axios.get(`/tags/${tag}/`);
 
-export const weekTrans = () => axios.get('http://127.0.0.1:8000/api/articles/week_trand/');
+export const weekTrans = () => axios.get('/articles/week_trand/');
 
-export const filterArticles = (filter , allUrl) => allUrl ? axios.get(filter) : axios.get(`http://127.0.0.1:8000/api/articles/${filter}`);
+export const filterArticles = (filter , allUrl) => allUrl ? axios.get(filter) : axios.get(`/articles/${filter}`);
+
+export const toggleLike = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , token , { headers: { 'Authorization': `Token ${token}` } });
+
+export const isLiked = (slug , token) => axios.get(`/articles/${slug}/isliked/` , { headers: { 'Authorization': `Token ${token}` } });
