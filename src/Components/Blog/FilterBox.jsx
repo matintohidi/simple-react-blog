@@ -28,7 +28,7 @@ const FilterBox = () => {
     },[]);
 
     useEffect(() => {
-        setSearchParams({ search: searchName , tags__name: tags.map(tag => tag) , author__name: author , published: selectedDate });
+        setSearchParams({ search: searchName , tags__name: tags.map(tag => tag) , author__name: author , published: `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}` });
     },[tags , searchName , author , selectedDate]);
 
     const searchHandler = () => {

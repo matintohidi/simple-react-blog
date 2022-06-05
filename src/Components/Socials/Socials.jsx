@@ -2,7 +2,7 @@ import React from 'react';
 
 const Socials = ({ socials }) => {
     return (
-        <ul>
+        <ul className="flex">
             <li className={`mr-4 last:ml-0 ${socials.github === null && 'hidden'}`}>
                 <a className="inline-flex items-center justify-center w-9 h-9 backdropCard rounded bg-opacity-15 group transition duration-200 hover:bg-mainColor hover:opacity-100" href={socials.github}>
                     <svg className="w-5 h-5 text-gray-500 group-hover:text-white transition duration-300 ease-linear" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
