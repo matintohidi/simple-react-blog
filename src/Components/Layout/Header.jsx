@@ -55,13 +55,13 @@ export default function Header() {
     }
 
     return (
-        <header className={`lg:mt-7 mt-2 w-full ${headerAndFooterDisplay && 'hidden' }`}>
+        <header className={`lg:mt-7 mt-2 w-full ${headerAndFooterDisplay ? 'hidden' : '' }`}>
             <nav className="flex justify-between items-center">
                 <h2 className="text-gray-700 text-3xl my-auto font-thin text-left ml-4 font-TheBrown">ReadIt</h2>
                 <div className="space-y-1 bg-mainColor w-11 h-11 rounded flex flex-col justify-center items-center rounded-r-none cursor-pointer right-0 absolute md:hidden z-20" onClick={() => setOpen(!open)}>
-                    <span className={`${genericHamburgerLine} ${open && "rotate-45 translate-y-2 my-1"}`}/>
-                    <span className={`${genericHamburgerLine} ${open && "opacity-0"}`} />
-                    <span className={`${genericHamburgerLine} ${open && "-rotate-45 -translate-y-2 my-1"}`}/>
+                    <span className={`${genericHamburgerLine} ${open ? "rotate-45 translate-y-2 my-1" : ""}`}/>
+                    <span className={`${genericHamburgerLine} ${open ? "opacity-0" : ""}`} />
+                    <span className={`${genericHamburgerLine} ${open ? "-rotate-45 -translate-y-2 my-1" : ""}`}/>
                 </div>
                 <div className="hidden md:flex mr-4">
                     <ul className="flex items-center justify-center">

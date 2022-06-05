@@ -126,6 +126,7 @@
 
 .bodyScrollBar::-webkit-scrollbar-thumb {
 	background-color: #2084FF;
+  border-radius: 10px;
 }
 
 .blackScreen {
