@@ -11,7 +11,7 @@ const Footer = () => {
                 <Link to="/">Home</Link>
             </li>
             <li className={`mx-4 ${listItemClassLg}`}>
-                <Link to="/contact">Contact</Link>
+                <Link to="/blog">Blog</Link>
             </li>
             <li className={listItemClassLg}>
                 <Link to="/team">Team</Link>

@@ -1,23 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
-    
-    const listItemClassLg = 'text-white hover:text-gray-300 text-sm';
-
+const Header = () => {
     return (
-        <ul className="flex items-center justify-center pt-4">
-            <li className={listItemClassLg}>
-                <Link to="/">Home</Link>
-            </li>
-            <li className={`mx-4 ${listItemClassLg}`}>
-                <Link to="/contact">Contact</Link>
-            </li>
-            <li className={listItemClassLg}>
-                <Link to="/blog">Blog</Link>
-            </li>
-        </ul>
+        <header className="flex items-center justify-center pt-4">
+            <Link className="text-white hover:text-gray-300 text-sm" to="/">Home</Link>
+        </header>
     )
 }
 
-export default Footer;
+export default Header;

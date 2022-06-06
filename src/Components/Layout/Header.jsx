@@ -88,6 +88,9 @@ export default function Header() {
                                 <Link to={`${dataProfile.username}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
                             </li>
                             <li>
+                                <Link to="/CreateArticle" className="block px-4 py-2 hover:bg-gray-100">Create Article</Link>
+                            </li>
+                            <li>
                                 <button onClick={LogOut} className="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
                             </li>
                         </ul>
