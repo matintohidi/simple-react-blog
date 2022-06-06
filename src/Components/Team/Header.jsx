@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     
-    const listItemClassLg = 'text-white hover:font-bold transition text-sm';
+    const listItemClassLg = 'text-white hover:text-gray-300 text-sm';
 
     return (
         <ul className="flex items-center justify-center pt-4">

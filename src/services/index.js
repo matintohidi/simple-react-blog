@@ -45,3 +45,7 @@ export const filterArticles = (filter , allUrl) => allUrl ? axios.get(filter) : 
 export const toggleLike = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , token , { headers: { 'Authorization': `Token ${token}` } });
 
 export const isLiked = (slug , token) => axios.get(`/articles/${slug}/isliked/` , { headers: { 'Authorization': `Token ${token}` } });
+
+export const toggleSave = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , token , { headers: { 'Authorization': `Token ${token}` } });
+
+export const isSaved = (slug ,token) => axios.get(`/articles/${slug}/issaved/` , { headers: { 'Authorization': `Token ${token}` } });
