@@ -43,7 +43,7 @@ const LikeAndSave = ({ countLikes , setLoader , slug }) => {
     }
 
     return (
-        <div className="flex items-center justify-center gap-x-4">
+        <div className="flex items-center justify-center gap-x-8">
             <div>
                 <button className="flex justify-center items-center" onClick={saveHandler}>
                     <svg width="20" height="20" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`fill-transparent transition-colors group ${save ? "fill-mainColor stroke-mainColor" : "stroke-gray-500"}`}>
