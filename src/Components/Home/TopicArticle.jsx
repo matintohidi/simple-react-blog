@@ -27,9 +27,9 @@ const TopicArticle = () => {
                     <p className="text-sm font-medium font-openSansSm break-all three-points-topic">{data.content}</p>
                 </div>
                 <div className="flex ml-0 mx-auto">
-                    <div className="w-auto h-12 flex justify-start px-6 items-center backdropCard hover:bg-[#d1d3d6] transition-colors mt-3 rounded cursor-pointer">
-                        <Link to={`/article/${data.slug}`} className="text-gray-600 text-sm font-black">Read More</Link>
-                    </div>
+                    <Link to={`/article/${data.slug}`} className="text-gray-600 text-sm font-black h-12 flex justify-start px-6 items-center backdropCard hover:bg-[#d1d3d6] transition-colors mt-3 rounded cursor-pointer">
+                        Read More
+                    </Link>
                 </div>
             </div>
         </div>

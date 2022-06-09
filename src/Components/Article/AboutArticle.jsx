@@ -18,8 +18,8 @@ const AboutArticle = ({ comments , data , slug , setLoader }) => {
 
     return (
         <>
-            <div className="flex flex-col-reverse sm:flex-row justify-between items-center">
-                <div className={`flex justify-start items-center ${data.tags.length !== 0 ? "my-4 sm:my-8" : ""} flex-wrap gap-y-2 gap-x-3`}>
+            <div className="flex flex-col-reverse sm:flex-row justify-between items-center my-4 sm:my-8">
+                <div className="flex justify-start items-center flex-wrap gap-y-2 gap-x-3">
                     {
                         data.tags.map((tag) => {
                             return <div key={uuid()} className="rounded-md text-center text-gray-600 px-3 py-1 backdropCard text-sm cursor-pointer">#{tag.name}</div>

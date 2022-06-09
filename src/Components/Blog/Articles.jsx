@@ -1,5 +1,4 @@
-import React , { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { v1 as uuid } from 'uuid';
 import { useBlog } from "../../context/context";
 import { filterArticles } from "../../services";

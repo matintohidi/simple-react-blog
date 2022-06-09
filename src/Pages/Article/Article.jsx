@@ -2,6 +2,7 @@ import React , { useEffect , useState } from 'react';
 import { useParams , useNavigate } from 'react-router-dom';
 import { getAricle , getArticleComments } from '../../services';
 import { toast } from 'react-toastify';
+import ReactMarkdown from 'react-markdown'
 
 // import Media
 import Shape1 from '../../assets/media/3D object and icons/ColorGreenGlossy.png';
@@ -51,7 +52,7 @@ const Article = () => {
                             </div>
                             <div className="xl:mx-20">
                                 <div className="mt-4 border-b-2 pb-8 px-3">
-                                    <p className="font-thin text-sm font-openSansSm break-all">{data.content}</p>
+                                    <ReactMarkdown className="font-thin text-sm font-openSansSm break-all">{data.content}</ReactMarkdown>
                                 </div>
                                 <AboutArticle comments={comments} data={data} slug={slug} setLoader={setLoader} />
                             </div>
