@@ -21,8 +21,6 @@ const Form = ({ setLoader , setData , setSlug , setNext , token }) => {
             setLoader(false);
             window.scrollTo(0 , 0);
         } else {
-            formData.set('status', true);
-            
             createArticle(formData , token)
                 .then((res) => {
                     setLoader(false);

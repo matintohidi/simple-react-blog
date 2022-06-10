@@ -49,7 +49,7 @@ const AppRoutes = [
     private: true
   },
   {
-    path: '/:user',
+    path: '/:username',
     element: <ProtectedRoute><Profile /></ProtectedRoute>,
     private: true
   },

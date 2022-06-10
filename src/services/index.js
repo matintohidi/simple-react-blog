@@ -49,3 +49,5 @@ export const isLiked = (slug , token) => axios.get(`/articles/${slug}/isliked/` 
 export const toggleSave = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , token , { headers: { 'Authorization': `Token ${token}` } });
 
 export const isSaved = (slug ,token) => axios.get(`/articles/${slug}/issaved/` , { headers: { 'Authorization': `Token ${token}` } });
+
+export const toggleFollow = (method , id , token) => axios.get(`/auth/users/${id}/${method}/` , { headers: { 'Authorization': `Token ${token}` } });
