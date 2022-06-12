@@ -4,7 +4,7 @@ import { v1 as uuid } from 'uuid';
 import { getArticles } from '../../services';
 
 // import Components
-import Header from './Header';
+import Header from './Head';
 import ArticleCard from '../../Components/ArticleCard/ArticleCard';
 import Loader from '../../Components/Layout/Loader';
 import Shape from '../../Components/Layout/Shape';

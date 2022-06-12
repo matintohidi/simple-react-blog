@@ -30,7 +30,7 @@ export const login = (data) => axios.post('/auth/token/login/' , data);
 
 export const signup = (data) => axios.post('/auth/users/' , data);
 
-export const logout = (token) => axios.post('/auth/token/logout/' , token , { headers: { 'Authorization': `Token ${token}` } });
+export const logout = (token) => axios.post('/auth/token/logout/' , null , { headers: { 'Authorization': `Token ${token}` } });
 
 export const getTags = () => axios.get('/tags/');
 
@@ -38,16 +38,18 @@ export const createNewTag = (tag) => axios.post('/tags/' , { 'name': tag });
 
 export const getTag = (tag) => axios.get(`/tags/${tag}/`);
 
-export const weekTrans = () => axios.get('/articles/week_trand/');
+export const weekTrand = () => axios.get('/articles/week_trand/');
 
 export const filterArticles = (filter , allUrl) => allUrl ? axios.get(filter) : axios.get(`/articles/${filter}`);
 
-export const toggleLike = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , token , { headers: { 'Authorization': `Token ${token}` } });
+export const toggleLike = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , null , { headers: { 'Authorization': `Token ${token}` } });
 
 export const isLiked = (slug , token) => axios.get(`/articles/${slug}/isliked/` , { headers: { 'Authorization': `Token ${token}` } });
 
-export const toggleSave = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , token , { headers: { 'Authorization': `Token ${token}` } });
+export const toggleSave = (method , slug , token) => axios.post(`/articles/${slug}/${method}/` , null , { headers: { 'Authorization': `Token ${token}` } });
 
 export const isSaved = (slug ,token) => axios.get(`/articles/${slug}/issaved/` , { headers: { 'Authorization': `Token ${token}` } });
 
-export const toggleFollow = (method , id , token) => axios.get(`/auth/users/${id}/${method}/` , { headers: { 'Authorization': `Token ${token}` } });
+export const toggleFollow = (method , id , token) => axios.post(`/auth/users/${id}/${method}/` , null , { headers: { 'Authorization': `Token ${token}` } });
+
+export const isFollowed = (id , token) => axios.get(`/auth/users/${id}/isfollowed/` , { headers: { 'Authorization': `Token ${token}` } });

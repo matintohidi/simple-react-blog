@@ -1,12 +1,19 @@
-import React from 'react';
+import React , { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from 'react-nice-avatar';
 import { useAuth } from '../../context/Auth';
-import { toggleFollow } from '../../services';
+import { toggleFollow , isFollowed } from '../../services';
 
 const UserCard = ({ data }) => {
-    const { id , username , email , profile } = data;
+    const { id , username , profile ,get_full_name } = data;
     const { user } = useAuth();
+    const [ followStat , setFollowStat ] = useState(false);
+
+    useEffect(() => {
+        isFollowed(id , user.token)
+            .then(res => setFollowStat(res.data))
+            .catch(err => console.log(err.response))
+    },[])
 
     const config = {
         "sex": "man",
@@ -27,9 +34,9 @@ const UserCard = ({ data }) => {
     }
 
     const followHandler = () => {
-        toggleFollow('follow' , id , user.token)
+        toggleFollow(followStat ? 'unfollow' : 'follow' , id , user.token)
             .then(() => window.location.reload())
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response))
     }
 
     return (
@@ -40,12 +47,12 @@ const UserCard = ({ data }) => {
                     profile === null ? <Avatar className="transition duration-200 transform group-hover:scale-110 w-full h-full" { ...config } /> : <img src={profile} className="transition duration-200 transform group-hover:scale-110 w-full h-full" alt="Profile Image" />
                   }
                 </Link>
-                <div className={`flex flex-col ${email !== '' ? 'justify-between' : 'justify-center'} py-1 ml-2`}>
-                    <Link to={`/${username}`} className="font-MontBold text-gray-700 break-all">{username}</Link>
-                    <p>Test</p>
+                <div className={`flex flex-col ${get_full_name !== '' ? 'justify-between' : 'justify-center'} py-1 ml-2`}>
+                    <Link to={`/${username}`} className="font-MontBold text-gray-700 break-all w-fit">{username}</Link>
+                    <p className="break-all">{get_full_name}</p>
                 </div>
             </div>
-            <button onClick={followHandler} type="button" className="px-6 sm:px-10 py-1 text-center bg-mainColor text-white font-Mont rounded text-sm">Follow</button>
+            <button onClick={followHandler} type="button" className="px-6 sm:px-10 py-1.5 text-center bg-mainColor text-white font-Mont rounded text-sm">{ followStat ? 'Unfollow' : 'Follow' }</button>
         </div>
     )
 }

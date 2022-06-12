@@ -1,13 +1,13 @@
 import React , { useEffect , useState } from 'react';
 import { Link } from 'react-router-dom';
 import { numToMonth } from '../../hooks/useMonth';
-import { weekTrans } from '../../services';
+import { weekTrand } from '../../services';
 
 const TopicArticle = () => {
     const [ data , setData ] = useState({ published:'' , author:{} });
 
     useEffect(() => {
-        weekTrans()
+        weekTrand()
         .then(res => setData(res.data))
         .catch(err => console.log(err.response))
     },[])

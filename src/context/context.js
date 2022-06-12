@@ -6,8 +6,10 @@ const BlogProvider = ({ children }) => {
     const [ headerAndFooterDisplay , setHeaderAndFooterDisplay ] = useState(false);
     const [ articlesStat , setArticlesStat ] = useState('published');
     const [ data , setData ] = useState({ results:[] });
+
+    const value = { headerAndFooterDisplay , setHeaderAndFooterDisplay , articlesStat , setArticlesStat , data , setData };
     
-    return <BlogContext.Provider value={{ headerAndFooterDisplay , setHeaderAndFooterDisplay , articlesStat , setArticlesStat , data , setData }}>
+    return <BlogContext.Provider value={value}>
         { children }
     </BlogContext.Provider>
 }

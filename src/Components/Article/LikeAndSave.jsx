@@ -24,10 +24,7 @@ const LikeAndSave = ({ countLikes , setLoader , slug }) => {
         setLoader(true);
 
         toggleLike(like ? 'dislike' : 'like' , slug , user.token)
-            .then(() => {
-                setLoader(false);
-                window.location.reload();
-            })
+            .then(() => window.location.reload())
             .catch(err => console.log(err.response))
     }
 
@@ -35,10 +32,7 @@ const LikeAndSave = ({ countLikes , setLoader , slug }) => {
         setLoader(true);
 
         toggleSave(save ? 'unsave' : 'save' , slug , user.token)
-            .then(() => {
-                setLoader(false);
-                window.location.reload();
-            })
+            .then(() => window.location.reload())
             .catch(err => console.log(err.response))
     }
 

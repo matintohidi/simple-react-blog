@@ -24,7 +24,7 @@ const Article = () => {
     const [ lodaer , setLoader ] = useState(true);
     const [ data , setData ] = useState({ tags:[] , author: { socials:[] } });
     const [ comments , setComments ] = useState([]);
-    
+
     useEffect(() => {
         window.scrollTo(0 , 0);
         getAricle(slug)

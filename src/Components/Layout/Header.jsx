@@ -7,19 +7,12 @@ import { useBlog } from '../../context/context';
 
 export default function Header() {
     let { headerAndFooterDisplay } = useBlog();
-    let { user , setUser } = useAuth();
+    let { user , setUser , authorData } = useAuth();
 
     const location = useLocation();
 
     const [ open , setOpen ] = useState(false);
     const [ dropDown , setDropDown ] = useState(false);
-    const [ dataProfile , setDataProfile ] = useState({});
-
-    useEffect(() => {
-        user.isAuthenticated && getMeUser(user.token)
-            .then(res => setDataProfile(res.data))
-            .catch(err => console.log(err.response))
-    },[])
 
     useEffect(() => setDropDown(false),[location.pathname]);
 
@@ -78,14 +71,14 @@ export default function Header() {
                             user.isAuthenticated === false ? <Link to="/login">
                                 <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
                             </Link> : 
-                            dataProfile.profile === null ? <Avatar onClick={() => setDropDown(!dropDown)} className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" { ...config } />
-                            : <img onClick={() => setDropDown(!dropDown)} src={dataProfile.profile} className="cursor-pointer object-cover ml-4 rounded-full transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" />
+                            authorData.profile === null ? <Avatar onClick={() => setDropDown(!dropDown)} className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" { ...config } />
+                            : <img onClick={() => setDropDown(!dropDown)} src={authorData.profile} className="cursor-pointer object-cover ml-4 rounded-full transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" />
                         }
                     </ul>
                     <div className={`z-10 ${dropDown ? '' : 'hidden'} bg-white divide divide-gray-300 rounded shadow-md w-40 absolute top-24 right-4`}>
                         <ul className="text-sm text-gray-700">
                             <li>
-                                <Link to={`${dataProfile.username}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
+                                <Link to={`${authorData.username}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
                             </li>
                             <li>
                                 <Link to="/CreateArticle" className="block px-4 py-2 hover:bg-gray-100">Create Article</Link>
@@ -113,7 +106,7 @@ export default function Header() {
                                     <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
                                 </Link>
                                 : <li className={`${listItemClassSm} mb-5`}>
-                                    <Link to={`${dataProfile.username}`}>Profile</Link>
+                                    <Link to={`${authorData.username}`}>Profile</Link>
                                 </li>
                             }
                         </ul>
