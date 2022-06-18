@@ -14,7 +14,6 @@ import Shape8 from '../../assets/media/3D object and icons/ColorBlueGlossy.png';
 
 // import Components
 import Loader from '../../Components/Layout/Loader';
-
 import AboutArticle from '../../Components/Article/AboutArticle';
 
 const Article = () => {
@@ -54,7 +53,7 @@ const Article = () => {
                                 <div className="mt-4 border-b-2 pb-8 px-3">
                                     <ReactMarkdown className="font-thin text-sm font-openSansSm break-all">{data.content}</ReactMarkdown>
                                 </div>
-                                <AboutArticle comments={comments} data={data} slug={slug} setLoader={setLoader} />
+                                <AboutArticle comments={comments} data={data} slug={slug} />
                             </div>
                         </div>
                     </div>

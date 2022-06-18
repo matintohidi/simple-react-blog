@@ -6,7 +6,7 @@ import { v1 as uuid } from 'uuid';
 //import components
 import Comments from './Comments';
 import Author from './Author';
-import LikeAndSave from './LikeAndSave';
+import Reactions from './Reactions';
 
 const AboutArticle = ({ comments , data , slug , setLoader }) => {
     let dateFormat = new Date(data.published);
@@ -39,7 +39,7 @@ const AboutArticle = ({ comments , data , slug , setLoader }) => {
                         <h2 className="text-xs ml-2 overflow-x-scroll sm:overflow-x-hidden" id="textShortLink">{data.full_short_link}</h2>
                     </button>
                 </Tooltip>
-                <LikeAndSave countLikes={data.like} setLoader={setLoader} slug={slug} />
+                <Reactions countLikes={data.like} setLoader={setLoader} slug={slug} />
             </div>
             <Author author={data.author} />
             <h1 className="mt-6 text-2xl font-black text-gray-700" id="comments">Comments</h1>

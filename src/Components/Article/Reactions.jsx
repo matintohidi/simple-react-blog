@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/Auth';
 import { toggleLike , toggleSave , isLiked , isSaved } from '../../services';
 
-const LikeAndSave = ({ countLikes , setLoader , slug }) => {
+const Reactions = ({ countLikes , slug }) => {
     let { user  } = useAuth();
 
     const [ like , setLike ] = useState(false);
@@ -21,16 +21,12 @@ const LikeAndSave = ({ countLikes , setLoader , slug }) => {
     },[])
 
     const likeHandler = () => {
-        setLoader(true);
-
         toggleLike(like ? 'dislike' : 'like' , slug , user.token)
             .then(() => window.location.reload())
             .catch(err => console.log(err.response))
     }
 
     const saveHandler = () => {
-        setLoader(true);
-
         toggleSave(save ? 'unsave' : 'save' , slug , user.token)
             .then(() => window.location.reload())
             .catch(err => console.log(err.response))
@@ -67,4 +63,4 @@ const LikeAndSave = ({ countLikes , setLoader , slug }) => {
     )
 }
 
-export default LikeAndSave;
+export default Reactions;
