@@ -1106,11 +1106,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 0.5rem;
 }
 
-.w-min {
-  width: -webkit-min-content;
-  width: min-content;
-}
-
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -1516,10 +1511,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   white-space: nowrap;
 }
 
-.break-words {
-  overflow-wrap: break-word;
-}
-
 .break-all {
   word-break: break-all;
 }
@@ -1875,10 +1866,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
-.text-right {
-  text-align: right;
-}
-
 .font-PlusJakarta {
   font-family: PlusJakarta;
 }
@@ -2105,6 +2092,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .blur-md {
   --tw-blur: blur(12px);
+  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.blur {
+  --tw-blur: blur(8px);
   -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -3184,6 +3177,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 1.25rem;
   }
 
+  .lg\:h-\[350px\] {
+    height: 350px;
+  }
+
   .lg\:w-32 {
     width: 8rem;
   }
@@ -3202,6 +3199,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:w-5 {
     width: 1.25rem;
+  }
+
+  .lg\:w-\[500px\] {
+    width: 500px;
   }
 
   .lg\:items-center {

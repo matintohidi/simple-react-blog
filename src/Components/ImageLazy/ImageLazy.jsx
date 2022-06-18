@@ -28,7 +28,7 @@ export const ImageLazy = ({ src, alt, className, onClick }) => {
             src={source}
             alt={alt}
             ref={refEl}
-            className={`${className} ${source === '' ? 'blur-sm' : ''}`}
+            className={`${className} ${source === '' ? 'blur-md' : ''}`}
             onClick={onClick}
         />
     );
