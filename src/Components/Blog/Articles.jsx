@@ -8,14 +8,14 @@ import ArticleCard from '../ArticleCard/ArticleCard';
 import Shape from '../../Components/Layout/Shape';
 
 const Articles = () => {
-    let { data , setData } = useBlog();
-    let { results , active_page , next , previous } = data;
+    let { filterArticle , setFilterArticle } = useBlog();
+    let { results , active_page , next , previous } = filterArticle;
 
     const pageHandler = (type) => {
         window.scrollTo(0 , 0);
         
         filterArticles(type , true)
-            .then(res => setData(res.data))
+            .then(res => setFilterArticle(res.data))
             .catch(err => console.log(err.response))
     }
 

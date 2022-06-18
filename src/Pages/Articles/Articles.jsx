@@ -26,25 +26,14 @@ const Articles = () => {
         window.scrollTo(0 , 0);
 
         getArticles(page , articlesStat)
-            .then((res) => {
+            .then(res => {
                 setLoader(false);
                 setArticles(res.data.results);
                 setCount(res.data.results.length);
                 setPageCount(res.data.total_pages);
             })
             .catch(err => err.response.status === 404 && navigate('/not-found'));
-    },[page]);
-
-    useEffect(() => {
-        getArticles(page , articlesStat)
-            .then((res) => {
-                setLoader(false);
-                setArticles(res.data.results);
-                setCount(res.data.results.length);
-                setPageCount(res.data.total_pages);
-            })
-            .catch(err => err.response.status === 404 && navigate('/not-found'));
-    },[articlesStat]);
+    },[page , articlesStat]);
 
     return (
         <>

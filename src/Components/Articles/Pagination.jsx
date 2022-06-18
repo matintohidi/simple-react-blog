@@ -5,13 +5,11 @@ import ReactPaginate from 'react-paginate';
 const Pagination = ({ page , pageCount }) => {
     const navigate = useNavigate();
 
-    const handlePageClick = ({ selected }) => {
-        navigate(`/articles/page/${selected + 1}`);
-    }
+    const handlePageClick = ({ selected }) => navigate(`/articles/page/${selected + 1}`);
 
     return (
         <ReactPaginate
-            initialPage={page === undefined ? 0 : page - 1}  
+            initialPage={page === undefined ? 0 : page - 1}
             breakLabel="..."
             breakClassName="mx-2 hidden md:block"
             nextLabel="Next"

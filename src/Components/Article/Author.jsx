@@ -35,7 +35,7 @@ const Author = ({ author }) => {
             </Link>
             <div className="flex flex-col items-center">
                 <Link to={`/${username}`} className="text-xl font-black text-gray-800 xl:text-2xl">{username}</Link>
-                <p className="text-sm font-light font-openSansSm mx-5 sm:mx-8 lg:mx-12 my-6 xl:text-base text-center break-all">{about}</p>
+                <p className="text-gray-700 text-sm font-light font-openSansSm mx-5 sm:mx-8 lg:mx-12 my-6 xl:text-base text-center break-all">{about}</p>
             </div>
             <ul className="flex items-center mb-4">
                 <Socials socials={socials} />

@@ -22,7 +22,7 @@ export default function ArticleCard ({ data }) {
                     <p className="text-sm font-medium font-openSansSm mt-3 break-words three-points">{content}</p>
                 </div>
                 <div className="flex">
-                    <Link to={`/article/${slug}`} className="text-gray-600 text-sm font-black h-12 flex justify-start px-6 items-center backdropCard hover:bg-[#d1d3d6] transition-colors mt-3 rounded cursor-pointer">
+                    <Link to={`/article/${slug}`} className="font-Mont text-gray-600 text-sm font-black h-12 flex justify-start px-6 items-center backdropCard transition-colors mt-3 rounded cursor-pointer">
                         Read More
                     </Link>
                 </div>

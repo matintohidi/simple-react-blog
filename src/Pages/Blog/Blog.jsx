@@ -8,10 +8,10 @@ import Articles from '../../Components/Blog/Articles';
 
 const Blog = () => {
     let location = useLocation();
-    let { setData } = useBlog();
+    let { setFilterArticle } = useBlog();
 
     useEffect(() => {
-        setData({ results : [] })
+        setFilterArticle({ results : [] })
     },[location.pathname])
 
     return (

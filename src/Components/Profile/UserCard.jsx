@@ -6,7 +6,7 @@ import { toggleFollow , isFollowed } from '../../services';
 
 const UserCard = ({ data }) => {
     const { id , username , profile ,get_full_name } = data;
-    const { user } = useAuth();
+    const { user , authorData } = useAuth();
     const [ followStat , setFollowStat ] = useState(false);
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const UserCard = ({ data }) => {
                     <p className="break-all">{get_full_name}</p>
                 </div>
             </div>
-            <button onClick={followHandler} type="button" className="px-6 sm:px-10 py-1.5 text-center bg-mainColor text-white font-Mont rounded text-sm">{ followStat ? 'Unfollow' : 'Follow' }</button>
+            <button onClick={followHandler} type="button" className={`px-6 sm:px-10 py-1.5 text-center bg-mainColor text-white font-Mont rounded text-sm ${authorData.id === data.id ? 'hidden' : ''}`}>{ followStat ? 'Unfollow' : 'Follow' }</button>
         </div>
     )
 }

@@ -2,10 +2,10 @@ import React , { useState , useEffect } from 'react';
 import { useSearchParams , useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { v1 as uuid } from 'uuid';
-import { filterArticles , getTags } from '../../services';
 import { useBlog } from '../../context/context';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from "react-modern-calendar-datepicker";
+import { filterArticles , getTags } from '../../services';
 
 const FilterBox = () => {
     const [ searchParams , setSearchParams ] = useSearchParams();
@@ -16,7 +16,7 @@ const FilterBox = () => {
     const [ searchName , setSearchName ] = useState(searchParams.get('search') || '');
     const [ author , setAuthor ] = useState(searchParams.get('author__username') || '');
 
-    let { setData } = useBlog();
+    let { setFilterArticle } = useBlog();
     let { search } = useLocation();
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const FilterBox = () => {
 
     const searchHandler = () => {
         filterArticles(search)
-            .then(res => setData(res.data))
+            .then(res => setFilterArticle(res.data))
             .catch(err => console.log(err.response))
 
         window.scrollTo(0 , 0);

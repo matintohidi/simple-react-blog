@@ -10,7 +10,8 @@ const Sort = () => {
 
     const sortHandler = (sort) => {
         setArticlesStat(sort);
-        navigate('/articles/page');
+        navigate('/articles/page/1');
+        setOpenSort(false);
     }
 
     return (
