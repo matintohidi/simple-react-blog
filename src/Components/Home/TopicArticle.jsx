@@ -5,17 +5,18 @@ import { weekTrand } from '../../services';
 
 const TopicArticle = () => {
     const [ data , setData ] = useState({ published:'' , author:{} });
+    const [ statusCode , setStatusCode ] = useState(false);
 
     useEffect(() => {
         weekTrand()
         .then(res => setData(res.data))
-        .catch(err => console.log(err.response))
+        .catch(err => err.response.status === 404 ? setStatusCode(true) : null)
     },[])
 
     let dateFormat = new Date(data.published);
     
     return (
-        <div className="m-3 md:m-6 lg:m-0 lg:mx-6 lg:mt-10 backdropCard rounded lg:flex">
+        <div className={`m-3 md:m-6 lg:m-0 lg:mx-6 lg:mt-10 backdropCard rounded ${statusCode ? 'hidden' : 'lg:flex'}`}>
             <img loading="lazy" src={"http://127.0.0.1:8000" + data.image} className="rounded-t lg:rounded shadow-lg lg:w-[400px] lg:h-[320px]" />
             <div className="mx-5 py-3 lg:flex flex-col items-center justify-around w-full">
                 <div className="ml-0 mx-auto w-full">
