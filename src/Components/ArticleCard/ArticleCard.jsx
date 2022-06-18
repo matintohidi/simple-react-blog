@@ -19,7 +19,7 @@ export default function ArticleCard ({ data }) {
                 <div className="flex flex-col items-start mb-4">
                     <div className="mb-4 w-full flex justify-between">
                         <p className="text-sm font-medium font-openSansSm">{dateFormat.getDate()} , {numToMonth(dateFormat.getMonth())} , {dateFormat.getFullYear()}</p>
-                        <Link to={`/${author.username.toLowerCase()}`} className="text-sm tracking-widest capitalize">{author.username}</Link>
+                        <Link to={`/${author.username.toLowerCase()}`} className="text-sm tracking-widest">{author.username}</Link>
                     </div>
                     <Link to={`/article/${slug}`}><h1 className="text-2xl font-black three-points-title">{title}</h1></Link>
                     <p className="text-sm font-medium font-openSansSm mt-3 break-all three-points">{content}</p>

@@ -8,16 +8,18 @@ import DatePicker from "react-modern-calendar-datepicker";
 import { filterArticles , getTags } from '../../services';
 
 const FilterBox = () => {
+    let { setFilterArticle } = useBlog();
+    let { search } = useLocation();
+    
     const [ searchParams , setSearchParams ] = useSearchParams();
+    const published = searchParams.get('published');
+
     const [ allTags , setAllTags ] = useState([]);
     const [ inputTag , setInputTag ] = useState('');
-    const [ selectedDate, setSelectedDate ] = useState('');
+    const [ selectedDate, setSelectedDate ] = useState(published !== '' && search !== '' ? { year: published.split('-')[0] , month: published.split('-')[1] , day: published.split('-')[2] } : '');
     const [ tags , setTags ] = useState(searchParams.getAll('tags__name') || []);
     const [ searchName , setSearchName ] = useState(searchParams.get('search') || '');
     const [ author , setAuthor ] = useState(searchParams.get('author__username') || '');
-
-    let { setFilterArticle } = useBlog();
-    let { search } = useLocation();
 
     useEffect(() => {
         getTags()
@@ -28,15 +30,15 @@ const FilterBox = () => {
     },[]);
 
     useEffect(() => {
-        setSearchParams({ search: searchName , tags__name: tags.map(tag => tag) , author__name: author , published: `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}` });
-    },[tags , searchName , author , selectedDate]);
-
-    const searchHandler = () => {
-        filterArticles(search)
+        if(search !== '') {
+            filterArticles(search)
             .then(res => setFilterArticle(res.data))
             .catch(err => console.log(err.response))
+        }
+    },[search]);
 
-        window.scrollTo(0 , 0);
+    const searchHandler = () => {
+        setSearchParams({ search: searchName , tags__name: tags.map(tag => tag) , author__username: author , published: `${selectedDate.year === undefined ? '' : `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`}` });
     }
 
     const createTag = (tag) => {
@@ -98,7 +100,7 @@ const FilterBox = () => {
                     onChange={setSelectedDate}
                     inputPlaceholder="Select a date"
                     calendarClassName="responsive-calendar"
-                    inputClassName="rounded-[.5rem] h-12 w-full px-5 py-2 text-left placeholder:text-[#80868B]"
+                    inputClassName="rounded-[.5rem] h-12 w-full px-5 py-2 text-left placeholder:text-[#80868B] outline-none border focus:border-mainColor transition-all"
                     wrapperClassName="w-full"
                 />
             </div>

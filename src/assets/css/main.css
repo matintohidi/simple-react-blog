@@ -2084,20 +2084,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
 
-.blur-sm {
-  --tw-blur: blur(4px);
-  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .blur-md {
   --tw-blur: blur(12px);
   -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.blur {
-  --tw-blur: blur(8px);
+.blur-sm {
+  --tw-blur: blur(4px);
   -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -2612,6 +2606,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:border-mainColor:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(32 132 255 / var(--tw-border-opacity));
 }
 
 .focus\:outline-none:focus {
@@ -3161,8 +3160,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 8rem;
   }
 
-  .lg\:h-\[320px\] {
-    height: 320px;
+  .lg\:h-\[350px\] {
+    height: 350px;
   }
 
   .lg\:h-96 {
@@ -3177,16 +3176,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 1.25rem;
   }
 
-  .lg\:h-\[350px\] {
-    height: 350px;
-  }
-
   .lg\:w-32 {
     width: 8rem;
   }
 
-  .lg\:w-\[400px\] {
-    width: 400px;
+  .lg\:w-\[500px\] {
+    width: 500px;
   }
 
   .lg\:w-1\/2 {
@@ -3199,10 +3194,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:w-5 {
     width: 1.25rem;
-  }
-
-  .lg\:w-\[500px\] {
-    width: 500px;
   }
 
   .lg\:items-center {
