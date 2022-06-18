@@ -91,6 +91,13 @@
   overflow: hidden;
 }
 
+.three-points-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .image {
   object-fit: cover;
 }

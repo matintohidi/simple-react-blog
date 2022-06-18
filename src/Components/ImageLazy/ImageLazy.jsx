@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 export const ImageLazy = ({ src, alt, className, onClick }) => {
-    const [source, setSource] = useState(false);
+    const [source, setSource] = useState('');
     const refEl = useRef();
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export const ImageLazy = ({ src, alt, className, onClick }) => {
             src={source}
             alt={alt}
             ref={refEl}
-            className={`${className} ${source === false ? 'blur-sm' : ''}`}
+            className={`${className} ${source === '' ? 'blur-sm' : ''}`}
             onClick={onClick}
         />
     );
