@@ -15,9 +15,7 @@ const AboutArticle = ({ comments , data , slug , setLoader }) => {
         const textShortLink = document.getElementById("textShortLink");
         navigator.clipboard.writeText(textShortLink.innerText);
     }
-
-    console.log(data.tags)
-
+    
     return (
         <>
             <div className="flex flex-col-reverse sm:flex-row justify-between items-center my-4 sm:my-8">

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // import components
 import Socials from '../Socials/Socials';
+import { ImageLazy } from '../ImageLazy/ImageLazy';
 
 const Author = ({ author }) => {
     const { username , socials , profile , about } = author;
@@ -30,7 +31,7 @@ const Author = ({ author }) => {
         <div className="flex flex-col justify-center items-center backdropCard rounded-md">
             <Link to={`/${username}`} className="rounded-full">
                 {
-                    profile === null ? <Avatar className="rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40" { ...config } /> : <img src={profile} className={'object-cover rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40'} alt="Profile Image" />
+                    profile === null ? <Avatar className="rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40" { ...config } /> : <ImageLazy src={profile} className={'object-cover rounded-full mt-5 mb-2 w-28 h-28 lg:my-4 lg:w-32 lg:h-32 xl:w-40 xl:h-40'} alt={username} />
                 }
             </Link>
             <div className="flex flex-col items-center">
