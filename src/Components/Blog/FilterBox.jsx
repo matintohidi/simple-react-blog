@@ -16,7 +16,7 @@ const FilterBox = () => {
 
     const [ allTags , setAllTags ] = useState([]);
     const [ inputTag , setInputTag ] = useState('');
-    const [ selectedDate, setSelectedDate ] = useState(published !== '' && search !== '' ? { year: published.split('-')[0] , month: published.split('-')[1] , day: published.split('-')[2] } : '');
+    const [ selectedDate, setSelectedDate ] = useState(published !== '' && search !== '' ? { year: Number(published.split('-')[0]) , month: Number(published.split('-')[1]) , day: Number(published.split('-')[2]) } : '');
     const [ tags , setTags ] = useState(searchParams.getAll('tags__name') || []);
     const [ searchName , setSearchName ] = useState(searchParams.get('search') || '');
     const [ author , setAuthor ] = useState(searchParams.get('author__username') || '');
@@ -32,12 +32,14 @@ const FilterBox = () => {
     useEffect(() => {
         if(search !== '') {
             filterArticles(search)
-            .then(res => setFilterArticle(res.data))
-            .catch(err => console.log(err.response))
+                .then(res => setFilterArticle(res.data))
+                .catch(err => console.log(err.response))
         }
     },[search]);
 
     const searchHandler = () => {
+        window.scrollTo(0 , 0);
+        
         setSearchParams({ search: searchName , tags__name: tags.map(tag => tag) , author__username: author , published: `${selectedDate.year === undefined ? '' : `${selectedDate.year}-${selectedDate.month}-${selectedDate.day}`}` });
     }
 

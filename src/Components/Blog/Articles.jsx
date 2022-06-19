@@ -19,7 +19,6 @@ const Articles = () => {
             .catch(err => console.log(err.response))
     }
 
-
     return (
             <div className={`relative mb-5 ${results.length === 0 ? 'hidden' : ''}`}>
                 <div className="mx-4 md:mx-12 lg:mx-20 mt-16 z-10">
@@ -36,8 +35,8 @@ const Articles = () => {
                             </div>
                         </div>
                         <div className="flex justify-center items-center mb-16">
-                            <button onClick={() => pageHandler(previous)} className={`text-mainColor px-5 py-3 rounded mr-5 ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${previous === null ? "hidden" : "block"}`}>Previews</button>
-                            <button onClick={() => pageHandler(next)} className={`text-mainColor px-5 py-3 rounded ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${next === null ? "hidden" : "block"}`}>Next</button>
+                            <button onClick={() => pageHandler(previous)} className={`text-mainColor px-5 py-3 rounded mr-5 ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${previous === undefined ? "hidden" : "block"}`}>Previews</button>
+                            <button onClick={() => pageHandler(next)} className={`text-mainColor px-5 py-3 rounded ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${next === undefined ? "hidden" : "block"}`}>Next</button>
                         </div>
                     </div>
                 </div>
