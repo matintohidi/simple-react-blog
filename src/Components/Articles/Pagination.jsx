@@ -1,11 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
-const Pagination = ({ page , pageCount }) => {
-    const navigate = useNavigate();
+const Pagination = ({ page , setPage , pageCount , setSearchParams , ordering }) => {
 
-    const handlePageClick = ({ selected }) => navigate(`/articles/page/${selected + 1}`);
+    const handlePageClick = ({ selected }) => {
+        setPage(selected + 1);
+        setSearchParams({ page: selected + 1 , ordering: ordering });
+    }
 
     return (
         <ReactPaginate

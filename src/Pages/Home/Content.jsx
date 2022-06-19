@@ -44,7 +44,7 @@ export default function SectionContent() {
                         </div>
                     </div>
                     <div className="flex justify-center items-center mb-16">
-                        <Link to="/articles/page" className="px-5 py-3 rounded-full transition-colors ring-1 ring-mainColor text-sm hover:bg-[#eaebec] text-mainColor">See More</Link>
+                        <Link to="/articles" className="px-5 py-3 rounded-full transition-colors ring-1 ring-mainColor text-sm hover:bg-[#eaebec] text-mainColor">See More</Link>
                     </div>
                 </div>
                 <Shape count={count} shapeDisplay={true} />

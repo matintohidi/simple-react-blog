@@ -15,11 +15,7 @@ import ProtectedRoute from '../Components/ProtectedRoute';
 
 const AppRoutes = [
   {
-    path: '/articles/page',
-    element: <Articles />,
-  },
-  {
-    path: '/articles/page/:page',
+    path: '/articles',
     element: <Articles />,
   },
   {
