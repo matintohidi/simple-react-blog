@@ -25,15 +25,16 @@ const TopicArticle = () => {
                 <div className="ml-0 mx-auto flex flex-col items-start">
                     <div className="flex justify-between w-full">
                         <p className="text-sm font-medium font-openSansSm">{dateFormat.getDate()} , {numToMonth(dateFormat.getMonth())} , {dateFormat.getFullYear()}</p>
-                        <Link to={`/${data.author.username}`} className="text-sm tracking-widest capitalize">{data.author.username}</Link>
+                        <Link to={`/${data.author.username}`} className="text-sm tracking-widest">{data.author.username}</Link>
                     </div>
                     <Link to={`/article/${data.slug}`}><h1 className="text-2xl my-4 font-black three-points">{data.title}</h1></Link>
                     <p className="text-sm font-medium font-openSansSm break-all three-points-topic">{data.content}</p>
                 </div>
-                <div className="flex ml-0 mx-auto">
+                <div className="flex justify-between items-center w-full">
                     <Link to={`/article/${data.slug}`} className="text-gray-600 text-sm font-black h-12 flex justify-start px-6 items-center backdropCard hover:bg-[#d1d3d6] transition-colors mt-3 rounded cursor-pointer">
                         Read More
                     </Link>
+                    <p className="text-gray-500 text-sm">Read Time : {data.readtime} min</p>
                 </div>
             </div>
         </div>

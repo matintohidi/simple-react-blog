@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/Auth';
 import { toggleLike , toggleSave , isLiked , isSaved } from '../../services';
+import { toast } from 'react-toastify';
 
 const Reactions = ({ countLikes , slug }) => {
     let { user  } = useAuth();
@@ -21,15 +22,19 @@ const Reactions = ({ countLikes , slug }) => {
     },[])
 
     const likeHandler = () => {
-        toggleLike(like ? 'dislike' : 'like' , slug , user.token)
-            .then(() => window.location.reload())
-            .catch(err => console.log(err.response))
+        if(user.isAuthenticated) {
+            toggleLike(like ? 'dislike' : 'like' , slug , user.token)
+                .then(() => window.location.reload())
+                .catch(err => console.log(err.response))
+        } else toast.error('You must sign in to like articles');
     }
 
     const saveHandler = () => {
-        toggleSave(save ? 'unsave' : 'save' , slug , user.token)
-            .then(() => window.location.reload())
-            .catch(err => console.log(err.response))
+        if(user.isAuthenticated) {
+            toggleSave(save ? 'unsave' : 'save' , slug , user.token)
+                .then(() => window.location.reload())
+                .catch(err => console.log(err.response))
+        } else toast.error('You must sign in to save articles');
     }
 
     return (

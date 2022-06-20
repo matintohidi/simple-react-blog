@@ -6,7 +6,7 @@ import { numToMonth } from '../../hooks/useMonth';
 import { ImageLazy } from '../ImageLazy/ImageLazy';
 
 export default function ArticleCard ({ data }) {
-    let { author , image , title , content , published , slug } = data;
+    let { author , image , title , content , published , slug , readtime } = data;
 
     let dateFormat = new Date(published);
 
@@ -24,10 +24,11 @@ export default function ArticleCard ({ data }) {
                     <Link to={`/article/${slug}`}><h1 className="text-2xl font-black three-points-title">{title}</h1></Link>
                     <p className="text-sm font-medium font-openSansSm mt-3 break-all three-points">{content}</p>
                 </div>
-                <div className="flex">
+                <div className="flex justify-between items-center">
                     <Link to={`/article/${slug}`} className="font-Mont text-gray-600 text-sm font-black h-12 flex justify-start px-6 items-center backdropCard transition-colors mt-3 rounded cursor-pointer">
                         Read More
                     </Link>
+                    <p className="text-gray-500 text-sm">Read Time : {readtime} min</p>
                 </div>
             </div>
         </div>

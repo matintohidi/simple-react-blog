@@ -8,6 +8,7 @@ import { getUser , toggleFollow , isFollowed } from '../../services';
 //import Components
 import Loader from '../../Components/Layout/Loader';
 import Socials from '../../Components/Socials/Socials';
+import { ImageLazy } from '../../Components/ImageLazy/ImageLazy';
 
 //import Media
 import DefaultBanner from '../../assets/media/Img/profile_header_default.webp';
@@ -87,7 +88,7 @@ const Profile = () => {
             <div className="backdropCircle rounded-xl p-4 my-6 mx-4">
               <div className="flex flex-col justify-center items-center">
                 <div className="lg:h-96 relative md:h-60 h-40 rounded-2xl overflow-hidden w-full">
-                  <img src={DefaultBanner} className="w-full h-full object-cover" />
+                  <ImageLazy src={DefaultBanner} className="w-full h-full object-cover" />
                 </div>
                 <div className="md:w-52 md:h-52 w-24 h-24 rounded-full md:border-8 border-4 md:-mt-28 -mt-12 border-mainColor object-cover group relative overflow-hidden">
                   {
