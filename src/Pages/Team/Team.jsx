@@ -1,9 +1,10 @@
 import React , { useEffect } from 'react';
 import { useBlog } from '../../context/context';
 
-import image from '../../assets/media/Img/3.jpg';
 //import components
 import Header from '../../Components/Team/Header';
+import Head from '../../Components/Team/Head';
+import Members from '../../Components/Team/Members';
 
 const Team = () => {
     let { setHeaderAndFooterDisplay } = useBlog();
@@ -18,83 +19,10 @@ const Team = () => {
         <div className="h-full bg-[#161623]">
             <Header />
             <div className="px-10 py-6 sm:px-24 lg:px-48 flex flex-col items-center relative">
-                <section className="text-center">
-                    <h2 className="capitalize font-Mont font-bold text-sm text-[#fc4f5d]">our team</h2>
-                    <h1 className="capitalize font-MontBold font-semibold text-2xl lg:text-3xl mt-2 text-white">meet our team</h1>
-                    <p className="text-gray-400 mt-5 text-sm sm:tracking-wider">our expert team is made up of creatives with technical knowhow strategists who think outside the box, and developer who push innovation.</p>
-                </section>
-                <section className="flex flex-col md:flex-row mt-8">
-                    <div className="flex flex-col rounded-2xl items-start transition duration-300 card opacity-50 hover:opacity-100 group hover:md:-translate-y-6">
-                        <div className="p-5 sm:p-10">
-                            <div>
-                                <img src={image} className="rounded-lg w-full object-cover grayscale group-hover:grayscale-0" />
-                            </div>
-                            <div className="mt-2">
-                                <h1 className="font-MontBold text-lg font-bold text-white">Matin Tohidi Sani</h1>
-                                <h2 className="text-gray-300 font-Mont font-thin text-sm mt-2">Front-end Developer</h2>
-                            </div>
-                            <ul className="flex mt-6 justify-center">
-                                <li className="cursor-pointer opacity-0 transition translate-y-10 delay-100 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <a className="inline-flex items-center justify-center w-9 h-9 lg:w-11 lg:h-11 backdropCard rounded-full bg-opacity-15 group transition duration-200 hover:bg-mainColor hover:opacity-100" href="#">
-                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 text-white transition duration-300 ease-linear" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M11.8986 0.219727C5.33541 0.219727 0.0195312 5.5356 0.0195312 12.0988C0.0195312 17.3553 3.41991 21.7951 8.14183 23.369C8.73579 23.473 8.95852 23.1166 8.95852 22.8048C8.95852 22.5226 8.94367 21.5872 8.94367 20.5923C5.95906 21.1417 5.18692 19.8647 4.94934 19.1965C4.8157 18.855 4.2366 17.8007 3.73174 17.5186C3.31597 17.2959 2.72202 16.7465 3.71689 16.7316C4.65236 16.7168 5.32056 17.5928 5.54329 17.9492C6.61241 19.7459 8.32002 19.2411 9.00307 18.9292C9.10701 18.1571 9.41883 17.6374 9.76035 17.3404C7.11727 17.0434 4.35539 16.0189 4.35539 11.4751C4.35539 10.1833 4.8157 9.11417 5.57299 8.28263C5.4542 7.98566 5.03843 6.76805 5.69178 5.13469C5.69178 5.13469 6.68665 4.82286 8.95852 6.35229C9.90884 6.08501 10.9186 5.95137 11.9283 5.95137C12.938 5.95137 13.9477 6.08501 14.898 6.35229C17.1699 4.80801 18.1648 5.13469 18.1648 5.13469C18.8181 6.76805 18.4024 7.98566 18.2836 8.28263C19.0409 9.11417 19.5012 10.1684 19.5012 11.4751C19.5012 16.0337 16.7244 17.0434 14.0814 17.3404C14.512 17.7116 14.8832 18.4244 14.8832 19.538C14.8832 21.1269 14.8683 22.4039 14.8683 22.8048C14.8683 23.1166 15.0911 23.4878 15.685 23.369C20.3773 21.7951 23.7776 17.3404 23.7776 12.0988C23.7776 5.5356 18.4618 0.219727 11.8986 0.219727Z" fill="currentColor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li className="cursor-pointer mx-3 transition translate-y-10 opacity-0 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <a className="inline-flex items-center justify-center w-9 h-9 lg:w-11 lg:h-11 backdropCard rounded-full bg-opacity-15 group transition duration-200 hover:bg-mainColor hover:opacity-100" href="#">
-                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 text-white fill-current transition duration-300 ease-linear" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6.03757 7.85909C6.03757 6.83516 6.86763 6.00509 7.89156 6.00509C8.91549 6.00509 9.74555 6.83516 9.74555 7.85909C9.74555 8.88302 8.91549 9.71308 7.89156 9.71308C6.86763 9.71308 6.03757 8.88302 6.03757 7.85909Z"></path>
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M7.89156 15.2751C1.78451 15.2751 0.475586 13.9661 0.475586 7.85909C0.475586 1.75203 1.78451 0.443115 7.89156 0.443115C13.9986 0.443115 15.3075 1.75203 15.3075 7.85909C15.3075 13.9661 13.9986 15.2751 7.89156 15.2751ZM10.3635 4.1511C10.3635 4.49241 10.6402 4.7691 10.9815 4.7691C11.3229 4.7691 11.5995 4.49241 11.5995 4.1511C11.5995 3.80979 11.3229 3.5331 10.9815 3.5331C10.6402 3.5331 10.3635 3.80979 10.3635 4.1511ZM4.80157 7.85909C4.80157 6.15253 6.185 4.7691 7.89156 4.7691C9.59811 4.7691 10.9815 6.15253 10.9815 7.85909C10.9815 9.56564 9.59811 10.9491 7.89156 10.9491C6.18501 10.9491 4.80157 9.56564 4.80157 7.85909Z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li className="cursor-pointer opacity-0 translate-y-10 transition delay-300 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <a className="inline-flex items-center justify-center w-9 h-9 lg:w-11 lg:h-11 backdropCard rounded-full bg-opacity-15 group transition duration-200 hover:bg-mainColor hover:opacity-100" href="#">
-                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 text-white transition duration-300 ease-linear" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M20.4676 20.9728H16.9118V15.4042C16.9118 14.0762 16.888 12.3668 15.0624 12.3668C13.2103 12.3668 12.9269 13.8136 12.9269 15.3074V20.9724H9.37112V9.52098H12.7847V11.0859H12.8326C13.5276 9.89754 14.8247 9.18511 16.2006 9.23621C19.8046 9.23621 20.4692 11.6067 20.4692 14.6908L20.4676 20.9728ZM5.35891 7.95562C4.22689 7.95562 3.29495 7.02422 3.29495 5.8922C3.29495 4.76017 4.22646 3.82867 5.35848 3.82867C6.4904 3.82867 7.4218 4.75996 7.42201 5.89177C7.42201 7.02358 6.49072 7.95552 5.35891 7.95562ZM7.1368 20.9728H3.57725V9.52098H7.1368V20.9728ZM22.2403 0.526519H1.79034C0.83039 0.515678 0.0312315 1.29626 0.0195312 2.25622V22.7911C0.0308021 23.7516 0.829853 24.533 1.79034 24.5227H22.2403C23.2031 24.5348 24.005 23.7535 24.0179 22.7911V2.25482C24.005 1.29283 23.2021 0.513853 22.2403 0.526519Z" fill="currentColor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="flex flex-col rounded-2xl items-start transition duration-300 card opacity-50 hover:opacity-100 group mt-5 md:ml-5 md:mt-0 hover:md:-translate-y-6">
-                        <div className="p-5 sm:p-10">
-                            <div>
-                                <img src={image} className="rounded-lg w-full object-cover grayscale group-hover:grayscale-0" />
-                            </div>
-                            <div className="mt-2">
-                                <h1 className="font-MontBold text-lg font-bold text-white">Abdolrahman kiany</h1>
-                                <h2 className="text-gray-300 font-Mont font-thin text-sm mt-2">Back-end Developer</h2>
-                            </div>
-                            <ul className="flex mt-6 justify-center">
-                                <li className="cursor-pointer opacity-0 transition translate-y-10 delay-100 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <a className="inline-flex items-center justify-center w-9 h-9 lg:w-11 lg:h-11 backdropCard rounded-full bg-opacity-15 group transition duration-200 hover:bg-mainColor hover:opacity-100" href="#">
-                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 text-white transition duration-300 ease-linear" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M11.8986 0.219727C5.33541 0.219727 0.0195312 5.5356 0.0195312 12.0988C0.0195312 17.3553 3.41991 21.7951 8.14183 23.369C8.73579 23.473 8.95852 23.1166 8.95852 22.8048C8.95852 22.5226 8.94367 21.5872 8.94367 20.5923C5.95906 21.1417 5.18692 19.8647 4.94934 19.1965C4.8157 18.855 4.2366 17.8007 3.73174 17.5186C3.31597 17.2959 2.72202 16.7465 3.71689 16.7316C4.65236 16.7168 5.32056 17.5928 5.54329 17.9492C6.61241 19.7459 8.32002 19.2411 9.00307 18.9292C9.10701 18.1571 9.41883 17.6374 9.76035 17.3404C7.11727 17.0434 4.35539 16.0189 4.35539 11.4751C4.35539 10.1833 4.8157 9.11417 5.57299 8.28263C5.4542 7.98566 5.03843 6.76805 5.69178 5.13469C5.69178 5.13469 6.68665 4.82286 8.95852 6.35229C9.90884 6.08501 10.9186 5.95137 11.9283 5.95137C12.938 5.95137 13.9477 6.08501 14.898 6.35229C17.1699 4.80801 18.1648 5.13469 18.1648 5.13469C18.8181 6.76805 18.4024 7.98566 18.2836 8.28263C19.0409 9.11417 19.5012 10.1684 19.5012 11.4751C19.5012 16.0337 16.7244 17.0434 14.0814 17.3404C14.512 17.7116 14.8832 18.4244 14.8832 19.538C14.8832 21.1269 14.8683 22.4039 14.8683 22.8048C14.8683 23.1166 15.0911 23.4878 15.685 23.369C20.3773 21.7951 23.7776 17.3404 23.7776 12.0988C23.7776 5.5356 18.4618 0.219727 11.8986 0.219727Z" fill="currentColor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li className="cursor-pointer mx-3 transition translate-y-10 opacity-0 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <a className="inline-flex items-center justify-center w-9 h-9 lg:w-11 lg:h-11 backdropCard rounded-full bg-opacity-15 group transition duration-200 hover:bg-mainColor hover:opacity-100" href="#">
-                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 text-white fill-current transition duration-300 ease-linear" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6.03757 7.85909C6.03757 6.83516 6.86763 6.00509 7.89156 6.00509C8.91549 6.00509 9.74555 6.83516 9.74555 7.85909C9.74555 8.88302 8.91549 9.71308 7.89156 9.71308C6.86763 9.71308 6.03757 8.88302 6.03757 7.85909Z"></path>
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M7.89156 15.2751C1.78451 15.2751 0.475586 13.9661 0.475586 7.85909C0.475586 1.75203 1.78451 0.443115 7.89156 0.443115C13.9986 0.443115 15.3075 1.75203 15.3075 7.85909C15.3075 13.9661 13.9986 15.2751 7.89156 15.2751ZM10.3635 4.1511C10.3635 4.49241 10.6402 4.7691 10.9815 4.7691C11.3229 4.7691 11.5995 4.49241 11.5995 4.1511C11.5995 3.80979 11.3229 3.5331 10.9815 3.5331C10.6402 3.5331 10.3635 3.80979 10.3635 4.1511ZM4.80157 7.85909C4.80157 6.15253 6.185 4.7691 7.89156 4.7691C9.59811 4.7691 10.9815 6.15253 10.9815 7.85909C10.9815 9.56564 9.59811 10.9491 7.89156 10.9491C6.18501 10.9491 4.80157 9.56564 4.80157 7.85909Z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li className="cursor-pointer opacity-0 translate-y-10 transition delay-300 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <a className="inline-flex items-center justify-center w-9 h-9 lg:w-11 lg:h-11 backdropCard rounded-full bg-opacity-15 group transition duration-200 hover:bg-mainColor hover:opacity-100" href="#">
-                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 text-white transition duration-300 ease-linear" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M20.4676 20.9728H16.9118V15.4042C16.9118 14.0762 16.888 12.3668 15.0624 12.3668C13.2103 12.3668 12.9269 13.8136 12.9269 15.3074V20.9724H9.37112V9.52098H12.7847V11.0859H12.8326C13.5276 9.89754 14.8247 9.18511 16.2006 9.23621C19.8046 9.23621 20.4692 11.6067 20.4692 14.6908L20.4676 20.9728ZM5.35891 7.95562C4.22689 7.95562 3.29495 7.02422 3.29495 5.8922C3.29495 4.76017 4.22646 3.82867 5.35848 3.82867C6.4904 3.82867 7.4218 4.75996 7.42201 5.89177C7.42201 7.02358 6.49072 7.95552 5.35891 7.95562ZM7.1368 20.9728H3.57725V9.52098H7.1368V20.9728ZM22.2403 0.526519H1.79034C0.83039 0.515678 0.0312315 1.29626 0.0195312 2.25622V22.7911C0.0308021 23.7516 0.829853 24.533 1.79034 24.5227H22.2403C23.2031 24.5348 24.005 23.7535 24.0179 22.7911V2.25482C24.005 1.29283 23.2021 0.513853 22.2403 0.526519Z" fill="currentColor"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+                <Head />
+                <Members />
+
+                {/* shapes */}
                 <div className="hidden md:block">
                     <svg className="absolute top-20 left-60" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="18" cy="18" r="18" fill="#65FF98"/>
