@@ -15,9 +15,7 @@ const Articles = () => {
     const [ searchParams , setSearchParams ] = useSearchParams();
 
     const [ loader , setLoader ] = useState(true);
-    const [ articles , setArticles ] = useState([]);
-    const [ count , setCount ] = useState(0);
-    const [ pageCount , setPageCount ] = useState(1);
+    const [ data , setData ] = useState({ results: [] });
     const [ page , setPage ] = useState(searchParams.get('page') || 1);
     const [ ordering , setOrdering ] = useState(searchParams.get('ordering') || '-published');
 
@@ -29,9 +27,8 @@ const Articles = () => {
         sortArticles(ordering , page)
             .then(res => {
                 setLoader(false);
-                setArticles(res.data.results);
-                setCount(res.data.results.length);
-                setPageCount(res.data.total_pages);
+                setData(res.data);
+                console.log(res.data)
             })
             .catch(err => err.response.status === 404 && navigate('/not-found'));
     },[page , ordering]);
@@ -46,7 +43,7 @@ const Articles = () => {
                         <div className="mb-12">
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                                 {
-                                    articles.map((data) => {
+                                    data.results.map((data) => {
                                         return (
                                             <ArticleCard key={uuid()} data={data} />
                                         )
@@ -54,10 +51,10 @@ const Articles = () => {
                                 }
                             </div>
                         </div>
-                        <Pagination setSearchParams={setSearchParams} ordering={ordering} page={page} setPage={setPage} pageCount={pageCount} />
+                        <Pagination setSearchParams={setSearchParams} ordering={ordering} page={page} setPage={setPage} next={data.next} prev={data.previous} pageCount={data.total_pages} />
                     </div>
                 </div>
-                <Shape count={count} shapeDisplay={false} />
+                <Shape count={data.results.length} shapeDisplay={false} />
             </div>
             }
         </>
