@@ -22,9 +22,9 @@ export default function ArticleCard ({ data }) {
                         <Link to={`/${author.username.toLowerCase()}`} className="text-sm tracking-widest">{author.username}</Link>
                     </div>
                     <Link to={`/article/${slug}`}><h1 className="text-2xl font-black three-points-title">{title}</h1></Link>
-                    <p className="text-sm font-medium font-openSansSm mt-3 break-all three-points">{content}</p>
+                    <p className="text-sm font-medium font-openSansSm mt-3 break-all three-points h-[80px]">{content}</p>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col-reverse items-start sm:flex-row sm:justify-between sm:items-center">
                     <Link to={`/article/${slug}`} className="font-Mont text-gray-600 text-sm font-black h-12 flex justify-start px-6 items-center backdropCard transition-colors mt-3 rounded cursor-pointer">
                         Read More
                     </Link>

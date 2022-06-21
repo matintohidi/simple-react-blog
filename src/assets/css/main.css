@@ -1004,6 +1004,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 426px;
 }
 
+.h-\[\] {
+  height: ;
+}
+
+.h-\[37\] {
+  height: 37;
+}
+
+.h-\[378px\] {
+  height: 378px;
+}
+
+.h-\[80px\] {
+  height: 80px;
+}
+
 .w-28 {
   width: 7rem;
 }
