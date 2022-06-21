@@ -9,7 +9,7 @@ import Shape from '../../Components/Layout/Shape';
 
 const Articles = () => {
     let { filterArticle , setFilterArticle } = useBlog();
-    let { results , next , previous } = filterArticle;
+    let { results , next , previous , total_pages } = filterArticle;
 
     const pageHandler = (type) => {
         window.scrollTo(0 , 0);
@@ -34,9 +34,9 @@ const Articles = () => {
                                 }
                             </div>
                         </div>
-                        <div className="flex justify-center items-center mb-16">
-                            <button onClick={() => pageHandler(previous)} className={`text-mainColor px-5 py-3 rounded mr-5 ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${previous === undefined ? "hidden" : "block"}`}>Previews</button>
-                            <button onClick={() => pageHandler(next)} className={`text-mainColor px-5 py-3 rounded ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${next === undefined ? "hidden" : "block"}`}>Next</button>
+                        <div className={`flex justify-center items-center ${total_pages === 1 ? '' : 'mb-16'}`}>
+                            <button onClick={() => pageHandler(previous)} className={`text-mainColor px-5 py-3 rounded mr-5 ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${previous === null ? "hidden" : "block"}`}>Previews</button>
+                            <button onClick={() => pageHandler(next)} className={`text-mainColor px-5 py-3 rounded ring-1 ring-mainColor text-sm hover:bg-mainColor hover:text-white transition-colors ${next === null ? "hidden" : "block"}`}>Next</button>
                         </div>
                     </div>
                 </div>

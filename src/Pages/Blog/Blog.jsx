@@ -1,5 +1,4 @@
 import React , { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useBlog } from '../../context/context';
 
 // import components
@@ -7,12 +6,16 @@ import FilterBox from '../../Components/Blog/FilterBox';
 import Articles from '../../Components/Blog/Articles';
 
 const Blog = () => {
-    let location = useLocation();
-    let { setFilterArticle } = useBlog();
+    let { setFilterArticle , setFilterTag } = useBlog();
 
     useEffect(() => {
-        setFilterArticle({ results : [] })
-    },[location.pathname])
+        window.scrollTo(0 , 0);
+
+        return () => {
+            setFilterArticle({ results : [] });
+            setFilterTag('');
+        }
+    },[])
 
     return (
         <>

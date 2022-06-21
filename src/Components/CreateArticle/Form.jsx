@@ -16,7 +16,7 @@ const Form = ({ setLoader , setData , setSlug , setNext , token }) => {
             toast.error('Please enter your content');
             setLoader(false);
             window.scrollTo(0 , 0);
-        } else if(formData.get('image') === '') {
+        } else if(formData.get('image').name === '') {
             toast.error('Please choose your image');
             setLoader(false);
             window.scrollTo(0 , 0);

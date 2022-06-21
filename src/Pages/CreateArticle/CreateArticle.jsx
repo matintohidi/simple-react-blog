@@ -25,6 +25,16 @@ const CreateArticle = () => {
             .catch(err => console.log(err.response))
     },[]);
 
+    useEffect(() => {   
+        let body = document.querySelector('body');
+    
+        if(next) {
+          body.classList.add('overflow-hidden');
+        } else {
+          body.classList.remove('overflow-hidden');
+        }
+      },[next])
+
     return (
         <>
             {

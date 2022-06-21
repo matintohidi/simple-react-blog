@@ -8,7 +8,7 @@ import DatePicker from "react-modern-calendar-datepicker";
 import { filterArticles , getTags } from '../../services';
 
 const FilterBox = () => {
-    let { setFilterArticle } = useBlog();
+    let { setFilterArticle , filterTag } = useBlog();
     let { search } = useLocation();
     
     const [ searchParams , setSearchParams ] = useSearchParams();
@@ -16,12 +16,16 @@ const FilterBox = () => {
 
     const [ allTags , setAllTags ] = useState([]);
     const [ inputTag , setInputTag ] = useState('');
-    const [ selectedDate, setSelectedDate ] = useState(published !== '' && search !== '' ? { year: Number(published.split('-')[0]) , month: Number(published.split('-')[1]) , day: Number(published.split('-')[2]) } : '');
+    const [ selectedDate, setSelectedDate ] = useState(published !== null ? { year: Number(published.split('-')[0]) , month: Number(published.split('-')[1]) , day: Number(published.split('-')[2]) } : '');
     const [ tags , setTags ] = useState(searchParams.getAll('tags__name') || []);
     const [ searchName , setSearchName ] = useState(searchParams.get('search') || '');
     const [ author , setAuthor ] = useState(searchParams.get('author__username') || '');
 
     useEffect(() => {
+        if(filterTag !== '') {
+            setSearchParams({ tags__name: filterTag });
+        }
+
         getTags()
             .then(res => {
                 setAllTags(res.data.map(tag => tag.name));
@@ -50,12 +54,6 @@ const FilterBox = () => {
             setTags([...tags , tag]);
             setInputTag('');
         }
-    }
-
-    const deleteTag = (tag) => {
-        setTags(tags.filter(filterTag => filterTag !== tag));
-        setSearchParams({ search: searchParams.get('search') ,  tags__name: tags.filter(filterTag => filterTag !== tag) , author__name: searchParams.get('author__name') , published: searchParams.get('published') });
-        toast.success('Tag removed successfully');
     }
 
     let filterTagShow = allTags.map(allTag => allTag.toUpperCase().indexOf(inputTag.toUpperCase()) !== -1 ? 1 : -1).includes(1);
@@ -90,7 +88,7 @@ const FilterBox = () => {
                     {
                         tags.map((tag) => {
                             return (
-                                <button onClick={() => deleteTag(tag)} key={uuid()} className="px-2 py-1 text-center bg-mainColor text-white mr-1 mb-1 rounded">{tag}</button>
+                                <button key={uuid()} className="px-2 py-1 text-center bg-mainColor text-white mr-1 mb-1 rounded text-sm" onClick={() => setTags(tags.filter(filterTag => filterTag !== tag))}>{tag}</button>
                             )
                         })
                     }

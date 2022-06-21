@@ -1,14 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { numToMonth } from '../../hooks/useMonth';
 import { v1 as uuid } from 'uuid';
 import { toast } from 'react-toastify';
+import { useBlog } from '../../context/context';
 
 //import components
 import Comments from './Comments';
 import Author from './Author';
 import Reactions from './Reactions';
 
-const AboutArticle = ({ comments , data , slug , setLoader }) => {
+const AboutArticle = ({ comments , data , slug }) => {
+    const navigate = useNavigate();
+
+    let { setFilterTag } = useBlog();
+
     let dateFormat = new Date(data.published);
 
     const copyHandler = () => {
@@ -16,14 +22,19 @@ const AboutArticle = ({ comments , data , slug , setLoader }) => {
         navigator.clipboard.writeText(textShortLink.innerText);
         toast.success('The short link is copid');
     }
-    
+
+    const tagHandler = (tag) => {
+        setFilterTag(tag);
+        navigate('/blog');
+    }
+
     return (
         <>
             <div className="flex flex-col-reverse sm:flex-row justify-between items-center my-4 sm:my-8">
                 <div className="flex justify-start items-center flex-wrap gap-y-2 gap-x-3">
                     {
                         data.tags.map(tag => {
-                            return <a href={`/blog/?tags__name=${tag}`} key={uuid()} className="rounded-md text-center text-gray-600 px-3 py-1 backdropCard text-sm cursor-pointer">#{tag}</a>
+                            return <button key={uuid()} className="rounded-md text-center text-gray-600 px-3 py-1 backdropCard text-sm cursor-pointer" onClick={() => tagHandler(tag)}>#{tag}</button>
                         })
                     }
                 </div>
@@ -36,7 +47,7 @@ const AboutArticle = ({ comments , data , slug , setLoader }) => {
                     </svg>
                     <h2 className="text-xs ml-2 overflow-x-scroll sm:overflow-x-hidden" id="textShortLink">{data.full_short_link}</h2>
                 </button>
-                <Reactions countLikes={data.like} setLoader={setLoader} slug={slug} />
+                <Reactions countLikes={data.like} slug={slug} />
             </div>
             <Author author={data.author} />
             <h1 className="mt-6 text-2xl font-black text-gray-700" id="comments">Comments</h1>
