@@ -14,11 +14,11 @@ const Reactions = ({ countLikes , slug }) => {
 
         isLiked(slug , user.token)
             .then(res => setLike(res.data))
-            .catch(err => console.log(err.response))
+            .catch(err => err.response.status === 401 && setLike(false))
 
         isSaved(slug , user.token)
             .then(res => setSaeve(res.data))
-            .catch(err => console.log(err.response))
+            .catch(err => err.response.status === 401 && setLike(false))
     },[])
 
     const likeHandler = () => {
@@ -47,14 +47,14 @@ const Reactions = ({ countLikes , slug }) => {
                     </svg>
                 </button>
             </div>
-            <div className="flex justify-center items-center">
-                <button className="flex justify-center items-center" onClick={likeHandler}>
+            <button className="flex justify-center items-center group" onClick={likeHandler}>
+                <div className="flex justify-center items-center">
                     <svg width="21" height="21" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path className={`fill-transparent transition-colors ${like ? "fill-red-700 stroke-red-700" : "stroke-gray-500 hover:stroke-red-700"}`} d="M8.44863 1C10.139 1 11.681 1.84142 12.8486 2.8C14.0163 1.84142 15.5583 1 17.2486 1C20.8937 1 23.8486 3.71049 23.8486 7.05386C23.8486 13.795 16.1761 17.721 13.6467 18.8321C13.1372 19.056 12.5601 19.056 12.0506 18.8321C9.52122 17.721 1.84863 13.7948 1.84863 7.0537C1.84863 3.71033 4.80355 1 8.44863 1Z" strokeWidth="2"></path>
+                        <path className={`fill-transparent transition-colors ${like ? "fill-red-700 stroke-red-700" : "stroke-gray-500 group-hover:stroke-red-700"}`} d="M8.44863 1C10.139 1 11.681 1.84142 12.8486 2.8C14.0163 1.84142 15.5583 1 17.2486 1C20.8937 1 23.8486 3.71049 23.8486 7.05386C23.8486 13.795 16.1761 17.721 13.6467 18.8321C13.1372 19.056 12.5601 19.056 12.0506 18.8321C9.52122 17.721 1.84863 13.7948 1.84863 7.0537C1.84863 3.71033 4.80355 1 8.44863 1Z" strokeWidth="2"></path>
                     </svg>
-                </button>
-                <span className="text-gray-500 ml-1">{countLikes}</span>
-            </div>
+                </div>
+                <span className="text-gray-500 ml-1 group-hover:text-red-700">{countLikes}</span>
+            </button>
             <div>
                 <a href="#comments">
                     <svg width="20" height="20" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="fill-transparent transition-colors stroke-gray-500 hover:stroke-gray-700">

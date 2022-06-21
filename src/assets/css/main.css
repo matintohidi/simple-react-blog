@@ -2683,9 +2683,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   stroke: #2084FF;
 }
 
+.group:hover .group-hover\:stroke-red-700 {
+  stroke: #b91c1c;
+}
+
 .group:hover .group-hover\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.group:hover .group-hover\:text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
 .group:hover .group-hover\:opacity-100 {

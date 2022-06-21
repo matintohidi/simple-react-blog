@@ -7,6 +7,7 @@ import { leaveComment } from "../../services";
 // import Components
 import Comment from "./Comment";
 import Loader from "../Layout/Loader";
+import { toast } from "react-toastify";
 
 
 const Comments = ({ comments , slug }) => {
@@ -21,7 +22,7 @@ const Comments = ({ comments , slug }) => {
 
         leaveComment(slug , data.content , user.token)
             .then(() => window.location.reload())
-            .catch((err) => console.log(err.response))
+            .catch((err) => toast.error(err.response.statusText))
 
         setLoader(false);
     }
@@ -50,7 +51,7 @@ const Comments = ({ comments , slug }) => {
                             { errors.content && <label className="text-sm text-red-600 my-2">{errors.content.message}</label> }
                             <button className="text-gray-600 px-4 py-2 font-bold text-sm backdropCard rounded-md my-4 cursor-pointer hover:bg-gray-300 transition-colors">Comment</button>
                         </form>
-                        : <div className="text-gray-700 my-6 px-8 py-4 backdropCard rounded-md text-center">If you like to comment, you must log in</div>
+                        : <div className="text-gray-700 my-6 px-8 py-4 backdropCircle rounded-md text-center">If you like to comment, you must log in</div>
                     }
                 </div>
             </>
