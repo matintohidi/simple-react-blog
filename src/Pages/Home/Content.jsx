@@ -47,7 +47,7 @@ export default function SectionContent() {
                         <Link to="/articles" className="px-5 py-3 rounded-full transition-colors ring-1 ring-mainColor text-sm text-mainColor">See More</Link>
                     </div>
                 </div>
-                <Shape count={count} shapeDisplay={true} />
+                <Shape count={count} />
             </div>
             }
         </>

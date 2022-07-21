@@ -36,7 +36,7 @@
 }
 
 .backdropCard {
-  background: rgba(208, 211, 216, 0.35);
+  background: rgba(209, 212, 217, 0.349);
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
 }
@@ -222,5 +222,27 @@
 @media (min-width: 2500px) {
   .responsive-calendar {
     font-size: 12px !important;
+  }
+}
+
+.active span {
+  margin-top: -1.5rem;
+}
+
+.active h3 {
+  transform: translateY(1rem);
+  transition-duration: 700ms;
+  opacity: 1;
+}
+
+.active .indiactor {
+  display: block !important;
+}
+
+@media (min-width: 768px) {
+  .active {
+    color: #2084FF;
+    border-bottom: 1px solid #2084FF;
+    padding-bottom: 2px;
   }
 }

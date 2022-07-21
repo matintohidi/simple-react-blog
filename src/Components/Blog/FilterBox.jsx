@@ -94,7 +94,7 @@ const FilterBox = () => {
                     }
                 </div>
             </div>
-            <div className="mt-2 w-3/4">
+            <div className="mt-2 w-3/4 z-0">
                 <DatePicker
                     value={selectedDate}
                     onChange={setSelectedDate}

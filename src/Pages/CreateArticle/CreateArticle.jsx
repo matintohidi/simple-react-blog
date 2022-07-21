@@ -17,6 +17,7 @@ const CreateArticle = () => {
     const [ allTags , setAllTags ] = useState([]);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getTags()
             .then(res => {
                 setLoader(false);

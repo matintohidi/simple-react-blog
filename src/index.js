@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter , Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { BlogProvider } from './context/context';
 import { AuthProvider } from './context/Auth';
 import { ToastContainer } from 'react-toastify';
@@ -32,5 +32,5 @@ ReactDOM.render(
       </BlogProvider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('HomePage')
+  document.getElementById('root')
 );

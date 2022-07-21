@@ -2,24 +2,25 @@ import React , { useEffect } from 'react';
 import { useBlog } from '../../context/context';
 
 //import components
+import Navbar from '../../Components/Team/Navbar';
 import Header from '../../Components/Team/Header';
-import Head from '../../Components/Team/Head';
 import Members from '../../Components/Team/Members';
 
 const Team = () => {
     let { setHeaderAndFooterDisplay } = useBlog();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         setHeaderAndFooterDisplay(true);
-
+        
         return () => setHeaderAndFooterDisplay(false);
     }, [])
 
     return (
-        <div className="h-full bg-[#161623]">
-            <Header />
+        <div className="h-full bg-[#161623] pt-4">
+            <Navbar />
             <div className="px-10 py-6 sm:px-24 lg:px-48 flex flex-col items-center relative">
-                <Head />
+                <Header />
                 <Members />
 
                 {/* shapes */}

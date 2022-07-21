@@ -9,7 +9,7 @@ import MemberCard from './MemberCard';
 
 const Members = () => {
     return (
-        <section className="flex flex-col md:flex-row mt-8 gap-x-4">
+        <section className="flex flex-col md:flex-row mt-8 gap-y-4 md:gap-x-4">
             {
                 teamData.map(member => <MemberCard key={uuid()} data={member} />)
             }
