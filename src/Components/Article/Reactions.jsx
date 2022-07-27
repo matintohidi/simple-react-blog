@@ -3,7 +3,7 @@ import { useAuth } from '../../context/Auth';
 import { toggleLike , toggleSave , isLiked , isSaved } from '../../services';
 import { toast } from 'react-toastify';
 
-const Reactions = ({ countLikes , slug }) => {
+const Reactions = ({ countLikes , slug , setData }) => {
     let { user  } = useAuth();
 
     const [ like , setLike ] = useState(false);
@@ -24,7 +24,12 @@ const Reactions = ({ countLikes , slug }) => {
     const likeHandler = () => {
         if(user.isAuthenticated) {
             toggleLike(like ? 'dislike' : 'like' , slug , user.token)
-                .then(() => window.location.reload())
+                .then(res => {
+                    setData(prev => ({ ...prev , like: res.data }));
+                    isLiked(slug , user.token)
+                        .then(res => setLike(res.data))
+                        .catch(err => err.response.status === 401 && setLike(false))
+                })
                 .catch(err => console.log(err.response))
         } else toast.error('You must sign in to like articles');
     }
@@ -32,7 +37,11 @@ const Reactions = ({ countLikes , slug }) => {
     const saveHandler = () => {
         if(user.isAuthenticated) {
             toggleSave(save ? 'unsave' : 'save' , slug , user.token)
-                .then(() => window.location.reload())
+                .then(() => {
+                    isSaved(slug , user.token)
+                        .then(res => setSaeve(res.data))
+                        .catch(err => err.response.status === 401 && setLike(false))
+                })
                 .catch(err => console.log(err.response))
         } else toast.error('You must sign in to save articles');
     }

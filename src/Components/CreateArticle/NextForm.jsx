@@ -2,7 +2,7 @@ import React , { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { v1 as uuid } from 'uuid';
 import { toast } from 'react-toastify';
-import { getTags , createNewTag , getTag , putArticle  } from '../../services';
+import { createNewTag , getTag , putArticle  } from '../../services';
 
 const NextForm = ({ next , setLoader , slug , data , token , allTags }) => {
     const navigate = useNavigate();
@@ -61,7 +61,7 @@ const NextForm = ({ next , setLoader , slug , data , token , allTags }) => {
                 setLoader(false);
                 navigate(`/article/${slug}`)
             })
-            .catch((err) => console.log(err.response));
+            .catch(({ response }) => console.log(response.data));
 
         setLoader(false);
     }

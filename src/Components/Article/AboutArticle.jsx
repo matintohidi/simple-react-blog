@@ -10,7 +10,7 @@ import Comments from './Comments';
 import Author from './Author';
 import Reactions from './Reactions';
 
-const AboutArticle = ({ comments , data , slug }) => {
+const AboutArticle = ({ comments , setComments , data , slug , setData }) => {
     const navigate = useNavigate();
 
     let { setFilterTag } = useBlog();
@@ -47,12 +47,12 @@ const AboutArticle = ({ comments , data , slug }) => {
                     </svg>
                     <h2 className="text-xs ml-2 overflow-x-scroll sm:overflow-x-hidden" id="textShortLink">{data.full_short_link}</h2>
                 </button>
-                <Reactions countLikes={data.like} slug={slug} />
+                <Reactions countLikes={data.like} setData={setData} slug={slug} />
             </div>
             <Author author={data.author} />
             <h1 className="mt-6 text-2xl font-black text-gray-700" id="comments">Comments</h1>
             <div>
-                <Comments comments={comments} slug={data.slug} />
+                <Comments comments={comments} setComments={setComments} slug={data.slug} />
             </div>
         </>
     )

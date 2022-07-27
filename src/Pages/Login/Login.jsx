@@ -1,6 +1,6 @@
 import React , { useState , useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Link , useNavigate , useLocation } from 'react-router-dom';
 import { login } from '../../services';
 import { useAuth } from '../../context/Auth';
@@ -10,6 +10,7 @@ import { useBlog } from '../../context/context';
 import Input from '../../Components/Input/Input';
 import Loader from '../../Components/Layout/Loader';
 import Footer from '../../Components/Login&SignUp/Footer';
+import { ImageLazy } from '../../Components/ImageLazy/ImageLazy';
 
 // import media
 import LoginImage from '../../assets/media/Img/login&signup.png';
@@ -39,14 +40,15 @@ const Login = () => {
 
     login(data)
       .then(res => {
-        setLoader(false);
         setUser({ isAuthenticated: true , token: res.data.auth_token });
         navigate('/');
       })
-      .catch(() => {
-        setLoader(false);
+      .catch(({ response }) => {
         toast.error('There is a Problem');
+        console.log(response.data);
       })
+
+    setLoader(false);
   }
 
   return (
@@ -54,7 +56,7 @@ const Login = () => {
       {
         loader ? <Loader /> : <div className="flex">
             <div className="-z-10 w-1/2 hidden lg:block relative">
-              <img src={LoginImage} className="h-screen w-full brightness-50" />
+              <ImageLazy src={LoginImage} className="h-screen w-full brightness-50" />
               <h1 className="font-TheBrown font-bold tracking-widest text-5xl absolute xl:left-[40%] lg:left-[37%] bottom-1/2 text-white">Read It</h1>
             </div>
             <div className="flex flex-col lg:m-auto mx-auto mt-4">
@@ -70,12 +72,12 @@ const Login = () => {
                   <button className="bg-mainColor md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 mb-2 md:text-lg hover:bg-[#1b78eb] transition-colors text-center text-sm">Login</button> 
                 </form>
                 <button className="bg-gray-800 md:w-[350px] w-[250px] xl:w-[400px] sm:w-[300px] sm:h-[50px] h-[35px] text-white rounded py-2 flex justify-center items-center hover:bg-gray-700 transition-colors">
-                  <img src={GoogleIco} />
+                  <ImageLazy src={GoogleIco} />
                   <p className="ml-2 text-sm lg:text-base">Or Sign-in With Google</p>
                 </button>
                 <div className="flex justify-center items-center xl:mt-16 mt-8">
                     <p className="mr-2 text-sm lg:text-base">Dont Have An Account?</p>
-                    <Link to="/SignUp" className="text-mainColor lg:text-sm text-xs cursor-pointer">Join Free Today</Link>
+                    <Link to="/signup" className="text-mainColor lg:text-sm text-xs cursor-pointer">Join Free Today</Link>
                 </div>
               </div>
               <Footer />

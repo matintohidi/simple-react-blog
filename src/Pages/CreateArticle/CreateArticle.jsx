@@ -34,6 +34,8 @@ const CreateArticle = () => {
         } else {
           body.classList.remove('overflow-hidden');
         }
+
+        return () => body.classList.remove('overflow-hidden');
       },[next])
 
     return (

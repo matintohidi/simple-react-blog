@@ -27,6 +27,7 @@ const Article = () => {
 
     useEffect(() => {
         window.scrollTo(0 , 0);
+        
         getAricle(slug)
             .then(res => {
                 setLoader(false);
@@ -54,7 +55,7 @@ const Article = () => {
                                 <div className="mt-4 border-b-2 pb-8 px-3">
                                     <ReactMarkdown className="font-thin text-sm font-openSansSm break-all">{data.content}</ReactMarkdown>
                                 </div>
-                                <AboutArticle comments={comments} data={data} slug={slug} />
+                                <AboutArticle comments={comments} setComments={setComments} setData={setData} data={data} slug={slug} />
                             </div>
                         </div>
                     </div>

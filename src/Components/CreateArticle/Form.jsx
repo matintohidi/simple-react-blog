@@ -28,7 +28,7 @@ const Form = ({ setLoader , setData , setSlug , setNext , token }) => {
                     setSlug(res.data.slug);
                     setNext(true);
                 })
-                .catch(err => console.error(err.response))
+                .catch(({ response }) => toast.error(response.data));
             window.scrollTo(0 , 0);
             setLoader(false);
         }

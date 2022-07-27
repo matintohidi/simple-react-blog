@@ -64,10 +64,12 @@ const Navigation = () => {
                         ))
                     }
                     {
-                        user.isAuthenticated === false ? <Link to="/login">
+                        user.isAuthenticated === false
+                        ? <Link to="/login">
                             <li className="ml-4 text-white hover:bg-[#1d7bee] transition text-sm bg-mainColor px-3 py-1 rounded-full cursor-pointer">Login/Signup</li>
-                        </Link> : 
-                        authorData.profile === null ? <Avatar onClick={() => setDropDown(!dropDown)} className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" { ...config } />
+                        </Link>
+                        :  authorData.profile === null
+                        ? <Avatar onClick={() => setDropDown(!dropDown)} className="cursor-pointer ml-4 transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" { ...config } />
                         : <ImageLazy onClick={() => setDropDown(!dropDown)} src={authorData.profile} className="cursor-pointer object-cover ml-4 rounded-full transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" />
                     }
                 </ul>

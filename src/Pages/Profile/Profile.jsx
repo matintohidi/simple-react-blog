@@ -13,6 +13,7 @@ import { ImageLazy } from '../../Components/ImageLazy/ImageLazy';
 //import Media
 import DefaultBanner from '../../assets/media/Img/profile_header_default.webp';
 import UserCard from '../../Components/Profile/UserCard';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -71,18 +72,24 @@ const Profile = () => {
     }
   },[followModalStat.show])
 
-  const followHandler = () => {
+  const followHandler = (e) => {
     setLoader(true);
 
     toggleFollow(followStat ? 'unfollow' : 'follow' , data.id , user.token)
-      .then(() => window.location.reload())
-      .catch(err => console.log(err.response))
+      .then(() => {
+        setLoader(false);
+        e.target.innerText = followStat ? 'Follow' : 'Unfollow';
+        setFollowStat(!followStat);
+      })
+      .catch(({ response }) => toast.error(response.data.message))
   }
 
   return (
     <>
       {
-        loader ? <Loader /> : <>
+        loader
+        ? <Loader />
+        : <>
           <div className={`blackScreen z-40 ${followModalStat.show ? '' : 'hidden'}`}></div>
           <main className="lg:mx-20 xl:mx-40">
             <div className="backdropCircle rounded-xl p-4 my-6 mx-4">
@@ -92,7 +99,7 @@ const Profile = () => {
                 </div>
                 <div className="md:w-52 md:h-52 w-24 h-24 rounded-full md:border-8 border-4 md:-mt-28 -mt-12 border-mainColor object-cover group relative overflow-hidden">
                   {
-                    data.profile === null ? <Avatar className="transition duration-200 transform group-hover:scale-110 w-full h-full" { ...config } /> : <img src={data.profile} className="transition duration-200 transform group-hover:scale-110 w-full h-full" alt="Profile Image" />
+                    data.profile === null ? <Avatar className="transition duration-200 transform group-hover:scale-110 w-full h-full" { ...config } /> : <ImageLazy src={data.profile} className="transition duration-200 transform group-hover:scale-110 w-full h-full" alt="Profile Image" />
                   }
                 </div>
                 <div className="mb-5 md:mt-5 mt-2 text-gray-500 font-thin tracking-widest">
@@ -105,7 +112,7 @@ const Profile = () => {
                     <button onClick={() => setFollowModalStat({ show: true , followers: false , followings: true })} type="button" className="sm:text-xl text-gray-400 hover:text-mainColor transition">Followings <span className="ml-1 font-Mont">{data.followings.length}</span></button>
                   </div>
                   <div className="flex justify-center mb-4 sm:mb-0 sm:justify-start">
-                    <button onClick={followHandler} type="button" className={`bg-mainColor rounded sm:rounded-lg sm:px-6 px-4 sm:h-12 h-10 text-white sm:text-lg text-base border border-mainColor transition duration-200 hover:bg-white hover:text-mainColor ${authorData.id === data.id ? 'hidden' : ''}`}>{ followStat ? 'Unfollow' : 'Follow' }</button>
+                    <button onClick={(e) => followHandler(e)} type="button" className={`bg-mainColor rounded sm:rounded-lg sm:px-6 px-4 sm:h-12 h-10 text-white sm:text-lg text-base border border-mainColor transition duration-200 hover:bg-white hover:text-mainColor ${authorData.id === data.id ? 'hidden' : ''}`}>{ followStat ? 'Unfollow' : 'Follow' }</button>
                   </div>
                 </div>
                 <ul className="flex items-center my-4">

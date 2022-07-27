@@ -1,14 +1,14 @@
 // import Pages
-import Content from '../Pages/Home/Content';
-import Article from '../Pages/Article/Article';
-import Login from '../Pages/Login/Login';
-import Signup from '../Pages/SignUp/SignUp'
-import CreateArticle from '../Pages/CreateArticle/CreateArticle';
-import Blog from '../Pages/Blog/Blog';
-import Articles from '../Pages/Articles/Articles';
-import NotFound from '../Pages/NotFound/NotFound';
-import Profile from '../Pages/Profile/Profile';
-import Team from '../Pages/Team/Team';
+import Content from '../pages/Home/Content';
+import Article from '../pages/Article/Article';
+import Login from '../pages/Login/Login';
+import Signup from '../pages/SignUp/SignUp'
+import CreateArticle from '../pages/CreateArticle/CreateArticle';
+import Blog from '../pages/Blog/Blog';
+import Articles from '../pages/Articles/Articles';
+import NotFound from '../pages/NotFound/NotFound';
+import Profile from '../pages/Profile/Profile';
+import Team from '../pages/Team/Team';
 
 // import components
 import ProtectedRoute from '../Components/ProtectedRoute';
