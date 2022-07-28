@@ -21,12 +21,12 @@ ReactDOM.render(
       <BlogProvider>
         <AuthProvider>
           <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                draggable={false}
-                pauseOnHover={false}
-                closeOnClick
-            />
+            position="top-right"
+            autoClose={3000}
+            draggable={false}
+            pauseOnHover={false}
+            closeOnClick
+          />
           <App />
         </AuthProvider>
       </BlogProvider>
