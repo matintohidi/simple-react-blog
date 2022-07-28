@@ -4,13 +4,13 @@ import { v1 as uuid } from 'uuid';
 import { getArticles } from '../../services';
 
 // import Components
-import Header from './Head';
+import Header from '../../Components/Home/Header';
 import ArticleCard from '../../Components/ArticleCard/ArticleCard';
 import Loader from '../../Components/Layout/Loader';
 import Shape from '../../Components/Layout/Shape';
 import TopicArticle from '../../Components/Home/TopicArticle';
 
-export default function SectionContent() {
+const Home = () => {
     const [ loader , setLoader ] = useState(true);
     const [ articels , setArticles ] = useState([]);
     const [ count , setCount ] = useState(0);
@@ -53,3 +53,5 @@ export default function SectionContent() {
         </>
     )
 }
+
+export default Home;

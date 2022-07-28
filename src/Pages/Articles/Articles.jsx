@@ -28,7 +28,6 @@ const Articles = () => {
             .then(res => {
                 setLoader(false);
                 setData(res.data);
-                console.log(res.data)
             })
             .catch(err => err.response.status === 404 && navigate('/not-found'));
     },[page , ordering]);

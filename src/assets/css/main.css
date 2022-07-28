@@ -702,10 +702,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 1rem;
 }
 
-.m-auto {
-  margin: auto;
-}
-
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -784,8 +780,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.5rem;
 }
 
-.mr-12 {
-  margin-right: 3rem;
+.ml-6 {
+  margin-left: 1.5rem;
 }
 
 .mt-8 {
@@ -866,30 +862,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-3 {
   margin-bottom: 0.75rem;
-}
-
-.ml-12 {
-  margin-left: 3rem;
-}
-
-.ml-20 {
-  margin-left: 5rem;
-}
-
-.ml-28 {
-  margin-left: 7rem;
-}
-
-.ml-6 {
-  margin-left: 1.5rem;
-}
-
-.ml-8 {
-  margin-left: 2rem;
-}
-
-.ml-5 {
-  margin-left: 1.25rem;
 }
 
 .block {
@@ -1026,12 +998,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
-.w-fit {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
 .w-20 {
   width: 5rem;
 }
@@ -1066,6 +1032,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-32 {
   width: 8rem;
+}
+
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .w-\[250px\] {
@@ -1877,10 +1849,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pl-12 {
-  padding-left: 3rem;
 }
 
 .text-left {
@@ -2953,6 +2921,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-right: 12rem;
   }
 
+  .md\:ml-14 {
+    margin-left: 3.5rem;
+  }
+
   .md\:ml-1 {
     margin-left: 0.25rem;
   }
@@ -2971,18 +2943,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:mr-0 {
     margin-right: 0px;
-  }
-
-  .md\:ml-12 {
-    margin-left: 3rem;
-  }
-
-  .md\:ml-14 {
-    margin-left: 3.5rem;
-  }
-
-  .md\:ml-16 {
-    margin-left: 4rem;
   }
 
   .md\:block {
@@ -3303,6 +3263,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:right-\[40\%\] {
     right: 40%;
+  }
+
+  .xl\:top-24 {
+    top: 6rem;
+  }
+
+  .xl\:top-20 {
+    top: 5rem;
   }
 
   .xl\:mx-32 {

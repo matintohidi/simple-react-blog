@@ -1,5 +1,5 @@
 // import Pages
-import Content from '../pages/Home/Content';
+import Home from '../pages/Home/Home';
 import Article from '../pages/Article/Article';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/SignUp/SignUp'
@@ -50,7 +50,7 @@ const AppRoutes = [
     private: true
   },
   { path: '/',
-    element: <Content />
+    element: <Home />
   },
   {
     path: '/not-found',

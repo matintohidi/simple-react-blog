@@ -73,7 +73,8 @@ const Navigation = () => {
                         : <ImageLazy onClick={() => setDropDown(!dropDown)} src={authorData.profile} className="cursor-pointer object-cover ml-4 rounded-full transition duration-200 transform group-hover:scale-110 w-12 h-12 xl:w-14 xl:h-14" />
                     }
                 </ul>
-                <div className={`z-10 ${dropDown ? '' : 'hidden'} bg-white divide divide-gray-300 rounded shadow-md w-40 absolute top-24 right-4`}>
+                {
+                    dropDown && <div className="z-10 bg-white divide divide-gray-300 rounded shadow-md w-40 absolute top-16 xl:top-20 right-4">
                     <ul className="text-sm text-gray-700">
                         <li>
                             <Link to={`${authorData.username}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
@@ -86,6 +87,7 @@ const Navigation = () => {
                         </li>
                     </ul>
                 </div>
+                }
             </div>
         </nav>
     )
