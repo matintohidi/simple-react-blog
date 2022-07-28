@@ -4,14 +4,14 @@ import { useAuth } from '../../../context/Auth';
 import { v1 as uuid } from 'uuid';
 
 const Navigation = () => {
-  let { authorData } = useAuth();
+  let { userData } = useAuth();
 
   const Menus = [
     { name: "Home", icon: "home-outline", dis: "translate-x-0" , path: "/" },
     { name: "Blog", icon: "newspaper-outline", dis: "translate-x-16" , path: "/blog" },
     { name: "Team", icon: "person-outline", dis: "translate-x-32" , path: "/team" },
     { name: "Write", icon: "pencil-outline", dis: "translate-x-64" , path: "/createarticle" },
-    { name: "Profile", icon: "settings-outline", dis: "translate-x-48" , path: `/${authorData.username}` },
+    { name: "Profile", icon: "settings-outline", dis: "translate-x-48" , path: `/${userData.username}` },
   ];
 
   return (

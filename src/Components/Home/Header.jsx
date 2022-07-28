@@ -21,7 +21,7 @@ const Header = () => {
                     <h2 className="font-extrabold text-2xlfont-extrabold text-2xl text-gray-700 md:ml-1">Read It</h2>
                 </div>
                 <p className="text-sm font-medium text-center font-openSansSm mt-4 mx-8 md:mx-48 lg:mx-72 xl:mx-96 2xl:mx-[500px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet</p>
-                <Link to="/CreateArticle" className="mt-5 px-7 py-2 bg-mainColor hover:bg-[#1a79ee] transition-colors rounded flex items-center justify-center">
+                <Link to="/createArticle" className="mt-5 px-7 py-2 bg-mainColor hover:bg-[#1a79ee] transition-colors rounded flex items-center justify-center">
                     <p className="font-bold text-white">Write Your Article</p>
                 </Link>
             </div>

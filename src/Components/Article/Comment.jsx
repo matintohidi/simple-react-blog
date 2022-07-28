@@ -38,8 +38,8 @@ const Comment = ({ data , setComments , slug , child }) => {
             <div className={`my-2 backdropCircle rounded-md w-full ${child ? 'ml-6 md:ml-14' : ''}`}>
                 <div className="mx-4 py-5 flex flex-col sm:flex-row sm:justify-between">
                     <div className="flex flex-col">
-                        <Link to={`/${author.username}`} className="w-20 h-20 rounded-full sm:w-24 sm:h-24 md:w-28 md:h-28">
-                            <ImageLazy src={'http://127.0.0.1:8000' + author.profile} alt={author.username + " Profile image"} className="rounded-full w-full h-full"/>
+                        <Link to={`/${author.username}`} className="ring-2 ring-mainColor w-20 h-20 rounded-full sm:w-24 sm:h-24 md:w-28 md:h-28 group">
+                            <ImageLazy src={'http://127.0.0.1:8000' + author.profile} alt={`${author.username} Profile image`} className="rounded-full w-full h-full object-cover transition duration-200 transform group-hover:scale-105"/>
                         </Link>
                         <div className="mt-4">
                             <h1 className="text-lg font-black text-gray-800">{author.username}</h1>

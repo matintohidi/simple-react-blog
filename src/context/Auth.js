@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
 
   const [ user , setUser ] = useState(() => getLocalStorage('user' , { isAuthenticated: false , token: null }));
-  const [ authorData , setAuthorData ] = useState({ followers:[] , followings:[] , socials:{} });
+  const [ userData , setUserData ] = useState({ followers:[] , followings:[] , socials:{} });
 
   useEffect(() => {
     setLocalStorage('user', user);
@@ -19,12 +19,12 @@ const AuthProvider = ({ children }) => {
     getMeUser(user.token)
       .then(res => {
         setLocalStorage('user' , { isAuthenticated: true , token: user.token });
-        setAuthorData(res.data);
+        setUserData(res.data);
       })
       .catch(() => setLocalStorage('user' , { isAuthenticated: false , token: null }))
   },[location.pathname])
 
-  const value = { user , setUser , authorData };
+  const value = { user , setUser , userData };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
