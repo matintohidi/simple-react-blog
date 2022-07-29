@@ -22,11 +22,30 @@
   src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .backdropCircle {
   background: rgba( 230, 233, 240, 0.35 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
   border: 2px solid rgba(255, 255, 255, 0.342);
+}
+
+.backdropArticle {
+  background: rgba( 230, 233, 240, 0.35 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border: 2px solid rgba(255, 255, 255, 0.342);
+}
+
+@media (max-width: 450px) {
+  .backdropArticle {
+    background-color: transparent;
+    border: none;
+    backdrop-filter: none;
+  }
 }
 
 .backdropBg {

@@ -2,6 +2,7 @@ import React , { useEffect , useState } from 'react';
 import { useParams , useNavigate , useLocation } from 'react-router-dom';
 import { v1 as uuid } from 'uuid';
 import { useAuth } from '../../context/Auth';
+import { toast } from 'react-toastify';
 import { getUser , toggleFollow , isFollowed } from '../../services';
 
 //import Components
@@ -12,7 +13,6 @@ import { ImageLazy } from '../../Components/ImageLazy/ImageLazy';
 //import Media
 import DefaultBanner from '../../assets/media/Img/profile_header_default.webp';
 import UserCard from '../../Components/Profile/UserCard';
-import { toast } from 'react-toastify';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ const Profile = () => {
         loader
         ? <Loader />
         : <>
-          <div className={`blackScreen z-40 ${followModalStat.show ? '' : 'hidden'}`}></div>
+          { followModalStat.show && <div className="blackScreen z-40"></div> }
           <main className="lg:mx-20 xl:mx-40">
             <div className="backdropCircle rounded-xl p-4 my-6 mx-4">
               <div className="flex flex-col justify-center items-center">
@@ -91,7 +91,7 @@ const Profile = () => {
                     <button onClick={() => setFollowModalStat({ show: true , followers: false , followings: true })} type="button" className="sm:text-xl text-gray-400 hover:text-mainColor transition">Followings <span className="ml-1 font-Mont">{data.followings.length}</span></button>
                   </div>
                   <div className="flex justify-center mb-4 sm:mb-0 sm:justify-start">
-                    <button onClick={(e) => followHandler(e)} type="button" className={`bg-mainColor rounded sm:rounded-lg sm:px-6 px-4 sm:h-12 h-10 text-white sm:text-lg text-base border border-mainColor transition duration-200 hover:bg-white hover:text-mainColor ${userData.id === data.id ? 'hidden' : ''}`}>{ followStat ? 'Unfollow' : 'Follow' }</button>
+                    { userData.id !== data.id && <button onClick={(e) => followHandler(e)} type="button" className="bg-mainColor rounded sm:rounded-lg sm:px-6 px-4 sm:h-12 h-10 text-white sm:text-lg text-base border border-mainColor transition duration-200 hover:bg-white hover:text-mainColor">{ followStat ? 'Unfollow' : 'Follow' }</button> }
                   </div>
                 </div>
                 <ul className="flex items-center my-4">

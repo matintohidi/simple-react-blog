@@ -26,7 +26,7 @@ const NextForm = ({ next , setLoader , slug , data , token , allTags }) => {
                 .catch(err => console.error(err.response))
             setTag('');
             setLoader(false);
-        } else if(tag.trim() === '') {
+        } else if(!tag.trim()) {
             toast.error('Please enter a correct tag');
             setLoader(false);
         } else {
@@ -57,13 +57,8 @@ const NextForm = ({ next , setLoader , slug , data , token , allTags }) => {
 
     const submitArticle = () => {
         putArticle(slug , { status: check , tags: tagsName , ...data } , token)
-            .then(() => {
-                setLoader(false);
-                navigate(`/article/${slug}`)
-            })
-            .catch(({ response }) => console.log(response.data));
-
-        setLoader(false);
+            .then(() => navigate(`/article/${slug}`))
+            .catch(({ response }) => toast.error(response.data));
     }
 
     let filterTagShow = allTags.map(allTag => allTag.toUpperCase().indexOf(tag.toUpperCase()) !== -1 ? 1 : -1).includes(1);
@@ -101,7 +96,7 @@ const NextForm = ({ next , setLoader , slug , data , token , allTags }) => {
                     </div>
                     <div className="flex items-center justify-center mt-4">
                         <label className="relative flex justify-between items-center group p-2 text-md">
-                            Release Status
+                            Release status
                             <input type="checkbox" className="absolute left-1/2 -translate-x-1/2 w-full peer appearance-none rounded-md" checked={check} onChange={() => setCheck(!check)} />
                             <span className="ring-1 ring-mainColor w-14 h-8 flex items-center flex-shrink-0 ml-4 p-1 bg-white rounded-full duration-300 ease-in-out peer-checked:bg-mainColor after:w-6 after:h-6 after:bg-mainColor peer-checked:after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 group-hover:after:translate-x-1"></span>
                         </label>

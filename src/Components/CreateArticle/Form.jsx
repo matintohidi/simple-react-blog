@@ -8,15 +8,15 @@ const Form = ({ setLoader , setData , setSlug , setNext , token }) => {
         e.preventDefault();
         let formData = new FormData(e.target);
 
-        if(formData.get('title').trim() === '') {
+        if(!formData.get('title').trim()) {
             toast.error('Please enter your title');
             setLoader(false);
             window.scrollTo(0 , 0);
-        } else if(formData.get('content').trim() === '') {
+        } else if(!formData.get('content').trim()) {
             toast.error('Please enter your content');
             setLoader(false);
             window.scrollTo(0 , 0);
-        } else if(formData.get('image').name === '') {
+        } else if(!formData.get('image').name) {
             toast.error('Please choose your image');
             setLoader(false);
             window.scrollTo(0 , 0);
@@ -29,7 +29,6 @@ const Form = ({ setLoader , setData , setSlug , setNext , token }) => {
                     setNext(true);
                 })
                 .catch(({ response }) => toast.error(response.data));
-            window.scrollTo(0 , 0);
             setLoader(false);
         }
     }
@@ -48,13 +47,13 @@ const Form = ({ setLoader , setData , setSlug , setNext , token }) => {
                         <label className="inputLable">Content</label>
                     </div>
                     <div className="flex mt-6 items-center justify-center">
-                        <h2 className="w-64 flex flex-col items-center px-4 py-6 bg-white text-mainColor rounded-lg tracking-wide uppercase border border-mainColor cursor-pointer hover:bg-mainColor hover:border-white hover:text-white transition-all">
+                        <div className="w-64 flex flex-col items-center px-4 py-6 bg-white text-mainColor rounded-lg tracking-wide uppercase border border-mainColor cursor-pointer hover:bg-mainColor hover:border-white hover:text-white transition-all">
                             <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                             </svg>
                             <label className="mt-2 text-base leading-normal">Image</label>
-                            <input type='file' name='image' className="absolute w-60 px-4 py-6 opacity-0" />
-                        </h2>
+                            <input type="file" name="image" className="absolute w-60 px-4 py-6 opacity-0" />
+                        </div>
                     </div>
                 </div>
                 <div className="my-6 flex justify-center items-center">

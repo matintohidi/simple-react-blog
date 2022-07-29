@@ -13,7 +13,7 @@ export default function ArticleCard ({ data }) {
     return (
         <div className="m-3 md:mx-6 lg:mx-6 lg:mt-6 lg:mb-0 backdropCard rounded shadow-md col-span-1">
             <Link to={`/article/${slug}`}>
-                <ImageLazy src={image} alt={content} className="rounded-t shadow-lg md:h-72 xl:h-88 h-96 w-full image" />
+                <ImageLazy src={image} alt={content} className="rounded-t shadow-lg md:h-72 xl:h-88 h-96 w-full object-cover" />
             </Link>
             <div className="mx-5 py-3">
                 <div className="flex flex-col items-start mb-4">
