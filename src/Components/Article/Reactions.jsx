@@ -31,7 +31,10 @@ const Reactions = ({ countLikes , slug , setData }) => {
                         .catch(err => err.response.status === 401 && setLike(false))
                 })
                 .catch(err => console.log(err.response))
-        } else toast.error('You must sign in to like articles');
+        } else {
+            toast.error('You must sign in to like articles');
+            window.scrollTo(0 , 0);
+        };
     }
 
     const saveHandler = () => {
@@ -43,7 +46,10 @@ const Reactions = ({ countLikes , slug , setData }) => {
                         .catch(err => err.response.status === 401 && setLike(false))
                 })
                 .catch(err => console.log(err.response))
-        } else toast.error('You must sign in to save articles');
+        } else {
+            toast.error('You must sign in to save articles');
+            window.scrollTo(0 , 0);
+        };
     }
 
     return (

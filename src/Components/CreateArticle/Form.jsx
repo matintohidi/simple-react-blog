@@ -4,33 +4,32 @@ import { createArticle } from '../../services';
 
 const Form = ({ setLoader , setData , setSlug , setNext , token }) => {
     const nextHandler = (e) => {
-        setLoader(true);
         e.preventDefault();
+        setLoader(true);
+
         let formData = new FormData(e.target);
 
         if(!formData.get('title').trim()) {
             toast.error('Please enter your title');
-            setLoader(false);
             window.scrollTo(0 , 0);
         } else if(!formData.get('content').trim()) {
             toast.error('Please enter your content');
-            setLoader(false);
             window.scrollTo(0 , 0);
         } else if(!formData.get('image').name) {
             toast.error('Please choose your image');
-            setLoader(false);
             window.scrollTo(0 , 0);
         } else {
             createArticle(formData , token)
                 .then((res) => {
-                    setLoader(false);
+    
                     setData({ title: res.data.title , content: res.data.content });
                     setSlug(res.data.slug);
                     setNext(true);
                 })
                 .catch(({ response }) => toast.error(response.data));
-            setLoader(false);
         }
+
+        setLoader(false);
     }
 
     return (
